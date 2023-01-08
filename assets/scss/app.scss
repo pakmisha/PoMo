@@ -9,8 +9,7 @@
 
 html,
 body {
-  @apply bg-body font-primary;
+  @apply overflow-x-hidden bg-body font-primary;
 }
 body {
-  @apply overflow-x-hidden;
 }

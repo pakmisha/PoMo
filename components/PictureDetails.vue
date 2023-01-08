@@ -1,9 +1,13 @@
 <template>
   <div class="relative h-full w-full overflow-auto lg:overflow-visible">
     <div
-      class="relative inline-block w-[900px] overflow-y-hidden lg:w-full lg:overflow-y-visible"
+      class="relative inline-block h-full w-[1000px] overflow-y-hidden lg:w-full lg:overflow-y-visible"
     >
-      <img src="~/assets/img/bg/picture-details.png" alt="" />
+      <img
+        src="~/assets/img/bg/picture-details.png"
+        class="object-center"
+        alt=""
+      />
       <div class="absolute left-0 top-0 right-0 bottom-0">
         <div
           class="absolute"
@@ -15,7 +19,9 @@
             <div class="mark-center"></div>
             <div class="dialog">
               <div class="dialog-wrapper">
-                <p class="mb-2 text-sm font-medium uppercase lg:mb-3">
+                <p
+                  class="mb-2 text-xs font-medium uppercase lg:mb-3 lg:text-sm"
+                >
                   {{ item.name }}
                 </p>
                 <p class="mb-3 font-light lg:mb-4">
@@ -75,7 +81,7 @@ export default {
         cost: "160 200 ₸",
       },
       {
-        position: "top-[87%] left-[33%]",
+        position: "top-[87%] left-[33%] dialog-mobile",
         name: "Напольный светильник ILUMI ARC KD FL–14017 WH",
         cost: "160 200 ₸",
       },
@@ -100,19 +106,47 @@ export default {
     }
   }
   .dialog {
-    @apply invisible absolute left-full -top-5 z-20 ml-4  min-w-[200px] translate-x-10 scale-95 opacity-0 transition-all duration-300 ease-in-out lg:min-w-[300px];
+    @apply invisible absolute left-full -top-5 z-20 ml-6  min-w-[200px] translate-x-10 scale-95 opacity-0 transition-all duration-300 ease-in-out lg:min-w-[300px];
     &-wrapper {
       @apply relative border border-black bg-white px-5 py-5 shadow-sm lg:px-7 lg:py-7 2xl:px-9 2xl:py-9;
       &:after,
       &:before {
         content: "";
-        @apply absolute -left-5 top-5;
+        @apply absolute -left-5 top-[11%];
         border: 10px solid transparent;
         border-right: 10px solid black;
       }
       &:after {
         border-right: 10px solid white;
         left: -19px;
+      }
+    }
+  }
+}
+.dialog-mobile {
+  .mark {
+    &:hover {
+      .mark-center {
+        @apply h-4 w-4 lg:h-6 lg:w-6;
+      }
+      .dialog {
+        @apply visible translate-x-0 scale-100 opacity-100;
+      }
+    }
+    .dialog {
+      @apply invisible absolute left-full -bottom-2 top-auto z-20 ml-4 min-w-[200px] translate-x-10  scale-95 opacity-0 transition-all duration-300 ease-in-out lg:bottom-auto lg:-top-5 lg:min-w-[300px];
+      &-wrapper {
+        &:after,
+        &:before {
+          content: "";
+          @apply absolute -left-5 top-auto bottom-[5%] lg:bottom-auto lg:top-[11%];
+          border: 10px solid transparent;
+          border-right: 10px solid black;
+        }
+        &:after {
+          border-right: 10px solid white;
+          left: -19px;
+        }
       }
     }
   }

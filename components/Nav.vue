@@ -1,6 +1,6 @@
 <template>
   <div class="top-panel">
-    <div class="nav-panel section-container">
+    <div class="nav-panel section-container relative">
       <div class="logo">
         <img src="~/assets/img/icons/logo.png" alt="" />
       </div>
@@ -13,13 +13,44 @@
               >О нас</a
             >
           </li>
-          <li class="has-submenu">
+          <li
+            class="has-submenu"
+            :class="{ active: isActive }"
+            @click.prevent="isActive = !isActive"
+          >
             <a
               href="javascript:void(0)"
               class="link text-sm font-medium uppercase text-dark"
               >Каталог</a
             >
-            <div class="submenu"></div>
+            <div class="submenu section-container">
+              <UISlider
+                :options="{
+                  slidesPerView: 5,
+                  spaceBetween: 10,
+                }"
+              >
+                <div
+                  class="swiper-slide"
+                  v-for="(item, index) in items"
+                  :key="index"
+                >
+                  <a href="" class="submenu-item">
+                    <div class="submenu-item-image mb-2">
+                      <img
+                        :src="require(`~/assets/img/${item.image}`)"
+                        alt=""
+                      />
+                    </div>
+                    <div>
+                      <p class="text-sm font-semibold uppercase text-dark">
+                        {{ item.title }}
+                      </p>
+                    </div>
+                  </a>
+                </div>
+              </UISlider>
+            </div>
           </li>
           <li>
             <a
@@ -74,23 +105,35 @@
 export default {
   data: () => ({
     opened: false,
+    isActive: false,
     items: [
       {
-        title: "О нас",
-        link: "",
+        title: "Мебель",
+        image: "bg/category-card-1.png",
       },
       {
-        title: "Каталог",
-        link: "",
-        class: "has-submenu",
+        title: "освещение",
+        image: "bg/category-card-2.png",
       },
       {
-        title: "Бренды",
-        link: "",
+        title: "Офисные решения",
+        image: "bg/category-card-3.png",
       },
       {
-        title: "Реализованные проекты",
-        link: "",
+        title: "Текстиль",
+        image: "bg/category-card-1.png",
+      },
+      {
+        title: "Декор",
+        image: "bg/category-card-2.png",
+      },
+      {
+        title: "Текстиль",
+        image: "bg/category-card-1.png",
+      },
+      {
+        title: "Декор",
+        image: "bg/category-card-2.png",
       },
     ],
   }),
@@ -121,6 +164,30 @@ export default {
       ul {
         @apply flex items-center space-x-5;
         li {
+          &.has-submenu {
+            &.active {
+              .link {
+                &:after {
+                  @apply h-px w-full;
+                }
+              }
+              .submenu {
+                @apply visible translate-y-0 opacity-100;
+              }
+            }
+            .submenu {
+              @apply invisible absolute left-0 top-[101%] right-0 z-40 w-full translate-y-5 border-b border-dark bg-body pt-11 pb-16 opacity-0 shadow-md transition-all duration-500 ease-in-expo;
+              &-item {
+                @apply inline-block;
+                &-image {
+                  @apply aspect-square;
+                  img {
+                    @apply h-full w-full object-cover;
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
