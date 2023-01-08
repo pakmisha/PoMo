@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "./fonts";
+@import "./helpers";
+@import "./hamburger";
+@import "./animations";
+
+html,
+body {
+  @apply bg-body font-primary;
+}
+body {
+  @apply overflow-x-hidden;
+}
