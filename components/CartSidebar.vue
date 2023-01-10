@@ -1,11 +1,13 @@
 <template>
-  <div class="sidebar" :class="{ active: active }">
-    <div class="backdrop"></div>
+  <div class="sidebar cart" :class="{ active: active }">
+    <div class="backdrop" @click.prevent="active = false"></div>
     <div class="sidebar-content">
       <div
-        class="flex items-center justify-between border-b border-dark px-10 py-8"
+        class="flex items-center justify-between border-b border-dark px-7 py-5 lg:py-8 lg:px-10"
       >
-        <h1 class="text-2xl font-semibold uppercase text-dark">Корзина</h1>
+        <h1 class="text-xl font-semibold uppercase text-dark lg:text-2xl">
+          Корзина
+        </h1>
         <button @click.prevent="active = false">
           <svg
             width="14"
@@ -20,7 +22,9 @@
         </button>
       </div>
       <div class=""></div>
-      <div class="border-t border-dark px-10 pt-6 pb-10">
+      <div
+        class="border-t border-dark px-7 pt-4 pb-7 lg:px-10 lg:pt-6 lg:pb-10"
+      >
         <div class="flex justify-between">
           <p class="ext-sm uppercase">Всего:</p>
           <div class="text-xl font-semibold">515 300 ₸</div>
@@ -51,7 +55,7 @@ export default {
 
 <style lang="scss">
 .sidebar {
-  @apply invisible relative z-50 opacity-0 transition-all duration-300 ease-in-quad;
+  @apply invisible relative z-[60] opacity-0 transition-all duration-300 ease-in-quad;
   .backdrop {
     @apply fixed inset-0 bg-black opacity-60;
   }
@@ -62,7 +66,7 @@ export default {
     }
   }
   &-content {
-    @apply fixed top-0 right-0 bottom-0 flex w-2/5 max-w-xl translate-x-full flex-col justify-between bg-white transition-all duration-300 ease-in-quad;
+    @apply fixed top-0 right-0 bottom-0 flex w-full max-w-xl translate-x-full flex-col justify-between bg-white transition-all duration-300 ease-in-quad lg:w-2/5;
   }
 }
 </style>

@@ -17,6 +17,20 @@
       </p>
       <button class="btn-primary">узнать подробнее</button>
     </div>
+    <div class="relative flex justify-between">
+      <div class="lg:mr-20">
+        <div class="mr-14 lg:mr-0">
+          <img src="~/assets/img/bg/society-1.png" alt="" />
+        </div>
+        <div class="-mt-14 ml-14 lg:-mt-24 lg:ml-72">
+          <img src="~/assets/img/bg/society-2.png" alt="" />
+        </div>
+      </div>
+
+      <div class="mt-20 hidden lg:block">
+        <img src="~/assets/img/bg/society-3.png" alt="" />
+      </div>
+    </div>
   </div>
 </template>
 

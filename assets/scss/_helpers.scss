@@ -23,11 +23,23 @@
   }
   &-secondary {
     @apply block whitespace-nowrap rounded-full bg-dark px-6 py-3 text-center text-sm uppercase text-white transition-all duration-300 ease-out-quad;
+    &:hover {
+      @apply underline;
+    }
   }
   &-underline {
     @apply text-sm uppercase text-gray-400 underline;
   }
 }
+//---------------------------BUTTONS END--------------------------------
+
+.input {
+  &-primary {
+    @apply w-full;
+  }
+}
+//---------------------------INPUTS END--------------------------------
+
 .section {
   &-container {
     @apply mx-auto max-w-[1920px] px-5 md:px-10 lg:px-14 2xl:px-16;
@@ -45,6 +57,29 @@
   &:hover {
     &:after {
       @apply h-px w-full;
+    }
+  }
+}
+.page-icon {
+  @apply absolute;
+  &.p {
+    img {
+      @apply w-[40px] lg:w-[80px] 2xl:w-[100px];
+    }
+  }
+  &.o {
+    img {
+      @apply w-[60px] lg:w-[90px] 2xl:w-[120px];
+    }
+  }
+  &.m {
+    img {
+      @apply w-[150px] lg:w-[200px] 2xl:w-[250px];
+    }
+  }
+  &.big-o {
+    img {
+      @apply w-[50px] md:w-[60px] lg:w-[80px] 2xl:w-[120px];
     }
   }
 }

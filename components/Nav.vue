@@ -42,6 +42,14 @@
                       <p class="text-sm font-semibold uppercase text-dark">
                         {{ item.title }}
                       </p>
+                      <div class="mt-2">
+                        <p class="text-sm text-grey">
+                          {{ item.subCategoryOne }}
+                        </p>
+                        <p class="text-sm text-grey">
+                          {{ item.subCategoryTwo }}
+                        </p>
+                      </div>
                     </div>
                   </a>
                 </div>
@@ -71,9 +79,9 @@
           <a href="">КЗ</a>
         </div>
         <div class="navigation-right">
-          <a href="">
+          <button @click.prevent="$nuxt.$emit('toggle', 'search')">
             <img src="~/assets/img/icons/search.svg" alt="" />
-          </a>
+          </button>
           <a href="">
             <img src="~/assets/img/icons/compare.svg" alt="" />
           </a>
@@ -93,6 +101,7 @@
           @click.prevent="$nuxt.$emit('toggle', 'mobileMenu')"
         ></button>
       </div>
+      <UISearch />
     </div>
   </div>
 </template>
@@ -101,15 +110,18 @@
 export default {
   data: () => ({
     opened: false,
-    activeCart: false,
     items: [
       {
         title: "Мебель",
         image: "bg/category-card-1.png",
+        subCategoryOne: "В наличии",
+        subCategoryTwo: "На заказ",
       },
       {
         title: "освещение",
         image: "bg/category-card-2.png",
+        subCategoryOne: "Декоративное",
+        subCategoryTwo: "Техническое",
       },
       {
         title: "Офисные решения",
@@ -139,11 +151,11 @@ export default {
         this.opened = !this.opened;
       }
     });
-    this.$nuxt.$on("toggle", (name) => {
-      if (name == "sidebarCart") {
-        this.activeCart = true;
-      }
-    });
+    // this.$nuxt.$on("toggle", (name) => {
+    //   if (name == "sidebarCart") {
+    //     this.activeCart = true;
+    //   }
+    // });
   },
 };
 </script>
@@ -153,7 +165,7 @@ export default {
   // @apply fixed left-0 top-0;
   @apply border-b border-dark;
   .nav-panel {
-    @apply flex items-center justify-between py-3;
+    @apply relative flex items-center justify-between py-3;
     .logo {
       @apply lg:w-1/4;
       img {
@@ -178,7 +190,7 @@ export default {
             }
 
             .submenu {
-              @apply invisible absolute left-0 top-[101%] right-0 z-40 w-full translate-y-5 border-b border-dark bg-body pt-11 pb-16 opacity-0 shadow-md transition-all duration-500 ease-in-expo;
+              @apply invisible absolute left-0 top-[101%] right-0 z-50 w-full translate-y-10 bg-white pt-11 pb-16 opacity-0 shadow-md transition-all duration-500 ease-in-expo;
               &-item {
                 @apply inline-block;
                 &-image {

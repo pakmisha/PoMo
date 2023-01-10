@@ -52,6 +52,7 @@ export default {
     this.$nuxt.$on("toggle", (name) => {
       if (name == "mobileMenu") {
         this.opened = !this.opened;
+        document.querySelector("html").classList.toggle("no-scroll");
       }
     });
   },
@@ -60,12 +61,12 @@ export default {
 
 <style lang="scss">
 .mobile-nav {
-  @apply invisible fixed z-40 flex h-full w-full scale-95 flex-col items-center justify-end bg-body px-28 opacity-0 transition-all duration-300 ease-out-quad;
+  @apply invisible fixed z-40 flex h-full w-full scale-95 flex-col items-center justify-end bg-light px-28 opacity-0 transition-all duration-300 ease-out-quad;
   nav {
     ul {
       @apply space-y-6 text-center;
       li {
-        @apply invisible translate-y-10 transform opacity-0 transition-all duration-500 ease-in-out;
+        @apply invisible translate-y-10 transform opacity-0 transition duration-500 ease-in-out;
         a {
         }
       }
