@@ -10,15 +10,84 @@
           <a href="" class="btn-primary">перейти в каталог</a>
         </div>
       </div>
-      <div class="w-3/5">
-        <Product />
+      <div class="flex w-[65%]">
+        <UISlider
+          class="slider-popular-products w-[60%]"
+          :options="options"
+          v-if="inited"
+        >
+          <div class="swiper-slide">
+            <Product :image="require('~/assets/img/products/product-2.jpeg')" />
+          </div>
+          <div class="swiper-slide">
+            <Product :image="require('~/assets/img/products/product-1.jpeg')" />
+          </div>
+          <div class="swiper-slide">
+            <Product :image="require('~/assets/img/products/product-2.jpeg')" />
+          </div>
+          <div class="swiper-slide">
+            <Product :image="require('~/assets/img/products/product-1.jpeg')" />
+          </div>
+        </UISlider>
+        <UISliderThumbs
+          class="w-[35%]"
+          ref="swiper_thumbs"
+          :options="{
+            slidesPerView: 1,
+            spaceBetween: 5,
+          }"
+        >
+          <div class="swiper-slide">
+            <Product :image="require('~/assets/img/products/product-2.jpeg')" />
+          </div>
+          <div class="swiper-slide">
+            <Product :image="require('~/assets/img/products/product-1.jpeg')" />
+          </div>
+          <div class="swiper-slide">
+            <Product :image="require('~/assets/img/products/product-2.jpeg')" />
+          </div>
+          <div class="swiper-slide">
+            <Product :image="require('~/assets/img/products/product-1.jpeg')" />
+          </div>
+        </UISliderThumbs>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  mounted() {},
+  data: () => ({
+    options: {
+      slidesPerView: 1,
+      spaceBetween: 5,
+      centeredSlides: false,
+    },
+    inited: false,
+  }),
+  mounted() {
+    this.options.swiper_thumbs = this.$refs.swiper_thumbs.getInstance();
+    this.inited = true;
+  },
+};
 </script>
 
-<style></style>
+<style lang="scss">
+.slider-popular-products {
+  .swiper-wrapper {
+    .swiper-slide {
+      &.swiper-slide-active {
+        .product {
+          &-image {
+          }
+        }
+      }
+      .product {
+        &-image {
+        }
+      }
+    }
+  }
+}
+</style>

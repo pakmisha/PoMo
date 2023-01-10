@@ -6,6 +6,7 @@
     <Category />
     <Brands />
     <PopularProducts />
+    <Society />
   </div>
 </template>
 

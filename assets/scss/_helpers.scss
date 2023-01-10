@@ -22,6 +22,10 @@
     }
   }
   &-secondary {
+    @apply block whitespace-nowrap rounded-full bg-dark px-6 py-3 text-center text-sm uppercase text-white transition-all duration-300 ease-out-quad;
+  }
+  &-underline {
+    @apply text-sm uppercase text-gray-400 underline;
   }
 }
 .section {

@@ -1,10 +1,12 @@
 <template>
   <div>
+    <CartSidebar />
     <MobileNav />
     <Nav />
     <div>
       <Nuxt />
     </div>
+    <Footer />
   </div>
 </template>
 

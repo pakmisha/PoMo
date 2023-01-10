@@ -13,11 +13,7 @@
               >О нас</a
             >
           </li>
-          <li
-            class="has-submenu"
-            :class="{ active: isActive }"
-            @click.prevent="isActive = !isActive"
-          >
+          <li class="has-submenu">
             <a
               href="javascript:void(0)"
               class="link text-sm font-medium uppercase text-dark"
@@ -87,9 +83,9 @@
           <a href="">
             <img src="~/assets/img/icons/favorite.svg" alt="" />
           </a>
-          <a href="">
+          <button @click.prevent="$nuxt.$emit('toggle', 'sidebarCart')">
             <img src="~/assets/img/icons/bag.svg" alt="" />
-          </a>
+          </button>
         </div>
         <button
           class="hamburger z-50 ml-3 block lg:hidden"
@@ -105,7 +101,7 @@
 export default {
   data: () => ({
     opened: false,
-    isActive: false,
+    activeCart: false,
     items: [
       {
         title: "Мебель",
@@ -143,6 +139,11 @@ export default {
         this.opened = !this.opened;
       }
     });
+    this.$nuxt.$on("toggle", (name) => {
+      if (name == "sidebarCart") {
+        this.activeCart = true;
+      }
+    });
   },
 };
 </script>
@@ -165,7 +166,7 @@ export default {
         @apply flex items-center space-x-5;
         li {
           &.has-submenu {
-            &.active {
+            &:hover {
               .link {
                 &:after {
                   @apply h-px w-full;
@@ -175,6 +176,7 @@ export default {
                 @apply visible translate-y-0 opacity-100;
               }
             }
+
             .submenu {
               @apply invisible absolute left-0 top-[101%] right-0 z-40 w-full translate-y-5 border-b border-dark bg-body pt-11 pb-16 opacity-0 shadow-md transition-all duration-500 ease-in-expo;
               &-item {
