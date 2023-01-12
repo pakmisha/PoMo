@@ -26,9 +26,14 @@
           <img src="~/assets/img/bg/society-2.png" alt="" />
         </div>
       </div>
-
       <div class="mt-20 hidden lg:block">
         <img src="~/assets/img/bg/society-3.png" alt="" />
+      </div>
+      <div class="page-icon m -left-10 bottom-32 -z-10 lg:left-20">
+        <img src="~/assets/img/icons/m.svg" alt="" />
+      </div>
+      <div class="page-icon o right-[22%] top-64 hidden lg:block">
+        <img src="~/assets/img/icons/o.svg" alt="" />
       </div>
     </div>
   </div>

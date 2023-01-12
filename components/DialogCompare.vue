@@ -42,6 +42,12 @@ export default {
         color: "белый",
         cost: "515 300 ₸",
       },
+      {
+        image: "products/product-1.jpeg",
+        title: "Кресло TANGYUAN, MAYA A2267–2A   ",
+        color: "белый",
+        cost: "515 300 ₸",
+      },
     ],
   }),
 };

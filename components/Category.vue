@@ -30,11 +30,11 @@
             },
             1024: {
               slidesPerView: 2.1,
-              spaceBetween: 20,
+              spaceBetween: 10,
             },
             1350: {
-              slidesPerView: 2.3,
-              spaceBetween: 30,
+              slidesPerView: 2.1,
+              spaceBetween: 10,
             },
           },
         }"
@@ -49,7 +49,7 @@
                   'url(' + require('~/assets/' + item.image) + ')',
               }"
             >
-              <div class="heading-primary py-36 md:py-52 lg:py-60 2xl:py-72">
+              <div class="heading-primary">
                 {{ item.title }}
               </div>
               <div
@@ -96,7 +96,7 @@ export default {
 
 <style lang="scss">
 .category {
-  @apply relative flex items-center justify-center overflow-hidden border border-black bg-cover bg-center bg-no-repeat transition-all duration-1000 ease-in-out;
+  @apply relative flex h-[450px] items-center justify-center overflow-hidden border border-black bg-cover bg-center bg-no-repeat transition-all duration-1000 ease-in-out md:h-[500px] lg:h-[600px] 2xl:h-[800px];
   &:hover {
   }
 }

@@ -2,7 +2,7 @@
   <div class="mobile-nav" :class="{ opened: opened }">
     <div class="relative flex h-full w-full items-end justify-center px-20">
       <div class="flex h-full flex-col justify-between">
-        <nav class="flex flex-col items-center pt-44" v-if="submenu">
+        <nav class="flex flex-col items-center pt-56" v-if="submenu">
           <ul class="space-y-6">
             <li>
               <a href="" class="mobile-link">О нас</a>
@@ -38,6 +38,12 @@
             </li>
             <li>
               <a href="" class="mobile-link">Реализованные проекты</a>
+            </li>
+            <li>
+              <a href="" class="mobile-link">Сравнение товаров</a>
+            </li>
+            <li>
+              <a href="" class="mobile-link">Избранные товары</a>
             </li>
           </ul>
         </nav>
@@ -160,6 +166,12 @@ export default {
       }
       &:nth-of-type(4) {
         transition-delay: 500ms;
+      }
+      &:nth-of-type(5) {
+        transition-delay: 600ms;
+      }
+      &:nth-of-type(6) {
+        transition-delay: 700ms;
       }
     }
   }

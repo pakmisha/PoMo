@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="section-container py-12 md:my-16 lg:my-20">
+    <div class="section-container py-12 md:my-16">
       <div class="text-center">
         <h1 class="heading-big mb-5">Готовые атмосферные решения</h1>
         <p class="heading-sub uppercase">

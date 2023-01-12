@@ -46,16 +46,28 @@
       >
         <div class="swiper-wrapper pb-16">
           <div class="swiper-slide">
-            <Product :image="require('~/assets/img/products/product-2.jpeg')" />
+            <Product
+              :secondImage="require('~/assets/img/bg/category-card-1.png')"
+              :image="require('~/assets/img/products/product-2.jpeg')"
+            />
           </div>
           <div class="swiper-slide">
-            <Product :image="require('~/assets/img/products/product-1.jpeg')" />
+            <Product
+              :secondImage="require('~/assets/img/bg/category-card-1.png')"
+              :image="require('~/assets/img/products/product-1.jpeg')"
+            />
           </div>
           <div class="swiper-slide">
-            <Product :image="require('~/assets/img/products/product-2.jpeg')" />
+            <Product
+              :secondImage="require('~/assets/img/bg/category-card-1.png')"
+              :image="require('~/assets/img/products/product-2.jpeg')"
+            />
           </div>
           <div class="swiper-slide">
-            <Product :image="require('~/assets/img/products/product-1.jpeg')" />
+            <Product
+              :secondImage="require('~/assets/img/bg/category-card-1.png')"
+              :image="require('~/assets/img/products/product-1.jpeg')"
+            />
           </div>
         </div>
         <SwiperButtons class="swiper-buttons-bottom" />
