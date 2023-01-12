@@ -28,6 +28,9 @@
                   {{ item.cost }}
                 </p>
                 <a href="" class="btn-primary">Смотреть товар</a>
+                <div class="arrow">
+                  <img src="~/assets/img/icons/arrow-black.png" alt="" />
+                </div>
               </div>
             </div>
           </div>
@@ -109,16 +112,12 @@ export default {
     @apply invisible absolute left-full -top-5 z-20 ml-6  min-w-[200px] translate-x-10 scale-95 opacity-0 transition-all duration-300 ease-in-out lg:min-w-[300px];
     &-wrapper {
       @apply relative border border-black bg-white px-5 py-5 shadow-sm lg:px-7 lg:py-7 2xl:px-9 2xl:py-9;
-      &:after,
-      &:before {
-        content: "";
-        @apply absolute -left-5 top-[11%];
-        border: 10px solid transparent;
-        border-right: 10px solid black;
-      }
-      &:after {
-        border-right: 10px solid white;
-        left: -19px;
+
+      .arrow {
+        @apply absolute -left-5 top-[9%];
+        img {
+          @apply w-5;
+        }
       }
     }
   }
@@ -134,18 +133,13 @@ export default {
       }
     }
     .dialog {
-      @apply invisible absolute left-full -bottom-2 top-auto z-20 ml-4 min-w-[200px] translate-x-10  scale-95 opacity-0 transition-all duration-300 ease-in-out lg:bottom-auto lg:-top-5 lg:min-w-[300px];
+      @apply invisible absolute left-full -bottom-4 top-auto z-20 ml-6 min-w-[200px] translate-x-10  scale-95 opacity-0 transition-all duration-300 ease-in-out lg:bottom-auto lg:-top-5 lg:min-w-[300px];
       &-wrapper {
-        &:after,
-        &:before {
-          content: "";
-          @apply absolute -left-5 top-auto bottom-[5%] lg:bottom-auto lg:top-[11%];
-          border: 10px solid transparent;
-          border-right: 10px solid black;
-        }
-        &:after {
-          border-right: 10px solid white;
-          left: -19px;
+        .arrow {
+          @apply absolute -left-5 bottom-[7%] top-auto lg:bottom-auto lg:top-[9%];
+          img {
+            @apply w-5;
+          }
         }
       }
     }

@@ -1,10 +1,10 @@
 //---------------------------TYPOGRAPHY START--------------------------------
 .heading {
   &-big {
-    @apply text-4xl uppercase md:text-5xl lg:text-6xl 2xl:text-7xl;
+    @apply text-4xl uppercase tracking-[-2px] md:text-5xl lg:text-6xl 2xl:text-7xl 2xl:tracking-[-4px];
   }
   &-primary {
-    @apply text-2xl font-semibold uppercase md:text-3xl 2xl:text-4xl;
+    @apply text-2xl font-medium uppercase tracking-[-2px] md:text-3xl 2xl:text-4xl;
   }
   &-sub {
     @apply text-xs font-medium uppercase text-grey md:text-sm;

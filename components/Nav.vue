@@ -9,14 +9,14 @@
           <li>
             <a
               href="javascript:void(0)"
-              class="link text-sm font-medium uppercase text-dark"
+              class="link text-sm uppercase text-dark"
               >О нас</a
             >
           </li>
           <li class="has-submenu">
             <a
               href="javascript:void(0)"
-              class="link text-sm font-medium uppercase text-dark"
+              class="link text-sm uppercase text-dark"
               >Каталог</a
             >
             <div class="submenu section-container">
@@ -61,14 +61,14 @@
           <li>
             <a
               href="javascript:void(0)"
-              class="link text-sm font-medium uppercase text-dark"
+              class="link text-sm uppercase text-dark"
               >Бренды</a
             >
           </li>
           <li>
             <a
               href="javascript:void(0)"
-              class="link text-sm font-medium uppercase text-dark"
+              class="link text-sm uppercase text-dark"
               >Реализованные проекты</a
             >
           </li>
@@ -76,21 +76,22 @@
       </nav>
       <div class="navigation">
         <div class="navigation-left">
-          <a href="">РУ</a>
-          <a href="">EN</a>
-          <a href="">КЗ</a>
+          <a href="" class="lang-btn active">РУ</a>
+          <a href="" class="lang-btn">EN</a>
+          <a href="" class="lang-btn">КЗ</a>
         </div>
         <div class="navigation-right">
           <button @click.prevent="$nuxt.$emit('toggle', 'search')">
             <img src="~/assets/img/icons/search.svg" alt="" />
           </button>
-          <a href="">
+          <div class="has-dialog z-30 hidden lg:block">
             <img src="~/assets/img/icons/compare.svg" alt="" />
-          </a>
+            <DialogCompare />
+          </div>
           <a href="">
             <img src="~/assets/img/icons/person.svg" alt="" />
           </a>
-          <a href="">
+          <a href="" class="hidden lg:block">
             <img src="~/assets/img/icons/favorite.svg" alt="" />
           </a>
           <button @click.prevent="$nuxt.$emit('toggle', 'sidebarCart')">
@@ -210,13 +211,30 @@ export default {
     .navigation {
       @apply flex items-center justify-end lg:w-1/4;
       &-left {
-        @apply mr-10 hidden items-center space-x-4 text-sm text-dark lg:flex;
+        @apply mr-10 hidden items-center space-x-4 text-sm  lg:flex;
+        .lang-btn {
+          @apply text-grey-light;
+          &.active {
+            @apply text-dark;
+          }
+        }
       }
       &-right {
         @apply flex items-center space-x-2;
         a {
           img {
             @apply h-[24px] w-[24px];
+          }
+        }
+        .has-dialog {
+          @apply relative;
+          .dialog-compare {
+            @apply invisible translate-y-10 scale-95 opacity-0 transition-all duration-300 ease-out-quad;
+          }
+          &:hover {
+            .dialog-compare {
+              @apply visible translate-y-0 scale-100 opacity-100;
+            }
           }
         }
       }
