@@ -17,34 +17,58 @@
     <div class="pl-5 md:pl-10 lg:pl-14 2xl:pl-16">
       <UISlider
         :options="{
-          slidesPerView: 2.3,
-          spaceBetween: 30,
+          slidesPerView: 1.1,
           centeredSlides: false,
+          navigation: {
+            nextEl: '.sw-next',
+            prevEl: '.sw-prev',
+          },
+          breakpoints: {
+            320: {
+              slidesPerView: 1.1,
+              spaceBetween: 10,
+            },
+            1024: {
+              slidesPerView: 2.1,
+              spaceBetween: 20,
+            },
+            1350: {
+              slidesPerView: 2.3,
+              spaceBetween: 30,
+            },
+          },
         }"
       >
-        <div class="swiper-slide" v-for="(item, index) in items" :key="index">
-          <div
-            href=""
-            class="category"
-            :style="{
-              'background-image':
-                'url(' + require('~/assets/' + item.image) + ')',
-            }"
-          >
-            <div class="heading-primary py-40 md:py-52 lg:py-60 2xl:py-72">
-              {{ item.title }}
-            </div>
-            <div class="absolute left-1/2 bottom-6 -translate-x-1/2">
-              <a href="" class="btn-primary">перейти в каталог </a>
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" v-for="(item, index) in items" :key="index">
+            <div
+              href=""
+              class="category"
+              :style="{
+                'background-image':
+                  'url(' + require('~/assets/' + item.image) + ')',
+              }"
+            >
+              <div class="heading-primary py-36 md:py-52 lg:py-60 2xl:py-72">
+                {{ item.title }}
+              </div>
+              <div
+                class="absolute left-1/2 bottom-4 -translate-x-1/2 lg:bottom-6"
+              >
+                <a href="" class="btn-primary">перейти в каталог </a>
+              </div>
             </div>
           </div>
         </div>
+        <SwiperButtons class="swiper-buttons-centered" />
       </UISlider>
     </div>
   </div>
 </template>
 
 <script>
+import SwiperButtons from "./UI/SwiperButtons.vue";
+
 export default {
   data: () => ({
     items: [
@@ -66,6 +90,7 @@ export default {
       },
     ],
   }),
+  components: { SwiperButtons },
 };
 </script>
 

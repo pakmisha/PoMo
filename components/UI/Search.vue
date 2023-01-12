@@ -7,8 +7,8 @@
     <div class="search-content section-container">
       <div class="serach-content-icon">
         <svg
-          width="27"
-          height="27"
+          width="25"
+          height="25"
           viewBox="0 0 27 27"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -21,7 +21,7 @@
           />
         </svg>
       </div>
-      <div class="search-content-input mx-10">
+      <div class="search-content-input mx-5 lg:mx-10">
         <input
           type="text"
           class="w-full bg-light py-2 outline-none"
@@ -63,7 +63,7 @@ export default {
 .search {
   @apply invisible absolute top-[101%] left-0 w-full opacity-0 transition-all duration-300 ease-in-quad;
   &-content {
-    @apply invisible relative z-30 flex w-full translate-y-10 items-center justify-between bg-light py-4 opacity-0 transition-all duration-300 ease-in-quad;
+    @apply invisible relative z-30 flex w-full translate-y-10 items-center justify-between bg-light py-2 opacity-0 transition-all duration-300 ease-in-quad lg:py-4;
     &-icon {
     }
     &-input {

@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="swiper" :ref="'swiper_thumbs' + _uid">
     <div class="swiper-wrapper">
       <slot></slot>
@@ -32,4 +32,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style></style> -->

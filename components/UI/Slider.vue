@@ -1,8 +1,6 @@
 <template>
   <div class="swiper" :ref="'slider' + _uid">
-    <div class="swiper-wrapper">
-      <slot></slot>
-    </div>
+    <slot></slot>
   </div>
 </template>
 

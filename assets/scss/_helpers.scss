@@ -31,6 +31,70 @@
     @apply text-sm uppercase text-gray-400 underline;
   }
 }
+.swiper {
+  .swiper-buttons {
+    @apply h-[50px];
+  }
+  .swiper-buttons-centered {
+    @apply absolute left-0 right-0 top-0 bottom-0 z-10 m-auto hidden justify-between px-5 lg:flex;
+    button {
+      @apply h-[50px] w-[50px] transform rounded-full border border-dark bg-white bg-opacity-70 p-3 pl-4 text-black shadow backdrop-blur-sm transition-all duration-300 ease-out-quad;
+      svg {
+        @apply h-full w-4;
+        path {
+          fill: #101820;
+        }
+      }
+      &:hover {
+        @apply bg-dark;
+        svg {
+          path {
+            fill: white;
+          }
+        }
+      }
+    }
+    .sw-prev {
+      @apply translate-x-[-150%] pr-4;
+    }
+    .sw-next {
+      @apply translate-x-[150%]  pr-4;
+    }
+    .swiper-button-disabled {
+      @apply invisible opacity-0;
+    }
+  }
+  .swiper-buttons-bottom {
+    @apply absolute right-0 bottom-0 z-10 space-x-3;
+    button {
+      @apply h-[50px] w-[50px] transform  rounded-full border border-dark bg-white bg-opacity-70 p-3 pl-4 text-black shadow backdrop-blur-sm transition-all duration-300 ease-out-quad;
+      svg {
+        @apply h-full w-4;
+        path {
+          fill: #101820;
+        }
+      }
+      &:hover {
+        @apply bg-dark;
+        svg {
+          path {
+            fill: white;
+          }
+        }
+      }
+    }
+    .swiper-button-disabled {
+      @apply cursor-default opacity-60;
+    }
+  }
+  &:hover {
+    .sw-prev,
+    .sw-next {
+      @apply translate-x-0;
+    }
+  }
+}
+
 //---------------------------BUTTONS END--------------------------------
 
 .input {

@@ -26,32 +26,34 @@
                   spaceBetween: 10,
                 }"
               >
-                <div
-                  class="swiper-slide"
-                  v-for="(item, index) in items"
-                  :key="index"
-                >
-                  <a href="" class="submenu-item">
-                    <div class="submenu-item-image mb-2">
-                      <img
-                        :src="require(`~/assets/img/${item.image}`)"
-                        alt=""
-                      />
-                    </div>
-                    <div>
-                      <p class="text-sm font-semibold uppercase text-dark">
-                        {{ item.title }}
-                      </p>
-                      <div class="mt-2">
-                        <p class="text-sm text-grey">
-                          {{ item.subCategoryOne }}
-                        </p>
-                        <p class="text-sm text-grey">
-                          {{ item.subCategoryTwo }}
-                        </p>
+                <div class="swiper-wrapper">
+                  <div
+                    class="swiper-slide"
+                    v-for="(item, index) in items"
+                    :key="index"
+                  >
+                    <a href="" class="submenu-item">
+                      <div class="submenu-item-image mb-2">
+                        <img
+                          :src="require(`~/assets/img/${item.image}`)"
+                          alt=""
+                        />
                       </div>
-                    </div>
-                  </a>
+                      <div>
+                        <p class="text-sm font-semibold uppercase text-dark">
+                          {{ item.title }}
+                        </p>
+                        <div class="mt-2">
+                          <p class="text-sm text-grey">
+                            {{ item.subCategoryOne }}
+                          </p>
+                          <p class="text-sm text-grey">
+                            {{ item.subCategoryTwo }}
+                          </p>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
                 </div>
               </UISlider>
             </div>

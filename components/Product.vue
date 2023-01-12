@@ -4,7 +4,7 @@
       <img :src="image" alt="" />
     </div>
     <div class="product-bottom">
-      <p class="text-sm font-semibold uppercase">
+      <p class="w-[80%] text-xs font-semibold uppercase lg:text-sm">
         Кресло TANGYUAN, MAYA A2267–2A
       </p>
       <p class="text-sm">515 300 ₸</p>
