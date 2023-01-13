@@ -114,7 +114,7 @@
               <input
                 type="email"
                 class="w-full px-4 py-2 outline-none"
-                placeholder="Введите почту"
+                placeholder="ВВЕДИТЕ ПОЧТУ"
               />
             </div>
             <button class="btn-secondary">подписаться</button>
@@ -136,7 +136,7 @@ export default {};
       @apply inline-block text-sm text-gray-400;
     }
     ul {
-      @apply mt-3 space-y-2;
+      @apply mt-3 space-y-1;
       li {
       }
     }

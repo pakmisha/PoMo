@@ -24,7 +24,7 @@
   &-secondary {
     @apply block whitespace-nowrap rounded-full bg-dark px-6 py-3 text-center text-sm uppercase text-white transition-all duration-300 ease-out-quad;
     &:hover {
-      @apply underline;
+      @apply bg-grey;
     }
   }
   &-underline {
@@ -96,10 +96,17 @@
 }
 
 //---------------------------BUTTONS END--------------------------------
-
+.input-wrapper {
+  label {
+    @apply mb-1 block text-sm text-dark;
+  }
+}
 .input {
   &-primary {
-    @apply w-full;
+    @apply w-full border border-grey-light bg-white px-3 py-2 outline-none 2xl:py-3;
+    &:focus {
+      @apply bg-light;
+    }
   }
 }
 //---------------------------INPUTS END--------------------------------

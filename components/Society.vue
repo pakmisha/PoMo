@@ -15,7 +15,12 @@
         то PoMo Design Center предлагает вам программу сотрудничества, благодаря
         которой ваша работа станет более удобной и плодотворной.
       </p>
-      <button class="btn-primary">узнать подробнее</button>
+      <button
+        class="btn-primary"
+        @click.prevent="$nuxt.$emit('open-modal', 'submit')"
+      >
+        узнать подробнее
+      </button>
     </div>
     <div class="relative flex justify-between">
       <div class="lg:mr-20">
