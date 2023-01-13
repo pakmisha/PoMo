@@ -17,7 +17,7 @@
                 <a href="" class="simple-link">О нас</a>
               </li>
               <li>
-                <a href="" class="simple-link">Услуги</a>
+                <a href="/services" class="simple-link">Услуги</a>
               </li>
               <li>
                 <a href="" class="simple-link">Реализованные проекты</a>
@@ -117,7 +117,12 @@
                 placeholder="ВВЕДИТЕ ПОЧТУ"
               />
             </div>
-            <button class="btn-secondary">подписаться</button>
+            <button
+              class="btn-secondary"
+              @click.prevent="$nuxt.$emit('open-modal', 'submit')"
+            >
+              подписаться
+            </button>
           </div>
         </div>
       </div>

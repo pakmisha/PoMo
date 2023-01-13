@@ -5,7 +5,7 @@
         <nav class="flex flex-col items-center pt-56" v-if="submenu">
           <ul class="space-y-6">
             <li>
-              <a href="" class="mobile-link">О нас</a>
+              <a href="/about" class="mobile-link">О нас</a>
             </li>
             <li>
               <button
@@ -138,7 +138,7 @@ export default {
 
 <style lang="scss">
 .mobile-nav {
-  @apply invisible fixed z-40 flex h-full w-full scale-95 flex-col items-center justify-end overflow-y-auto bg-light  opacity-0 transition-all duration-300 ease-out-quad;
+  @apply invisible fixed z-40 flex h-full w-full scale-95 flex-col items-center justify-end overflow-y-auto bg-white  opacity-0 transition-all duration-300 ease-out-quad;
   nav {
     ul {
       @apply flex flex-col items-center justify-center  text-center;

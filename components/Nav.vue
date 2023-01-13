@@ -1,17 +1,13 @@
 <template>
-  <div class="top-panel">
+  <div id="stick" class="top-panel" :class="{ stick: stick }">
     <div class="nav-panel section-container relative">
-      <div class="logo">
+      <a href="/" class="logo block">
         <img src="~/assets/img/icons/logo.png" alt="" />
-      </div>
+      </a>
       <nav>
         <ul>
           <li>
-            <a
-              href="javascript:void(0)"
-              class="link text-sm uppercase text-dark"
-              >О нас</a
-            >
+            <a href="/about" class="link text-sm uppercase text-dark">О нас</a>
           </li>
           <li class="has-submenu">
             <a
@@ -113,6 +109,8 @@
 export default {
   data: () => ({
     opened: false,
+    stick: false,
+    scrollPosition: 0,
     items: [
       {
         title: "Мебель",
@@ -160,15 +158,24 @@ export default {
     //   }
     // });
   },
+  methods: {
+    handleScroll() {
+      const st = document.getElementById("stick");
+      const topPos = st.offsetTop;
+      if (topPos > 10) {
+        this.stick = true;
+      }
+    },
+  },
 };
 </script>
 
 <style lang="scss">
 .top-panel {
-  // @apply fixed left-0 top-0;
+  // @apply fixed top-0 left-0 right-0 z-50;
   @apply border-b border-dark;
   .nav-panel {
-    @apply relative flex items-center justify-between py-3;
+    @apply relative flex items-center justify-between bg-white py-3;
     .logo {
       @apply lg:w-1/4;
       img {

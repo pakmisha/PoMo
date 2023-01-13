@@ -6,8 +6,11 @@
   &-primary {
     @apply text-2xl font-medium uppercase tracking-[-2px] md:text-3xl 2xl:text-4xl;
   }
+  &-secondary {
+    @apply text-xl font-medium uppercase lg:text-2xl;
+  }
   &-sub {
-    @apply text-xs font-medium uppercase text-grey md:text-sm;
+    @apply text-xs font-medium uppercase md:text-sm;
   }
 }
 .plaintext {
@@ -117,6 +120,9 @@
   }
   &-distance {
     @apply mt-32 md:mt-40 lg:mt-56 2xl:mt-72;
+  }
+  &-title-distance {
+    @apply py-12 md:my-16;
   }
 }
 .link {

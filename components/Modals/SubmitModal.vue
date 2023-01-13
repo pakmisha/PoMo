@@ -1,45 +1,15 @@
 <template>
-  <ModalsModal name="submit" class="modal modal-submit">
+  <ModalsModal name="submit" class="modal modal-lg">
     <div class="modal-wrapper">
       <div class="text-center">
-        <h1 class="mb-3 text-xl font-medium uppercase md:text-2xl 2xl:text-3xl">
-          Оставьте заявку на сотрудничество
-        </h1>
-        <p class="text-xs text-grey md:text-sm">
-          Мы с большим теплом принимаем энергичных и талантливых людей, чтобы
-          воплощать ваши проекты совместными усилиями. Заполните форму и мы
-          пришлем вам необходимую информацию на e-mail.
+        <p class="mb-3 text-xl font-medium uppercase md:text-2xl 2xl:text-3xl">
+          ВЫ успешно подписались на рассылку новостей и акций!
         </p>
+        <p>Вы можете отписаться от рассылки в любое время</p>
       </div>
-      <form class="mt-3 2xl:mt-5">
-        <div class="space-y-2 md:space-y-3">
-          <div class="input-wrapper">
-            <label for="">Имя*</label>
-            <input type="text" class="input-primary" />
-          </div>
-          <div class="input-wrapper">
-            <label for="">Название компании</label>
-            <input type="text" class="input-primary" />
-          </div>
-          <div class="input-wrapper">
-            <label for="">Адрес электронной почты*</label>
-            <input type="email" class="input-primary" />
-          </div>
-          <div class="input-wrapper">
-            <label for="">Номер телефона*</label>
-            <input type="text" class="input-primary" />
-          </div>
-        </div>
-        <div class="flex items-center justify-center">
-          <button class="btn-primary mt-4">оставить заявку</button>
-        </div>
-        <p class="mt-4 text-center text-xs text-grey">
-          Нажимая кнопку «Оставить заявку», вы соглашаетесь с политикой
-          конфиденциальности
-        </p>
-      </form>
+
       <button
-        class="absolute top-4 right-4"
+        class="absolute right-4 top-4"
         @click.prevent="$nuxt.$emit('close-modal', 'submit')"
       >
         <svg
@@ -53,6 +23,9 @@
           <path d="M13 1L1 13" stroke="#101820" stroke-linecap="round" />
         </svg>
       </button>
+      <div class="page-icon m absolute -left-20 -bottom-5 hidden lg:block">
+        <img src="~/assets/img/icons/m.svg" alt="" />
+      </div>
     </div>
   </ModalsModal>
 </template>

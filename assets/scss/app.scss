@@ -17,14 +17,30 @@ body {
 }
 body {
 }
+
+.headroom {
+  will-change: transform;
+  transition: transform 200ms linear;
+}
+.headroom--pinned {
+  transform: translateY(0%);
+}
+.headroom--unpinned {
+  transform: translateY(-100%);
+}
 .modal {
   @apply invisible fixed top-0 left-0 bottom-0 right-0 z-[60] flex items-center justify-center bg-black/40 bg-opacity-60 opacity-0 backdrop-blur-lg transition-all duration-300 ease-in-out;
   &-wrapper {
-    @apply invisible relative translate-y-20  opacity-0 transition-all duration-300 ease-in-quad;
+    @apply invisible relative translate-y-20 overflow-hidden  opacity-0 transition-all duration-300 ease-in-quad;
   }
-  &.modal-submit {
+  &.modal-xl {
     .modal-wrapper {
       @apply max-w-[90%] bg-white px-5 py-10 md:max-w-[700px] md:py-10 md:px-20 2xl:py-14;
+    }
+  }
+  &.modal-lg {
+    .modal-wrapper {
+      @apply max-w-[90%] bg-white px-5 py-10 md:max-w-[800px] md:py-10 md:px-20 2xl:py-20;
     }
   }
   &.active {

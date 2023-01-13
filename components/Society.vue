@@ -17,7 +17,7 @@
       </p>
       <button
         class="btn-primary"
-        @click.prevent="$nuxt.$emit('open-modal', 'submit')"
+        @click.prevent="$nuxt.$emit('open-modal', 'request')"
       >
         узнать подробнее
       </button>
