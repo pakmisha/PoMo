@@ -1,5 +1,5 @@
 <template>
-  <div class="section-container section-distance">
+  <section class="section-container section-distance">
     <div
       class="mx-auto mb-12 flex max-w-4xl flex-col items-center text-center lg:mb-24"
     >
@@ -41,7 +41,7 @@
         <img src="~/assets/img/icons/o.svg" alt="" />
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

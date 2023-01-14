@@ -54,7 +54,6 @@ export default {
   &__nav {
   }
   &__wrapper {
-    @apply mt-20 px-5 md:px-24 lg:px-32 2xl:px-48;
     > div {
       @apply invisible h-0 translate-y-20 overflow-hidden opacity-0 transition-all duration-300 ease-in-quad;
       &.active {
@@ -65,12 +64,12 @@ export default {
   &.horizontal {
     @apply flex flex-col;
     .tabs__nav {
-      @apply flex border-b border-dark pl-5 md:pl-24 lg:pl-32 2xl:pl-48;
+      @apply flex overflow-x-auto border-b border-dark pl-5 md:pl-24 lg:pl-32 2xl:pl-48;
       ul {
         @apply flex;
         li {
           .tab-toggle {
-            @apply block rounded-t-3xl border-t border-l border-r border-dark bg-white px-9 py-5 text-sm uppercase text-dark;
+            @apply block whitespace-nowrap rounded-t-3xl border-t border-l border-r border-dark bg-white py-4 px-7 text-sm uppercase text-dark lg:px-9 lg:py-5;
             &.active-tab {
               @apply bg-dark text-white;
             }
@@ -79,13 +78,14 @@ export default {
       }
     }
     .tabs__wrapper {
+      @apply mt-10 px-5 md:px-24 lg:mt-20 lg:px-32 2xl:px-48;
       .services {
-        @apply flex justify-between;
+        @apply flex flex-col justify-between lg:flex-row;
         &__left {
-          @apply w-1/3;
+          @apply w-full lg:w-1/2 2xl:w-1/3;
         }
         &__right {
-          @apply w-2/5;
+          @apply w-full lg:w-2/5;
         }
       }
     }

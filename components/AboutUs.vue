@@ -1,5 +1,5 @@
 <template>
-  <div class="section-container section-distance relative">
+  <section class="section-container section-distance relative">
     <div
       class="absolute left-0 top-0 -z-10 hidden h-[500px] w-[350px] lg:block 2xl:w-[500px]"
     >
@@ -61,7 +61,7 @@
     <div class="page-icon m absolute -left-10 -bottom-20">
       <img src="~/assets/img/icons/m.svg" alt="" />
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

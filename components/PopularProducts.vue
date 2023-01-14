@@ -1,5 +1,5 @@
 <template>
-  <div class="section-container section-distance border-t border-dark">
+  <section class="section-container section-distance border-t border-dark">
     <div class="mt-7 flex flex-col justify-between lg:flex-row">
       <div class="w-full lg:w-1/3">
         <p class="heading-sub mb-9 lg:mb-12">[популярные товары]</p>
@@ -73,7 +73,7 @@
         <SwiperButtons class="swiper-buttons-bottom" />
       </UISlider>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="section-container section-distance">
+  <section class="section-container section-distance">
     <div
       class="mx-auto mb-12 flex max-w-4xl flex-col items-center text-center lg:mb-24"
     >
@@ -32,7 +32,7 @@
     <div class="mt-10 flex items-center justify-center lg:mt-16">
       <a href="" class="btn-primary"> подробнее о нас </a>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="section-distance section-container">
+  <section class="section-distance section-container">
     <div
       class="mx-auto mb-12 flex max-w-4xl flex-col items-center text-center lg:mb-24"
     >
@@ -66,7 +66,7 @@
         </div>
       </div>
     </UISlider>
-  </div>
+  </section>
 </template>
 
 <script>

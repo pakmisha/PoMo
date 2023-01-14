@@ -1,5 +1,5 @@
 <template>
-  <div class="section-distance">
+  <section class="section-distance">
     <div
       class="mx-auto mb-12 flex max-w-4xl flex-col items-center text-center lg:mb-24"
     >
@@ -63,7 +63,7 @@
         <SwiperButtons class="swiper-buttons-centered" />
       </UISlider>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
