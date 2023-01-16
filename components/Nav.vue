@@ -55,9 +55,7 @@
             </div>
           </li>
           <li>
-            <a
-              href="javascript:void(0)"
-              class="link text-sm uppercase text-dark"
+            <a href="/brands" class="link text-sm uppercase text-dark"
               >Бренды</a
             >
           </li>

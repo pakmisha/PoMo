@@ -4,11 +4,10 @@
       <h1
         class="heading-big section-title-distance mx-auto max-w-[1490px] text-center"
       >
-        услуги
+        Ответы на ваши вопросы
       </h1>
     </div>
-    <Services />
-    <ServicesGallery />
+    <FAQ />
   </div>
 </template>
 

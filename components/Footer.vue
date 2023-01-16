@@ -23,13 +23,13 @@
                 <a href="" class="simple-link">Реализованные проекты</a>
               </li>
               <li>
-                <a href="" class="simple-link">Бренды</a>
+                <a href="/brands" class="simple-link">Бренды</a>
               </li>
               <li>
-                <a href="" class="simple-link">Сотрудничество</a>
+                <a href="/cooperation" class="simple-link">Сотрудничество</a>
               </li>
               <li>
-                <a href="" class="simple-link">Контакты</a>
+                <a href="/contacts" class="simple-link">Контакты</a>
               </li>
             </ul>
           </li>
@@ -45,7 +45,7 @@
                 <a href="" class="simple-link">Способы оплаты</a>
               </li>
               <li>
-                <a href="" class="simple-link">Ответы на частые вопросы</a>
+                <a href="/faq" class="simple-link">Ответы на частые вопросы</a>
               </li>
               <li>
                 <a href="" class="simple-link">Варианты доставки</a>

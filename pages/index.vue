@@ -30,7 +30,20 @@
     </div>
     <About />
     <Category />
-    <Brands />
+    <section>
+      <div class="section-distance section-container">
+        <div
+          class="mx-auto mb-12 flex max-w-4xl flex-col items-center text-center lg:mb-24"
+        >
+          <p class="heading-sub">[наши бренды]</p>
+          <div class="my-3 h-16 w-px bg-dark-blue"></div>
+          <h2 class="heading-primary mb-6 lg:mb-10">
+            Мы являемся эксклюзивными дистрибьюторами трёх международных брендов
+          </h2>
+        </div>
+        <Brands />
+      </div>
+    </section>
     <PopularProducts />
     <Society />
   </div>
