@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="flex justify-end">
-      <div class="mb-20 flex w-[75%] items-center justify-between">
+      <div class="mb-20 flex w-full items-center justify-between lg:w-[75%]">
         <h2 class="heading-primary">Все товары</h2>
         <div class="">
           <select name="" id="" class="select">
@@ -15,10 +15,10 @@
     </div>
 
     <div class="flex justify-between">
-      <div class="w-[20%]">
+      <div class="hidden w-[20%] lg:block">
         <FiltersSidebar />
       </div>
-      <div class="w-[75%]">
+      <div class="w-full lg:w-[75%]">
         <div class="products">
           <div
             class="products__item"
@@ -51,7 +51,7 @@ export default {
           },
         ],
         title: "Кресло TANGYUAN, MAYA A2267–2A",
-        price: "515 300",
+        price: "1 515 300",
       },
       {
         id: 2,
@@ -67,7 +67,7 @@ export default {
           },
         ],
         title: "Стул TANGYUAN",
-        price: "590 300",
+        price: "1 590 300",
       },
       {
         id: 1,
@@ -236,10 +236,10 @@ export default {
 
 <style lang="scss" scoped>
 .products {
-  @apply grid grid-cols-3 gap-3;
+  @apply grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3;
   &__item {
     &:nth-child(5n) {
-      @apply col-span-2 row-span-2 h-full;
+      @apply h-full md:col-span-2 md:row-span-2;
     }
   }
 }

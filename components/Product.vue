@@ -35,7 +35,7 @@
       </div>
     </div>
     <a href="" class="product-bottom">
-      <p class="w-[75%] text-xs font-semibold uppercase lg:text-sm">
+      <p class="product-bottom-title">
         {{ product.title }}
       </p>
       <p class="text-sm">{{ product.price }} ₸</p>
@@ -88,6 +88,12 @@ export default {
   }
   &-bottom {
     @apply mt-4 flex items-center justify-between border-b border-black pb-2;
+    &-title {
+      @apply w-[65%] overflow-hidden text-ellipsis text-xs font-semibold uppercase md:w-[75%] lg:h-[20px] lg:text-sm;
+      -webkit-line-clamp: 1;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+    }
   }
 }
 </style>
