@@ -54,8 +54,9 @@ export default {
 
 <style lang="scss">
 .product {
+  @apply flex h-full flex-col justify-between;
   &-image {
-    @apply relative overflow-hidden border border-grey-light;
+    @apply relative h-full overflow-hidden border border-grey-light;
     img {
       @apply h-full w-full object-cover;
     }

@@ -236,7 +236,7 @@ export default {
 
 <style lang="scss" scoped>
 .products {
-  @apply grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3;
+  @apply grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3;
   &__item {
     &:nth-child(5n) {
       @apply h-full md:col-span-2 md:row-span-2;
