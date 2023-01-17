@@ -1,5 +1,7 @@
 <template>
-  <div class="mt-9 mb-14 text-sm uppercase">Главная / Мебель</div>
+  <button>
+    <slot></slot>
+  </button>
 </template>
 
 <script>

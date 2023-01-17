@@ -1,62 +1,31 @@
 <template>
-  <section class="section-container section-distance border-t border-dark">
-    <div class="mt-7 flex flex-col justify-between lg:flex-row">
-      <div class="w-full lg:w-1/3">
-        <p class="heading-sub mb-9 lg:mb-12">[популярные товары]</p>
-        <div class="mb-10 text-2xl font-semibold uppercase text-dark lg:mb-20">
-          предоставляем выбор стильной и эргономичной мебели и элементов декора
-        </div>
-        <div class="flex">
-          <a href="" class="btn-primary">перейти в каталог</a>
+  <div class="flex justify-between">
+    <div class="w-[20%]">
+      <FiltersSidebar />
+    </div>
+    <div class="w-[75%]">
+      <div class="mb-20 flex items-center justify-between">
+        <h2 class="heading-primary">Все товары</h2>
+        <div class="">
+          <select name="" id="" class="select">
+            <option value="" selected>Сортировать: По дате добавления</option>
+            <option value="">Сначала популярные</option>
+            <option value="">Цена: по возрастанию</option>
+            <option value="">Цена: по убыванию</option>
+          </select>
         </div>
       </div>
-      <UISlider
-        class="slider-popular-products mt-5 w-full lg:mt-0 lg:w-[65%]"
-        :options="{
-          slidesPerView: 2,
-          spaceBetween: 15,
-          loop: true,
-          centeredSlides: false,
-          centeredSlidesBounds: false,
-          centerInsufficientSlides: false,
-          autoHeight: false,
-          navigation: {
-            nextEl: '.sw-next',
-            prevEl: '.sw-prev',
-          },
-          breakpoints: {
-            320: {
-              slidesPerView: 1,
-              spaceBetween: 10,
-            },
-            768: {
-              slidesPerView: 1.5,
-              spaceBetween: 10,
-            },
-            1024: {
-              slidesPerView: 2,
-              spaceBetween: 20,
-            },
-            1366: {
-              slidesPerView: 2,
-              spaceBetween: 30,
-            },
-          },
-        }"
-      >
-        <div class="swiper-wrapper pb-16">
-          <div
-            class="swiper-slide"
-            v-for="(product, index) in products"
-            :key="index"
-          >
-            <Product :product="product" />
-          </div>
+      <div class="products">
+        <div
+          class="products__item"
+          v-for="(product, index) in products"
+          :key="index"
+        >
+          <Product :product="product" />
         </div>
-        <UISwiperButtons class="swiper-buttons-bottom" />
-      </UISlider>
+      </div>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
@@ -260,20 +229,12 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.slider-popular-products {
-  .swiper-wrapper {
-    .swiper-slide {
-      @apply transition-all duration-300 ease-in-quad;
-      // width: 35% !important;
-      // &.swiper-slide-next {
-      // }
-      // &.swiper-slide-active {
-      //   width: 60% !important;
-      // }
-      // &.swiper-slide-prev {
-      //   @apply hidden;
-      // }
+<style lang="scss" scoped>
+.products {
+  @apply grid grid-cols-3 gap-3;
+  &__item {
+    &:nth-child(5n) {
+      @apply col-span-2 row-span-2 h-full;
     }
   }
 }

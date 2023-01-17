@@ -94,7 +94,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .category {
   @apply relative flex h-[450px] items-center justify-center overflow-hidden border border-black bg-cover bg-center bg-no-repeat transition-all duration-1000 ease-in-out md:h-[500px] lg:h-[600px] 2xl:h-[800px];
   &:hover {

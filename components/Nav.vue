@@ -1,19 +1,19 @@
 <template>
   <div id="stick" class="top-panel" :class="{ stick: stick }">
     <div class="nav-panel section-container relative">
-      <a href="/" class="logo block">
+      <UILink link="/" class="logo block">
         <img src="~/assets/img/icons/logo.png" alt="" />
-      </a>
+      </UILink>
       <nav>
         <ul>
           <li>
-            <a href="/about" class="link text-sm uppercase text-dark">О нас</a>
+            <UILink link="/about" class="link text-sm uppercase text-dark"
+              >О нас</UILink
+            >
           </li>
           <li class="has-submenu">
-            <a
-              href="javascript:void(0)"
-              class="link text-sm uppercase text-dark"
-              >Каталог</a
+            <UILink link="/catalog" class="link text-sm uppercase text-dark"
+              >Каталог</UILink
             >
             <div class="submenu section-container">
               <UISlider
@@ -28,51 +28,51 @@
                     v-for="(item, index) in items"
                     :key="index"
                   >
-                    <a href="" class="submenu-item">
+                    <UILink link="" class="submenu-item">
                       <div class="submenu-item-image mb-2">
                         <img
                           :src="require(`~/assets/img/${item.image}`)"
                           alt=""
                         />
                       </div>
-                      <div>
-                        <p class="text-sm font-semibold uppercase text-dark">
-                          {{ item.title }}
-                        </p>
-                        <div class="mt-2">
-                          <p class="text-sm text-grey">
-                            {{ item.subCategoryOne }}
-                          </p>
-                          <p class="text-sm text-grey">
-                            {{ item.subCategoryTwo }}
-                          </p>
-                        </div>
+                      <p class="text-sm font-semibold uppercase text-dark">
+                        {{ item.title }}
+                      </p>
+                    </UILink>
+                    <div>
+                      <div class="mt-2">
+                        <UILink link="" class="block text-sm text-grey">
+                          {{ item.subCategoryOne }}
+                        </UILink>
+                        <UILink link="" class="block text-sm text-grey">
+                          {{ item.subCategoryTwo }}
+                        </UILink>
                       </div>
-                    </a>
+                    </div>
                   </div>
                 </div>
               </UISlider>
             </div>
           </li>
           <li>
-            <a href="/brands" class="link text-sm uppercase text-dark"
-              >Бренды</a
+            <UILink link="/brands" class="link text-sm uppercase text-dark"
+              >Бренды</UILink
             >
           </li>
           <li>
-            <a
-              href="javascript:void(0)"
+            <UILink
+              link="javascript:void(0)"
               class="link text-sm uppercase text-dark"
-              >Реализованные проекты</a
+              >Реализованные проекты</UILink
             >
           </li>
         </ul>
       </nav>
       <div class="navigation">
         <div class="navigation-left">
-          <a href="" class="lang-btn active">РУ</a>
-          <a href="" class="lang-btn">EN</a>
-          <a href="" class="lang-btn">КЗ</a>
+          <UILink link="" class="lang-btn active">РУ</UILink>
+          <UILink link="" class="lang-btn">EN</UILink>
+          <UILink link="" class="lang-btn">КЗ</UILink>
         </div>
         <div class="navigation-right">
           <button @click.prevent="$nuxt.$emit('toggle', 'search')">
@@ -82,12 +82,12 @@
             <img src="~/assets/img/icons/compare.svg" alt="" />
             <DialogCompare />
           </div>
-          <a href="">
+          <UILink link="">
             <img src="~/assets/img/icons/person.svg" alt="" />
-          </a>
-          <a href="" class="hidden lg:block">
+          </UILink>
+          <UILink link="" class="hidden lg:block">
             <img src="~/assets/img/icons/favorite.svg" alt="" />
-          </a>
+          </UILink>
           <button @click.prevent="$nuxt.$emit('toggle', 'sidebarCart')">
             <img src="~/assets/img/icons/bag.svg" alt="" />
           </button>

@@ -128,6 +128,9 @@
     @apply py-12 md:my-16;
   }
 }
+.select {
+  @apply flex appearance-none items-center rounded-full border border-dark px-7 py-2 outline-none;
+}
 .link {
   @apply relative;
   &:after {

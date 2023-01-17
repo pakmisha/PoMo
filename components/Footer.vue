@@ -11,63 +11,69 @@
       <div class="mt-5 grid grid-cols-1 gap-10 md:grid-cols-3 lg:mt-0">
         <ul class="footer-nav">
           <li>
-            <a href="" class="main-link">Компания</a>
+            <UILink link="" class="main-link">Компания</UILink>
             <ul class="list">
               <li>
-                <a href="" class="simple-link">О нас</a>
+                <UILink link="" class="simple-link">О нас</UILink>
               </li>
               <li>
-                <a href="/services" class="simple-link">Услуги</a>
+                <UILink link="/services" class="simple-link">Услуги</UILink>
               </li>
               <li>
-                <a href="" class="simple-link">Реализованные проекты</a>
+                <UILink link="" class="simple-link"
+                  >Реализованные проекты</UILink
+                >
               </li>
               <li>
-                <a href="/brands" class="simple-link">Бренды</a>
+                <UILink link="/brands" class="simple-link">Бренды</UILink>
               </li>
               <li>
-                <a href="/cooperation" class="simple-link">Сотрудничество</a>
+                <UILink link="/cooperation" class="simple-link"
+                  >Сотрудничество</UILink
+                >
               </li>
               <li>
-                <a href="/contacts" class="simple-link">Контакты</a>
+                <UILink link="/contacts" class="simple-link">Контакты</UILink>
               </li>
             </ul>
           </li>
         </ul>
         <ul class="footer-nav">
           <li>
-            <a href="" class="main-link">Клиентам</a>
+            <UILink link="" class="main-link">Клиентам</UILink>
             <ul class="list">
               <li>
-                <a href="" class="simple-link">Личный кабинет</a>
+                <UILink link="" class="simple-link">Личный кабинет</UILink>
               </li>
               <li>
-                <a href="" class="simple-link">Способы оплаты</a>
+                <UILink link="" class="simple-link">Способы оплаты</UILink>
               </li>
               <li>
-                <a href="/faq" class="simple-link">Ответы на частые вопросы</a>
+                <UILink link="/faq" class="simple-link"
+                  >Ответы на частые вопросы</UILink
+                >
               </li>
               <li>
-                <a href="" class="simple-link">Варианты доставки</a>
+                <UILink link="" class="simple-link">Варианты доставки</UILink>
               </li>
               <li>
-                <a href="" class="simple-link">Возврат и обмен</a>
+                <UILink link="" class="simple-link">Возврат и обмен</UILink>
               </li>
             </ul>
           </li>
         </ul>
         <ul class="footer-nav">
           <li>
-            <a href="" class="main-link">Соц. сети</a>
+            <UILink link="" class="main-link">Соц. сети</UILink>
             <ul class="list">
               <li>
-                <a href="" class="simple-link">Facebook </a>
+                <UILink link="" class="simple-link">Facebook </UILink>
               </li>
               <li>
-                <a href="" class="simple-link">Instagram</a>
+                <UILink link="" class="simple-link">Instagram</UILink>
               </li>
               <li>
-                <a href="" class="simple-link">YouTube</a>
+                <UILink link="" class="simple-link">YouTube</UILink>
               </li>
             </ul>
           </li>
@@ -77,16 +83,16 @@
         <div class="grid grid-cols-2 gap-10">
           <ul class="footer-nav">
             <li>
-              <a href="" class="main-link">Контакты</a>
+              <UILink link="" class="main-link">Контакты</UILink>
               <ul class="list">
                 <li>
-                  <a href="tel:+7 (701) 655 45 55" class="simple-link"
+                  <UILink link="tel:+7 (701) 655 45 55" class="simple-link"
                     >+7 (701) 655 45 55
-                  </a>
+                  </UILink>
                 </li>
                 <li>
-                  <a href="mailto: pomosales@pomo.kz" class="simple-link"
-                    >pomosales@pomo.kz</a
+                  <UILink link="mailto: pomosales@pomo.kz" class="simple-link"
+                    >pomosales@pomo.kz</UILink
                   >
                 </li>
               </ul>
@@ -94,7 +100,7 @@
           </ul>
           <ul class="footer-nav">
             <li>
-              <a href="" class="main-link">График работы</a>
+              <UILink link="" class="main-link">График работы</UILink>
               <ul class="list">
                 <li class="simple-link">Пн-Пт с 9.00 до 19.00</li>
                 <li class="simple-link">Суббота с 10.00 до 18.00</li>

@@ -1,10 +1,24 @@
 <template>
   <div class="product">
     <div class="product-image">
-      <img class="first-image" :src="image" alt="" />
-      <img class="second-image" :src="secondImage" alt="" />
+      <img
+        class="first-image"
+        :src="require('~/assets/img/products/' + product.media[0].file_name)"
+        alt=""
+      />
+      <img
+        class="second-image"
+        :src="require('~/assets/img/products/' + product.media[1].file_name)"
+        alt=""
+      />
       <div class="absolute right-2 top-2">
-        <button class="favorite mr-1">
+        <button class="product-compare mr-1">
+          <img src="~/assets/img/icons/compare.svg" alt="" />
+          <!-- <div class="product-compare-dialog">
+            <p>Добавить в сравнение</p>
+          </div> -->
+        </button>
+        <button class="favorite">
           <svg
             width="24"
             height="24"
@@ -18,34 +32,22 @@
             />
           </svg>
         </button>
-        <button class="product-compare">
-          <img src="~/assets/img/icons/compare.svg" alt="" />
-          <!-- <div class="product-compare-dialog">
-            <p>Добавить в сравнение</p>
-          </div> -->
-        </button>
       </div>
     </div>
-    <div class="product-bottom">
-      <p class="w-[80%] text-xs font-semibold uppercase lg:text-sm">
-        Кресло TANGYUAN, MAYA A2267–2A
+    <a href="" class="product-bottom">
+      <p class="w-[75%] text-xs font-semibold uppercase lg:text-sm">
+        {{ product.title }}
       </p>
-      <p class="text-sm">515 300 ₸</p>
-    </div>
+      <p class="text-sm">{{ product.price }} ₸</p>
+    </a>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    image: {
-      type: String,
-      default: "",
-    },
-    secondImage: {
-      type: String,
-      default: "",
-    },
+    product: Object,
+    required: true,
   },
 };
 </script>
@@ -53,7 +55,7 @@ export default {
 <style lang="scss">
 .product {
   &-image {
-    @apply relative h-[350px] overflow-hidden border border-grey-light md:h-[400px] 2xl:h-[450px];
+    @apply relative overflow-hidden border border-grey-light;
     img {
       @apply h-full w-full object-cover;
     }
