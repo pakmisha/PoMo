@@ -122,7 +122,7 @@
 
 .section {
   &-container {
-    @apply px-5 md:px-10 lg:px-14 2xl:px-16;
+    @apply mx-auto max-w-[1920px] px-5 md:px-10 lg:px-14 2xl:px-16;
     &-inner {
       @apply px-5 md:px-10 lg:px-24 2xl:px-48;
     }
@@ -135,7 +135,7 @@
   }
 }
 .select {
-  @apply flex appearance-none items-center rounded-full border border-dark px-7 py-2 outline-none;
+  @apply flex cursor-pointer appearance-none items-center rounded-full border border-dark px-7 py-2 outline-none;
 }
 .link {
   @apply relative;

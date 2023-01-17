@@ -1,15 +1,26 @@
 <template>
   <div>
-    <div class="flex justify-end">
-      <div class="mb-20 flex w-full items-center justify-between lg:w-[75%]">
+    <div class="flex lg:justify-end">
+      <div
+        class="mb-10 flex w-full flex-col items-center justify-between lg:mb-20 lg:w-[75%] lg:flex-row"
+      >
         <h2 class="heading-primary">Все товары</h2>
-        <div class="">
-          <select name="" id="" class="select">
-            <option value="" selected>Сортировать: По дате добавления</option>
+        <div class="mt-4 lg:mt-0">
+          <select name="" id="" class="select text-center">
+            <option value="" selected>По дате добавления</option>
             <option value="">Сначала популярные</option>
             <option value="">Цена: по возрастанию</option>
             <option value="">Цена: по убыванию</option>
           </select>
+        </div>
+        <div class="mt-4 flex items-center lg:hidden">
+          <button
+            class="btn-primary mr-2"
+            @click.prevent="$nuxt.$emit('open-modal', 'category')"
+          >
+            Категории
+          </button>
+          <button class="btn-primary">Фильтры</button>
         </div>
       </div>
     </div>

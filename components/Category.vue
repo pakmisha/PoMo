@@ -90,7 +90,6 @@ export default {
       },
     ],
   }),
-  components: { SwiperButtons },
 };
 </script>
 

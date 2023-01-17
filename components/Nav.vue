@@ -82,7 +82,7 @@
             <img src="~/assets/img/icons/compare.svg" alt="" />
             <DialogCompare />
           </div>
-          <UILink link="">
+          <UILink link="/login">
             <img src="~/assets/img/icons/person.svg" alt="" />
           </UILink>
           <UILink link="" class="hidden lg:block">
