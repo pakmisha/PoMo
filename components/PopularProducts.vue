@@ -7,7 +7,7 @@
           предоставляем выбор стильной и эргономичной мебели и элементов декора
         </div>
         <div class="flex">
-          <a href="" class="btn-primary">перейти в каталог</a>
+          <UILink link="/catalog" class="btn-primary">перейти в каталог</UILink>
         </div>
       </div>
       <UISlider

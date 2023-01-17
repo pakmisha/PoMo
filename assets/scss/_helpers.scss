@@ -111,6 +111,12 @@
       @apply bg-light;
     }
   }
+  &-checkbox {
+    @apply h-4 w-4;
+  }
+  &-range {
+    @apply w-full;
+  }
 }
 //---------------------------INPUTS END--------------------------------
 

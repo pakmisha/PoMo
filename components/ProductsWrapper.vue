@@ -1,10 +1,7 @@
 <template>
-  <div class="flex justify-between">
-    <div class="w-[20%]">
-      <FiltersSidebar />
-    </div>
-    <div class="w-[75%]">
-      <div class="mb-20 flex items-center justify-between">
+  <div>
+    <div class="flex justify-end">
+      <div class="mb-20 flex w-[75%] items-center justify-between">
         <h2 class="heading-primary">Все товары</h2>
         <div class="">
           <select name="" id="" class="select">
@@ -15,13 +12,21 @@
           </select>
         </div>
       </div>
-      <div class="products">
-        <div
-          class="products__item"
-          v-for="(product, index) in products"
-          :key="index"
-        >
-          <Product :product="product" />
+    </div>
+
+    <div class="flex justify-between">
+      <div class="w-[20%]">
+        <FiltersSidebar />
+      </div>
+      <div class="w-[75%]">
+        <div class="products">
+          <div
+            class="products__item"
+            v-for="(product, index) in products"
+            :key="index"
+          >
+            <Product :product="product" />
+          </div>
         </div>
       </div>
     </div>

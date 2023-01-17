@@ -1,0 +1,64 @@
+.range-slider {
+  @apply w-full;
+}
+
+.range-slider .input-range {
+  @apply absolute left-0 top-0;
+}
+
+.input-range-number {
+  @apply w-full border-b border-grey-light text-grey outline-none;
+  -moz-appearance: textfield;
+  &:focus {
+    @apply border-dark;
+  }
+}
+
+.input-range-number::-webkit-outer-spin-button,
+.input-range-number::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.input-range-number:invalid,
+.input-range-number:out-of-range {
+  // border: 2px solid #ff6347;
+}
+
+.input-range {
+  -webkit-appearance: none;
+  width: 100%;
+}
+
+.input-range:focus {
+  outline: none;
+}
+
+.input-range:focus::-webkit-slider-runnable-track {
+  @apply bg-dark;
+}
+
+.input-range:focus::-ms-fill-lower {
+  @apply bg-dark;
+}
+
+.input-range:focus::-ms-fill-upper {
+  @apply bg-dark;
+}
+
+.input-range::-webkit-slider-runnable-track {
+  width: 100%;
+  cursor: pointer;
+  animate: 0.2s;
+  @apply h-px bg-dark;
+  border-radius: 1px;
+  box-shadow: none;
+  border: 0;
+}
+
+.input-range::-webkit-slider-thumb {
+  z-index: 2;
+  @apply relative h-4 w-4 rounded-full bg-dark;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -7px;
+}

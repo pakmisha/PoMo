@@ -30,7 +30,7 @@
       </div>
     </div>
     <div class="mt-10 flex items-center justify-center lg:mt-16">
-      <a href="" class="btn-primary"> подробнее о нас </a>
+      <UILink link="/about" class="btn-primary"> подробнее о нас </UILink>
     </div>
   </section>
 </template>
