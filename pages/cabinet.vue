@@ -23,9 +23,7 @@
 </template>
 
 <script>
-import PersonalData from "../components/Cabinet/personalData.vue";
-
-export default { components: { PersonalData } };
+export default {};
 </script>
 
 <style lang="scss"></style>

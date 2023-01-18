@@ -68,7 +68,7 @@
     }
   }
   .swiper-buttons-bottom {
-    @apply absolute right-0 bottom-0 z-10 space-x-3;
+    @apply z-10 space-x-3;
     button {
       @apply h-[50px] w-[50px] transform  rounded-full border border-dark bg-white bg-opacity-70 p-3 pl-4 text-black shadow backdrop-blur-sm transition-all duration-300 ease-out-quad;
       svg {
@@ -147,6 +147,15 @@
     &:after {
       @apply h-px w-full;
     }
+  }
+}
+.counter {
+  @apply flex items-center rounded-full border border-dark p-1;
+  &-btn {
+    @apply flex h-6 w-7 items-center justify-center md:w-10;
+  }
+  &-number {
+    @apply mx-1 text-sm md:mx-2;
   }
 }
 .page-icon {

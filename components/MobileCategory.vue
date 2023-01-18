@@ -17,7 +17,7 @@
         </div>
       </div>
       <div>
-        <FiltersSidebar />
+        <CategorySidebar />
       </div>
     </div>
   </ModalsModal>

@@ -67,8 +67,6 @@
 </template>
 
 <script>
-import SwiperButtons from "./UI/SwiperButtons.vue";
-
 export default {
   data: () => ({
     items: [

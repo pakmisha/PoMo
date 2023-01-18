@@ -12,13 +12,28 @@
         </div>
         <div class="orders__wrapper">
           <div class="orders__wrapper__item">
-            <div class="orders-item orders-item-nav">78900HY</div>
-            <div class="orders-item orders-item-nav">19.12.2022</div>
-            <div class="orders-item orders-item-nav">Цена</div>
-            <div class="orders-item orders-item-nav">Ожидается доставка</div>
-            <div class="orders-item orders-item-nav text-end">
-              Смотреть подробнее
-            </div>
+            <div class="orders-item">78900HY</div>
+            <div class="orders-item">19.12.2022</div>
+            <div class="orders-item">1 200 480 ₸</div>
+            <div class="orders-item">Ожидается доставка</div>
+            <UIButton
+              class="orders-item text-end underline"
+              @click.prevent="$nuxt.$emit('open-modal', 'order')"
+              >Смотреть подробнее</UIButton
+            >
+          </div>
+        </div>
+        <div class="orders__wrapper">
+          <div class="orders__wrapper__item">
+            <div class="orders-item">78900HY</div>
+            <div class="orders-item">19.12.2022</div>
+            <div class="orders-item">1 200 480 ₸</div>
+            <div class="orders-item">Ожидается доставка</div>
+            <UIButton
+              class="orders-item text-end underline"
+              @click.prevent="$nuxt.$emit('open-modal', 'order')"
+              >Смотреть подробнее</UIButton
+            >
           </div>
         </div>
       </div>
@@ -32,6 +47,7 @@ export default {};
 
 <style lang="scss" scoped>
 .orders {
+  @apply flex flex-col;
   &__nav {
     @apply flex items-center border-b border-grey-light bg-light py-5 px-3;
   }
@@ -41,7 +57,7 @@ export default {};
     }
   }
   .orders-item {
-    @apply w-1/5;
+    @apply mr-5 w-1/5 whitespace-nowrap text-sm text-grey;
     &.orders-item-nav {
       @apply text-sm font-medium uppercase;
     }

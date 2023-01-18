@@ -99,7 +99,7 @@ export default {
   &.vertical {
     @apply flex flex-col lg:flex-row;
     .tabs__nav {
-      @apply w-full overflow-x-auto whitespace-nowrap lg:w-[25%] 2xl:w-1/5;
+      @apply w-full overflow-x-auto whitespace-nowrap lg:w-[20%] 2xl:w-1/5;
       ul {
         @apply flex lg:flex-col;
         li {
@@ -113,11 +113,11 @@ export default {
       }
     }
     .tabs__wrapper {
-      @apply mt-10 w-full lg:mt-0 lg:w-[75%] 2xl:w-4/5;
+      @apply mt-10 w-full lg:mt-0 lg:w-[80%] 2xl:w-4/5;
       .cabinet {
         @apply border-grey-light lg:border;
         .cabinet-wrapper {
-          @apply lg:px-24 lg:py-24 2xl:px-32 2xl:py-32;
+          @apply lg:px-20 lg:py-20 2xl:px-32 2xl:py-32;
         }
       }
     }

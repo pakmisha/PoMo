@@ -1,15 +1,16 @@
 <template>
   <div id="app">
     <ModalsRequestModal />
+    <ModalsOrderModal />
+    <ModalsSubmitModal />
     <MobileFilters />
     <MobileCategory />
-    <ModalsSubmitModal />
     <CartSidebar />
     <MobileNav />
     <Nav />
-    <div>
+    <main>
       <Nuxt />
-    </div>
+    </main>
     <Footer />
   </div>
 </template>

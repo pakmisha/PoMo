@@ -20,13 +20,19 @@
           >
             Категории
           </button>
-          <button class="btn-primary">Фильтры</button>
+          <button
+            class="btn-primary"
+            @click.prevent="$nuxt.$emit('open-modal', 'filters')"
+          >
+            Фильтры
+          </button>
         </div>
       </div>
     </div>
 
     <div class="flex justify-between">
-      <div class="hidden w-[20%] lg:block">
+      <div class="hidden w-[20%] space-y-10 lg:block">
+        <CategorySidebar />
         <FiltersSidebar />
       </div>
       <div class="w-full lg:w-[75%]">

@@ -44,6 +44,11 @@ body {
       @apply max-w-[90%] bg-white px-5 py-10 md:max-w-[800px] md:py-10 md:px-20 2xl:py-20;
     }
   }
+  &.modal-md {
+    .modal-wrapper {
+      @apply max-w-[90%] bg-white px-5 py-10 md:max-w-[600px] md:py-10 md:px-6 2xl:py-6;
+    }
+  }
   &.active {
     @apply visible opacity-100;
     .modal-wrapper {

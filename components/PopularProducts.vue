@@ -10,51 +10,55 @@
           <UILink link="/catalog" class="btn-primary">перейти в каталог</UILink>
         </div>
       </div>
-      <UISlider
-        class="slider-popular-products mt-5 w-full lg:mt-0 lg:w-[65%]"
-        :options="{
-          slidesPerView: 2,
-          spaceBetween: 15,
-          loop: true,
-          centeredSlides: false,
-          centeredSlidesBounds: false,
-          centerInsufficientSlides: false,
-          autoHeight: false,
-          navigation: {
-            nextEl: '.sw-next',
-            prevEl: '.sw-prev',
-          },
-          breakpoints: {
-            320: {
-              slidesPerView: 1,
-              spaceBetween: 10,
+      <div class="swiper relative mt-5 w-full lg:mt-0 lg:w-[65%]">
+        <UISlider
+          class="slider-popular-products"
+          :options="{
+            slidesPerView: 2,
+            spaceBetween: 15,
+            loop: true,
+            centeredSlides: false,
+            centeredSlidesBounds: false,
+            centerInsufficientSlides: false,
+            autoHeight: false,
+            navigation: {
+              nextEl: '.sw-next',
+              prevEl: '.sw-prev',
             },
-            768: {
-              slidesPerView: 1.5,
-              spaceBetween: 10,
+            breakpoints: {
+              320: {
+                slidesPerView: 1,
+                spaceBetween: 10,
+              },
+              768: {
+                slidesPerView: 1.5,
+                spaceBetween: 10,
+              },
+              1024: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              1366: {
+                slidesPerView: 2,
+                spaceBetween: 30,
+              },
             },
-            1024: {
-              slidesPerView: 2,
-              spaceBetween: 20,
-            },
-            1366: {
-              slidesPerView: 2,
-              spaceBetween: 30,
-            },
-          },
-        }"
-      >
-        <div class="swiper-wrapper pb-16">
-          <div
-            class="swiper-slide"
-            v-for="(product, index) in products"
-            :key="index"
-          >
-            <Product :product="product" />
+          }"
+        >
+          <div class="swiper-wrapper">
+            <div
+              class="swiper-slide"
+              v-for="(product, index) in products"
+              :key="index"
+            >
+              <Product :product="product" />
+            </div>
           </div>
+        </UISlider>
+        <div class="mt-5 flex justify-end">
+          <UISwiperButtons class="swiper-buttons-bottom" />
         </div>
-        <UISwiperButtons class="swiper-buttons-bottom" />
-      </UISlider>
+      </div>
     </div>
   </section>
 </template>
