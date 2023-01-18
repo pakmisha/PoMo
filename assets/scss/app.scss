@@ -63,6 +63,6 @@ body {
 .auth {
   @apply mx-auto max-w-[900px];
   &-wrapper {
-    @apply border border-grey-light bg-white px-40 py-32;
+    @apply border-grey-light bg-white md:border md:px-20 md:py-20 lg:py-32 lg:px-40;
   }
 }

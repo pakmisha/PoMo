@@ -7,7 +7,7 @@
         личный кабинет
       </h1>
     </div>
-    <div class="auth">
+    <div class="auth section-container">
       <div class="auth-wrapper">
         <form action="">
           <div class="space-y-4">
@@ -21,14 +21,19 @@
             </div>
           </div>
           <div class="mt-10 flex justify-between">
-            <UIButton class="btn-secondary">войти</UIButton>
+            <UIButton class="btn-secondary text-grey">войти</UIButton>
             <div class="flex items-end">
-              <UILink link="" class="text-sm text-grey underline"
+              <UILink link="/reset" class="btn-underline text-dark"
                 >Забыли пароль?</UILink
               >
             </div>
           </div>
         </form>
+      </div>
+      <div class="mt-10 flex md:items-center md:justify-center">
+        <UILink link="/registration" class="btn-underline"
+          >зарегистрироваться</UILink
+        >
       </div>
     </div>
   </div>
