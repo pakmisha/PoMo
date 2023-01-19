@@ -6,7 +6,7 @@
       >
         <h2 class="heading-primary">Все товары</h2>
         <div class="mt-4 lg:mt-0">
-          <select name="" id="" class="select text-center">
+          <select name="" id="" class="select-primary text-center">
             <option value="" selected>По дате добавления</option>
             <option value="">Сначала популярные</option>
             <option value="">Цена: по возрастанию</option>

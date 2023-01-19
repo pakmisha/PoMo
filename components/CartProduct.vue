@@ -1,5 +1,5 @@
 <template>
-  <div class="flex border-b border-grey py-5 md:flex-row">
+  <div class="flex border-b border-grey py-7 md:flex-row">
     <div class="mr-5 w-[125px] md:w-[200px]">
       <img src="~/assets/img/products/product-2.jpeg" alt="" />
     </div>
@@ -68,7 +68,7 @@
             </button>
           </div>
         </div>
-        <div class="text-sm">2 085 200 ₸</div>
+        <div class="text-sm font-medium">2 085 200 ₸</div>
       </div>
     </div>
   </div>

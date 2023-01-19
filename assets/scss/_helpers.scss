@@ -118,6 +118,9 @@
     @apply w-full;
   }
 }
+.radio-primary {
+  @apply h-5 w-5;
+}
 //---------------------------INPUTS END--------------------------------
 
 .section {
@@ -135,7 +138,15 @@
   }
 }
 .select {
-  @apply flex cursor-pointer appearance-none items-center rounded-full border border-dark px-7 py-2 outline-none;
+  &-primary {
+    @apply flex cursor-pointer appearance-none items-center rounded-full border border-dark px-7 py-2 outline-none;
+  }
+  &-secondary {
+    @apply flex w-full cursor-pointer appearance-none items-center border border-grey-light px-3 py-3 outline-none;
+  }
+}
+.textarea {
+  @apply w-full border border-grey-light px-3 py-3 text-grey outline-none;
 }
 .link {
   @apply relative;
