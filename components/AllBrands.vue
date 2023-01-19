@@ -2,7 +2,7 @@
   <div class="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4">
     <a
       href=""
-      class="block bg-light transition-all duration-300 ease-in-out hover:shadow-md"
+      class="block bg-light transition-all duration-300 ease-in-out"
       v-for="(item, index) in items"
       :key="index"
     >

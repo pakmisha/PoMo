@@ -15,53 +15,59 @@
       </p>
     </div>
     <div class="pl-5 md:pl-10 lg:pl-14 2xl:pl-16">
-      <UISlider
-        :options="{
-          slidesPerView: 1.1,
-          centeredSlides: false,
-          navigation: {
-            nextEl: '.sw-next',
-            prevEl: '.sw-prev',
-          },
-          breakpoints: {
-            320: {
-              slidesPerView: 1.1,
-              spaceBetween: 10,
+      <div class="swiper relative">
+        <UISlider
+          :options="{
+            slidesPerView: 1.1,
+            centeredSlides: false,
+            navigation: {
+              nextEl: '.sw-next',
+              prevEl: '.sw-prev',
             },
-            1024: {
-              slidesPerView: 2.1,
-              spaceBetween: 10,
+            breakpoints: {
+              320: {
+                slidesPerView: 1.1,
+                spaceBetween: 10,
+              },
+              1024: {
+                slidesPerView: 2.1,
+                spaceBetween: 10,
+              },
+              1350: {
+                slidesPerView: 2.1,
+                spaceBetween: 10,
+              },
             },
-            1350: {
-              slidesPerView: 2.1,
-              spaceBetween: 10,
-            },
-          },
-        }"
-      >
-        <div class="swiper-wrapper">
-          <div class="swiper-slide" v-for="(item, index) in items" :key="index">
+          }"
+        >
+          <div class="swiper-wrapper">
             <div
-              href=""
-              class="category"
-              :style="{
-                'background-image':
-                  'url(' + require('~/assets/' + item.image) + ')',
-              }"
+              class="swiper-slide"
+              v-for="(item, index) in items"
+              :key="index"
             >
-              <div class="heading-primary">
-                {{ item.title }}
-              </div>
               <div
-                class="absolute left-1/2 bottom-4 -translate-x-1/2 lg:bottom-6"
+                href=""
+                class="category"
+                :style="{
+                  'background-image':
+                    'url(' + require('~/assets/' + item.image) + ')',
+                }"
               >
-                <a href="" class="btn-primary">перейти в каталог </a>
+                <div class="heading-primary">
+                  {{ item.title }}
+                </div>
+                <div
+                  class="absolute left-1/2 bottom-4 -translate-x-1/2 lg:bottom-6"
+                >
+                  <a href="" class="btn-primary">перейти в каталог </a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <SwiperButtons class="swiper-buttons-centered" />
-      </UISlider>
+        </UISlider>
+        <UISwiperButtons class="swiper-buttons-centered" />
+      </div>
     </div>
   </section>
 </template>

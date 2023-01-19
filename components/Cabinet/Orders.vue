@@ -16,11 +16,12 @@
             <div class="orders-item">19.12.2022</div>
             <div class="orders-item">1 200 480 ₸</div>
             <div class="orders-item">Ожидается доставка</div>
-            <UIButton
+            <button
               class="orders-item text-end underline"
               @click.prevent="$nuxt.$emit('open-modal', 'order')"
-              >Смотреть подробнее</UIButton
             >
+              Смотреть подробнее
+            </button>
           </div>
         </div>
         <div class="orders__wrapper">
@@ -29,11 +30,12 @@
             <div class="orders-item">19.12.2022</div>
             <div class="orders-item">1 200 480 ₸</div>
             <div class="orders-item">Ожидается доставка</div>
-            <UIButton
+            <button
               class="orders-item text-end underline"
               @click.prevent="$nuxt.$emit('open-modal', 'order')"
-              >Смотреть подробнее</UIButton
             >
+              Смотреть подробнее
+            </button>
           </div>
         </div>
       </div>
@@ -42,7 +44,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data: () => ({}),
+};
 </script>
 
 <style lang="scss" scoped>

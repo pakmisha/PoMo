@@ -1,12 +1,12 @@
 <template>
   <div class="flex border-b border-grey py-5">
-    <div class="mr-3 w-[200px]">
+    <div class="mr-3 w-[150px] lg:w-[200px]">
       <img src="~/assets/img/products/product-1.jpeg" alt="" />
     </div>
     <div
       class="flex w-full flex-col justify-between lg:flex-row lg:items-center"
     >
-      <div class="w-[80%]">
+      <div class="mb-2 w-full lg:w-[70%]">
         <p class="mb-2 text-sm font-medium uppercase text-dark">
           Кресло TANGYUAN, MAYA A2267–2A
         </p>

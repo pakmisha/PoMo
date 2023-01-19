@@ -12,7 +12,7 @@
         alt=""
       />
       <div class="absolute right-2 top-2">
-        <button class="product-compare mr-1">
+        <button class="product-icons mr-1">
           <img src="~/assets/img/icons/compare.svg" alt="" />
           <!-- <div class="product-compare-dialog">
             <p>Добавить в сравнение</p>
@@ -81,7 +81,7 @@ export default {
       }
     }
   }
-  .product-compare {
+  .product-icons {
     @apply relative;
     &-dialog {
       @apply absolute right-0 bottom-full;
