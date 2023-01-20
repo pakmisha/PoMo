@@ -21,7 +21,9 @@
           </svg>
         </button>
       </div>
-      <div class=""></div>
+      <div class="h-full">
+        <CartProduct class="px-5" />
+      </div>
       <div
         class="border-t border-dark px-7 pt-4 pb-7 lg:px-10 lg:pt-6 lg:pb-10"
       >
@@ -30,8 +32,8 @@
           <div class="text-xl font-semibold">515 300 ₸</div>
         </div>
         <div class="mt-5 flex flex-col items-center">
-          <a href="" class="btn-secondary w-full">оформить заказ</a>
-          <a href="" class="btn-underline mt-3">перейти в корзину</a>
+          <a href="/order" class="btn-secondary w-full">оформить заказ</a>
+          <a href="/cart" class="btn-underline mt-3">перейти в корзину</a>
         </div>
       </div>
     </div>

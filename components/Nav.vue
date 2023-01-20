@@ -88,8 +88,16 @@
           <UILink link="" class="hidden lg:block">
             <img src="~/assets/img/icons/favorite.svg" alt="" />
           </UILink>
-          <button @click.prevent="$nuxt.$emit('toggle', 'sidebarCart')">
+          <button
+            class="relative"
+            @click.prevent="$nuxt.$emit('toggle', 'sidebarCart')"
+          >
             <img src="~/assets/img/icons/bag.svg" alt="" />
+            <div
+              class="absolute -right-2 -bottom-2 flex h-5 w-5 items-center justify-center rounded-full bg-dark text-xs text-white"
+            >
+              0
+            </div>
           </button>
         </div>
         <button

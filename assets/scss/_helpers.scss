@@ -106,8 +106,9 @@
 }
 .input {
   &-primary {
-    @apply w-full border border-grey-light bg-white px-3 py-2 outline-none 2xl:py-3;
-    &:focus {
+    @apply w-full border border-grey-light bg-white px-3 py-2 outline-none transition-all duration-300 ease-in-out 2xl:py-3;
+
+    &:hover {
       @apply bg-light;
     }
   }

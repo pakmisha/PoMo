@@ -5,7 +5,7 @@
         <nav class="flex flex-col items-center pt-56" v-if="submenu">
           <ul class="space-y-6">
             <li>
-              <a href="/about" class="mobile-link">О нас</a>
+              <UILink link="/about" class="mobile-link">О нас</UILink>
             </li>
             <li>
               <button
@@ -34,16 +34,18 @@
               </button>
             </li>
             <li>
-              <a href="" class="mobile-link">Бренды</a>
+              <UILink link="/brands" class="mobile-link">Бренды</UILink>
             </li>
             <li>
-              <a href="" class="mobile-link">Реализованные проекты</a>
+              <UILink link="" class="mobile-link">Реализованные проекты</UILink>
             </li>
             <li>
-              <a href="" class="mobile-link">Сравнение товаров</a>
+              <UILink link="" class="mobile-link">Сравнение товаров</UILink>
             </li>
             <li>
-              <a href="" class="mobile-link">Избранные товары</a>
+              <UILink link="/favorite" class="mobile-link"
+                >Избранные товары</UILink
+              >
             </li>
           </ul>
         </nav>
@@ -74,42 +76,42 @@
           </button>
           <ul class="space-y-6">
             <li>
-              <a href="" class="mobile-link mb-1">Мебель</a>
+              <UILink link="/catalog" class="mobile-link mb-1">Мебель</UILink>
               <ul class="space-y-1">
                 <li>
-                  <a href="" class="mobile-sublink">В наличии </a>
+                  <UILink link="" class="mobile-sublink">В наличии </UILink>
                 </li>
                 <li>
-                  <a href="" class="mobile-sublink">На заказ</a>
+                  <UILink link="" class="mobile-sublink">На заказ</UILink>
                 </li>
               </ul>
             </li>
             <li>
-              <a href="" class="mobile-link mb-1">Освещение</a>
+              <UILink link="" class="mobile-link mb-1">Освещение</UILink>
               <ul class="space-y-1">
                 <li>
-                  <a href="" class="mobile-sublink">Декоративное </a>
+                  <UILink link="" class="mobile-sublink">Декоративное </UILink>
                 </li>
                 <li>
-                  <a href="" class="mobile-sublink">Техническое</a>
+                  <UILink link="" class="mobile-sublink">Техническое</UILink>
                 </li>
               </ul>
             </li>
             <li>
-              <a href="" class="mobile-link">Офисные решения</a>
+              <UILink link="" class="mobile-link">Офисные решения</UILink>
             </li>
             <li>
-              <a href="" class="mobile-link">Текстиль</a>
+              <UILink link="" class="mobile-link">Текстиль</UILink>
             </li>
             <li>
-              <a href="" class="mobile-link">Декор</a>
+              <UILink link="" class="mobile-link">Декор</UILink>
             </li>
           </ul>
         </nav>
         <div class="mb-4 mt-10 flex items-center justify-center space-x-4">
-          <a href="">РУ</a>
-          <a href="">EN</a>
-          <a href="">КЗ</a>
+          <UILink link="">РУ</UILink>
+          <UILink link="">EN</UILink>
+          <UILink link="">КЗ</UILink>
         </div>
       </div>
       <div class="page-icon m -left-12 top-10">
