@@ -10,7 +10,7 @@
     <section>
       <div class="section-container">
         <div
-          class="grid grid-cols-1 divide-y divide-grey-light lg:grid-cols-4 lg:divide-y-0 lg:divide-x 2xl:px-20"
+          class="mx-auto grid max-w-[1700px] grid-cols-1 divide-y divide-grey-light lg:grid-cols-4 lg:divide-y-0 lg:divide-x 2xl:px-20"
         >
           <div class="benefit">
             <div class="flex items-start">

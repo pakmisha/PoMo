@@ -36,14 +36,14 @@
 }
 .swiper {
   .swiper-buttons {
-    @apply h-[50px];
+    @apply h-[30px] lg:h-[50px];
   }
   .swiper-buttons-centered {
-    @apply absolute left-0 right-0 top-0 bottom-0 z-10 m-auto hidden justify-between px-5 lg:flex;
+    @apply absolute left-0 right-0 top-0 bottom-0 z-10 m-auto flex justify-between px-2 lg:px-5;
     button {
-      @apply h-[50px] w-[50px] transform rounded-full border border-dark bg-white bg-opacity-70 p-3 pl-4 text-black shadow backdrop-blur-sm transition-all duration-300 ease-out-quad;
+      @apply h-[30px] w-[30px] transform rounded-full border border-dark bg-white bg-opacity-70 pl-2 text-black shadow backdrop-blur-sm transition-all duration-300 ease-out-quad lg:h-[50px] lg:w-[50px] lg:p-3 lg:pl-4;
       svg {
-        @apply h-full w-4;
+        @apply h-full w-3 lg:w-4;
         path {
           fill: #101820;
         }
@@ -58,10 +58,10 @@
       }
     }
     .sw-prev {
-      @apply translate-x-[-150%] pr-4;
+      @apply pr-4 lg:translate-x-[-150%];
     }
     .sw-next {
-      @apply translate-x-[150%]  pr-4;
+      @apply pr-4  lg:translate-x-[150%];
     }
     .swiper-button-disabled {
       @apply invisible opacity-0;

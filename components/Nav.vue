@@ -1,9 +1,12 @@
 <template>
   <div id="stick" class="top-panel" :class="{ stick: stick }">
     <div class="nav-panel section-container relative">
-      <UILink link="/" class="logo block">
-        <img src="~/assets/img/icons/logo.png" alt="" />
-      </UILink>
+      <div class="logo">
+        <UILink link="/" class="inline-block w-auto">
+          <img src="~/assets/img/icons/logo.png" alt="" />
+        </UILink>
+      </div>
+
       <nav>
         <ul>
           <li>
