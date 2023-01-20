@@ -18,7 +18,11 @@ export default {
   css: ["~/assets/scss/app.scss"],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: "~/plugins/swiper.js", mode: "client" }],
+  plugins: [
+    { src: "~/plugins/helpers.js" },
+    { src: "~/plugins/axios.js" },
+    { src: "~/plugins/swiper.js", mode: "client" },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -27,8 +31,60 @@ export default {
   buildModules: ["@nuxt/postcss8"],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: ["@nuxtjs/axios", "@nuxtjs/i18n"],
 
+  // API
+  publicRuntimeConfig: {
+    baseURL: process.env.BASE_URL,
+    assetURL: process.env.ASSET_URL,
+    imageURL: process.env.PRODUCT_IMAGE_URL,
+  },
+  // i18n
+  i18n: {
+    locales: [
+      {
+        code: "ru",
+        name: "РУ",
+        // file: "ru.js",
+      },
+      {
+        code: "en",
+        name: "EN",
+        // file: "kz.js",
+      },
+      {
+        code: "kz",
+        name: "КЗ",
+        // file: "en.js",
+      },
+    ],
+    // langDir: "~/lang/",
+    differentDomains: true,
+  },
+  // axios
+  axios: {
+    host: process.env.API_HOST, // http://172.17.0.1:8000
+    prefix: process.env.API_PREFIX, // /api
+    browserBaseURL: process.env.API_URL, // http://172.17.0.1:8000/api
+    baseURL: process.env.API_URL,
+    port: process.env.API_PORT,
+    proxy: true,
+    credentials: true,
+    debug: true,
+  },
+
+  // proxy
+  proxy: {
+    "/api": {
+      target: process.env.API_HOST,
+      changeOrigin: true,
+      pathRewrite: { "^/api": "/" },
+    },
+  },
+
+  router: {
+    base: "/",
+  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     postcss: {

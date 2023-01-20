@@ -74,8 +74,8 @@
       <div class="navigation">
         <div class="navigation-left">
           <UILink link="" class="lang-btn active">РУ</UILink>
-          <UILink link="" class="lang-btn">EN</UILink>
-          <UILink link="" class="lang-btn">КЗ</UILink>
+          <UILink link="" class="lang-btn"> EN</UILink>
+          <UILink link="" class="lang-btn"> КЗ</UILink>
         </div>
         <div class="navigation-right">
           <button @click.prevent="$nuxt.$emit('toggle', 'search')">
@@ -166,6 +166,11 @@ export default {
     //     this.activeCart = true;
     //   }
     // });
+  },
+  computed: {
+    availableLocales() {
+      return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale);
+    },
   },
   methods: {
     handleScroll() {

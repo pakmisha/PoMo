@@ -95,6 +95,11 @@ export default {
         }
       }
     }
+    &-center {
+      .tabs__nav {
+        @apply px-5 md:justify-center md:pl-0 lg:px-0;
+      }
+    }
   }
   &.vertical {
     @apply flex flex-col lg:flex-row;

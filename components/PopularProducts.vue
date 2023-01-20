@@ -16,11 +16,9 @@
           :options="{
             slidesPerView: 2,
             spaceBetween: 15,
-            loop: true,
             centeredSlides: false,
             centeredSlidesBounds: false,
             centerInsufficientSlides: false,
-            autoHeight: false,
             navigation: {
               nextEl: '.sw-next',
               prevEl: '.sw-prev',
