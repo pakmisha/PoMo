@@ -9,10 +9,56 @@
     </div>
     <section>
       <div class="section-container-inner">
-        <div class="flex">
-          <h3 class="heading-secondary">Комоды</h3>
+        <div class="flex flex-col justify-between lg:flex-row">
+          <div class="mr-3 mb-2 w-full lg:mb-0 lg:w-1/5">
+            <h3 class="heading-secondary">Комоды</h3>
+          </div>
+          <div class="w-full lg:w-[75%]">
+            <UISlider
+              :options="{
+                slidesPerView: 1.1,
+                centeredSlides: false,
+                navigation: {
+                  nextEl: '.sw-next',
+                  prevEl: '.sw-prev',
+                },
+                breakpoints: {
+                  320: {
+                    slidesPerView: 1,
+                    spaceBetween: 20,
+                  },
+                  1024: {
+                    slidesPerView: 1,
+                    spaceBetween: 20,
+                  },
+                  1350: {
+                    slidesPerView: 2,
+                    spaceBetween: 10,
+                  },
+                },
+              }"
+            >
+              <div class="swiper-wrapper">
+                <div
+                  class="swiper-slide"
+                  v-for="(product, index) in products"
+                  :key="index"
+                >
+                  <div class="flex">
+                    <Product :product="product" />
+                  </div>
+                </div>
+              </div>
+            </UISlider>
+          </div>
+
           <!-- <Product :product="product" /> -->
         </div>
+      </div>
+    </section>
+    <section>
+      <div class="section-container-inner mt-10">
+        <CompareDescription />
       </div>
     </section>
   </div>

@@ -3,7 +3,7 @@
     <div class="space-y-10 lg:space-y-20">
       <div class="faq" v-for="(item, index) in faqs" :key="index">
         <div class="faq__title heading-secondary mb-4 lg:mb-0">
-          {{ item.title }}
+          {{ item.title.ru }}
         </div>
         <div class="faq__questions">
           <div
@@ -58,8 +58,8 @@ export default {
     async questions() {
       try {
         const response = await this.$axios.get("questions");
-        this.faqs = response.data.data.questions;
-        consolr.log(response);
+        this.faqs = response.data.data.titles;
+        console.log(response);
       } catch (e) {
         console.log("ERROR GETTING QUESTIONS");
       }

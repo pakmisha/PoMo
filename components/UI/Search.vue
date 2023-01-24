@@ -1,7 +1,7 @@
 <template>
   <div class="search" :class="{ active: active }">
     <div
-      class="backdrop fixed top-[78px] left-0 bottom-0 right-0 z-30 bg-black bg-opacity-60"
+      class="backdrop fixed top-0 left-0 bottom-0 right-0 z-30 bg-black bg-opacity-60"
       @click.prevent="active = false"
     ></div>
     <div class="search-content section-container">
