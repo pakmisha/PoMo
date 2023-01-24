@@ -8,22 +8,15 @@
     <CartSidebar />
     <MobileNav />
     <Nav />
-    <transition name="slide-fade" mode="out-in">
-      <main>
-        <Nuxt />
-      </main>
-    </transition>
+    <main>
+      <Nuxt />
+    </main>
     <Footer />
   </div>
 </template>
 
 <script>
-export default {
-  transition: {
-    name: "slide-fade",
-    mode: "out-in",
-  },
-};
+export default {};
 </script>
 
 <style></style>

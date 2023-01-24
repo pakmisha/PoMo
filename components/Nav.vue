@@ -1,5 +1,6 @@
 <template>
   <div id="stick" class="top-panel" :class="{ stick: stick }">
+    <UISearch />
     <div class="nav-panel section-container relative">
       <div class="logo">
         <UILink link="/" class="inline-block w-auto">
@@ -63,9 +64,7 @@
             >
           </li>
           <li>
-            <UILink
-              link="javascript:void(0)"
-              class="link text-sm uppercase text-dark"
+            <UILink link="/projects" class="link text-sm uppercase text-dark"
               >Реализованные проекты</UILink
             >
           </li>
@@ -109,7 +108,6 @@
           @click.prevent="$nuxt.$emit('toggle', 'mobileMenu')"
         ></button>
       </div>
-      <UISearch />
     </div>
   </div>
 </template>
@@ -187,9 +185,9 @@ export default {
 <style lang="scss">
 .top-panel {
   // @apply fixed top-0 left-0 right-0 z-50;
-  @apply border-b border-dark;
+  @apply relative border-b border-dark;
   .nav-panel {
-    @apply relative flex items-center justify-between bg-white py-3;
+    @apply relative z-40 flex items-center justify-between bg-white py-3;
     .logo {
       @apply lg:w-1/4;
       img {
