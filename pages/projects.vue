@@ -33,7 +33,16 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data: () => ({
+    project: [
+      {
+        id: 1,
+        media: "project-1.png",
+      },
+    ],
+  }),
+};
 </script>
 
 <style lang="scss" scoped>

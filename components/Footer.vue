@@ -8,78 +8,21 @@
           alt=""
         />
       </div>
-      <div class="mt-5 grid grid-cols-1 gap-10 md:grid-cols-3 lg:mt-0">
-        <ul class="footer-nav">
-          <li>
-            <UILink link="" class="main-link">Компания</UILink>
+      <div class="mt-5 grid grid-cols-1 gap-14 md:grid-cols-5 lg:mt-0">
+        <ul class="footer-nav" v-for="(item, index) in items" :key="index">
+          <li class="">
+            <UIButton class="main-link">{{ item.title }}</UIButton>
             <ul class="list">
-              <li>
-                <UILink link="" class="simple-link">О нас</UILink>
-              </li>
-              <li>
-                <UILink link="/services" class="simple-link">Услуги</UILink>
-              </li>
-              <li>
-                <UILink link="" class="simple-link"
-                  >Реализованные проекты</UILink
-                >
-              </li>
-              <li>
-                <UILink link="/brands" class="simple-link">Бренды</UILink>
-              </li>
-              <li>
-                <UILink link="/cooperation" class="simple-link"
-                  >Сотрудничество</UILink
-                >
-              </li>
-              <li>
-                <UILink link="/contacts" class="simple-link">Контакты</UILink>
-              </li>
-            </ul>
-          </li>
-        </ul>
-        <ul class="footer-nav">
-          <li>
-            <UILink link="" class="main-link">Клиентам</UILink>
-            <ul class="list">
-              <li>
-                <UILink link="" class="simple-link">Личный кабинет</UILink>
-              </li>
-              <li>
-                <UILink link="" class="simple-link">Способы оплаты</UILink>
-              </li>
-              <li>
-                <UILink link="/faq" class="simple-link"
-                  >Ответы на частые вопросы</UILink
-                >
-              </li>
-              <li>
-                <UILink link="" class="simple-link">Варианты доставки</UILink>
-              </li>
-              <li>
-                <UILink link="" class="simple-link">Возврат и обмен</UILink>
-              </li>
-            </ul>
-          </li>
-        </ul>
-        <ul class="footer-nav">
-          <li>
-            <UILink link="" class="main-link">Соц. сети</UILink>
-            <ul class="list">
-              <li>
-                <UILink link="" class="simple-link">Facebook </UILink>
-              </li>
-              <li>
-                <UILink link="" class="simple-link">Instagram</UILink>
-              </li>
-              <li>
-                <UILink link="" class="simple-link">YouTube</UILink>
+              <li v-for="(li, index) in item.links" :key="'link' + index">
+                <UILink :link="li.link" class="simple-link">{{
+                  li.title
+                }}</UILink>
               </li>
             </ul>
           </li>
         </ul>
       </div>
-      <div class="mt-5 lg:mt-0">
+      <!-- <div class="mt-5 lg:mt-0">
         <div class="grid grid-cols-2 gap-10">
           <ul class="footer-nav">
             <li>
@@ -131,13 +74,143 @@
             </button>
           </div>
         </div>
+      </div> -->
+    </div>
+    <div class="mt-7 flex justify-end">
+      <div>
+        <p class="mb-3 text-sm text-gray-400">
+          Подпишитесь на рассылку новостей и акций
+        </p>
+        <div
+          class="flex items-center justify-between overflow-hidden rounded-full bg-white py-px px-px"
+        >
+          <div>
+            <input
+              type="email"
+              class="w-full px-4 py-2 outline-none"
+              placeholder="ВВЕДИТЕ ПОЧТУ"
+            />
+          </div>
+          <button
+            class="btn-secondary"
+            @click.prevent="$nuxt.$emit('open-modal', 'submit')"
+          >
+            подписаться
+          </button>
+        </div>
       </div>
     </div>
   </footer>
 </template>
 
 <script>
-export default {};
+export default {
+  data: () => ({
+    items: [
+      {
+        title: "Компания",
+        links: [
+          {
+            title: "О нас",
+            link: "",
+          },
+          {
+            title: "Услуги",
+            link: "",
+          },
+          {
+            title: "Реализованные проекты",
+            link: "",
+          },
+          {
+            title: "Бренды",
+            link: "",
+          },
+          {
+            title: "Сотрудничество",
+            link: "",
+          },
+          {
+            title: "Контакты",
+            link: "",
+          },
+        ],
+      },
+      {
+        title: "Клиентам",
+        links: [
+          {
+            title: "Личный кабинет",
+            link: "",
+          },
+          {
+            title: "Способы оплаты",
+            link: "",
+          },
+          {
+            title: "Ответы на частые вопросы",
+            link: "",
+          },
+          {
+            title: "Варианты доставки",
+            link: "",
+          },
+          {
+            title: "Возврат и обмен",
+            link: "",
+          },
+        ],
+      },
+      {
+        title: "Контакты",
+        links: [
+          {
+            title: "+7 (701) 655 45 55",
+            link: "",
+          },
+          {
+            title: "pomosales@pomo.kz",
+            link: "",
+          },
+        ],
+      },
+      {
+        title: "График работы",
+        links: [
+          {
+            title: "Пн-Пт с 9.00 до 19.00",
+            link: "",
+          },
+          {
+            title: "Суббота с 10.00 до 18.00",
+            link: "",
+          },
+          {
+            title: "Воскресенье — выходной",
+            link: "",
+          },
+        ],
+      },
+      {
+        title: "Соц. сети",
+        links: [
+          {
+            title: "Facebook",
+            link: "",
+          },
+          {
+            title: "Instagram",
+            link: "",
+          },
+          {
+            title: "YouTube",
+            link: "",
+          },
+        ],
+      },
+    ],
+  }),
+};
 </script>
 
 <style lang="scss">

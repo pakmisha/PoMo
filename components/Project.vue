@@ -1,16 +1,18 @@
 <template>
   <div class="project">
     <div class="project-image">
-      <img :src="require('~/assets/img/projects/project-1.png')" alt="" />
+      <img :src="require('~/assets/img/projects/project-2.png')" alt="" />
     </div>
-    <UILink link="/product" class="project-bottom">
+    <UILink link="/project" class="project-bottom">
       <p class="project-bottom-title">Дизайн интерьера двухэтажного дома</p>
       <p class="text-sm">2022</p>
     </UILink>
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data: () => ({}),
+};
 </script>
 
 <style lang="scss">

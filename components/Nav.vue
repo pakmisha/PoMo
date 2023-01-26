@@ -80,10 +80,13 @@
           <button @click.prevent="$nuxt.$emit('toggle', 'search')">
             <img src="~/assets/img/icons/search.svg" alt="" />
           </button>
-          <div class="has-dialog has-dialog-compare z-30 hidden lg:block">
+          <UILink
+            link="/compare"
+            class="has-dialog has-dialog-compare z-30 hidden lg:block"
+          >
             <img src="~/assets/img/icons/compare.svg" alt="" />
             <DialogCompare />
-          </div>
+          </UILink>
           <UILink link="/login">
             <img src="~/assets/img/icons/person.svg" alt="" />
           </UILink>

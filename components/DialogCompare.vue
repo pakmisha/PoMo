@@ -53,7 +53,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .dialog-compare {
   @apply absolute -right-[39px] top-[175%];
   &-wrapper {

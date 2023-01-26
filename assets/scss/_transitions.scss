@@ -11,3 +11,11 @@
   transform: translateY(-20px);
   opacity: 0;
 }
+.page-enter-active,
+.page-leave-active {
+  @apply transition-all duration-300 ease-in-out;
+}
+.page-enter,
+.page-leave-active {
+  @apply translate-y-5 opacity-0;
+}
