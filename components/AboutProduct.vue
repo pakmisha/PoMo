@@ -12,11 +12,15 @@
             <div class="swiper-wrapper">
               <div
                 class="swiper-slide"
-                v-for="(item, index) in items"
+                v-for="(item, index) in product.media"
                 :key="'addition-' + index"
               >
-                <div>
-                  <img :src="require(`~/assets/${item.image}`)" alt="" />
+                <div class="h-full w-full">
+                  <img
+                    :src="$asset(item.file_name)"
+                    class="object-cover"
+                    alt=""
+                  />
                 </div>
               </div>
             </div>
@@ -25,13 +29,13 @@
             <div class="swiper-wrapper">
               <div
                 class="swiper-slide"
-                v-for="(item, index) in items"
+                v-for="(item, index) in product.media"
                 :key="index"
               >
-                <div class="h-full w-full">
+                <div class="h-full w-full border border-grey">
                   <img
                     class="h-full w-full object-cover"
-                    :src="require(`~/assets/${item.image}`)"
+                    :src="$asset(item.file_name)"
                     alt=""
                   />
                 </div>
@@ -43,17 +47,15 @@
         <div class="w-full space-y-10 lg:w-[35%]">
           <div class="border-b border-grey-light pb-4">
             <h1 class="heading-primary mb-4">
-              Кровать Camerich EDEN BED (C03G0502.00.Z1421)
+              {{ product.title[$i18n.locale] }}
             </h1>
-            <p class="text-xl font-medium">1 862 100 ₸</p>
+            <p class="text-xl font-medium">
+              {{ product.new_price | formatPrice }} ₸
+            </p>
           </div>
           <div>
             <p class="plaintext">
-              Новая модель 2021 года Eden Bed от бренда Camerich выполнена
-              с комбинированной обивкой из кожи и ткани. Оснащена системой
-              хранения с итальянским подъёмным механизмом бренда Pozzoli,
-              который имеет два способа открытия, облегчая доступ и обеспечивая
-              надёжность и безопасность.
+              {{ product.description[$i18n.locale] }}
             </p>
           </div>
           <div class="parameters">
@@ -85,9 +87,18 @@
               <div class="parameters-item-left">Цвет</div>
               <div class="parameters-item-right">
                 <div class="color">
-                  <div class="color-item bg-red-500"></div>
-                  <div class="color-item bg-green-500"></div>
-                  <div class="color-item bg-black"></div>
+                  <div
+                    class="color-item"
+                    v-for="(item, index) in product.colors"
+                    :key="index"
+                  >
+                    <input
+                      type="radio"
+                      class="input-radio"
+                      name="color-radio"
+                      :style="'background-color:' + item.color_code"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -126,23 +137,18 @@
 </template>
 
 <script>
+import formatPrice from "~/filters/formatPrice";
 export default {
-  data: () => ({
-    items: [
-      {
-        image: "img/bg/category-card-1.png",
-      },
-      {
-        image: "img/bg/category-card-2.png",
-      },
-      {
-        image: "img/bg/category-card-3.png",
-      },
-      {
-        image: "img/bg/category-card-1.png",
-      },
-    ],
-  }),
+  props: {
+    product: {
+      type: Object,
+      required: true,
+    },
+  },
+  data: () => ({}),
+  filters: {
+    formatPrice,
+  },
   mounted() {
     const additionThumbs = this.$swiper(this.$refs.swiper_thumbs, {
       slidesPerView: "auto",
@@ -201,9 +207,8 @@ export default {
     &-right {
       @apply text-sm;
       .color {
-        @apply flex space-x-2;
+        @apply flex space-x-4;
         &-item {
-          @apply h-6 w-6 rounded-full border border-dark;
         }
       }
     }

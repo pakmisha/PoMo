@@ -3,12 +3,12 @@
     <div class="product-image">
       <img
         class="first-image"
-        :src="require('~/assets/img/products/' + product.media[0].file_name)"
+        :src="$asset(product.media[0].file_name)"
         alt=""
       />
       <img
         class="second-image"
-        :src="require('~/assets/img/products/' + product.media[1].file_name)"
+        :src="$asset(product.media[1].file_name)"
         alt=""
       />
       <div class="absolute right-2 top-2">
@@ -36,11 +36,11 @@
         </div>
       </div>
     </div>
-    <UILink link="/product" class="product-bottom">
+    <UILink :link="'/catalog/' + product.slug" class="product-bottom">
       <p class="product-bottom-title">
-        {{ product.title }}
+        {{ product.title[$i18n.locale] }}
       </p>
-      <p class="text-sm">{{ product.price }} ₸</p>
+      <p class="text-sm">{{ product.new_price }} ₸</p>
     </UILink>
   </div>
 </template>
@@ -58,7 +58,7 @@ export default {
 .product {
   @apply flex h-full flex-col justify-between;
   &-image {
-    @apply relative h-full overflow-hidden border border-grey-light;
+    @apply relative h-[400px] overflow-hidden border border-grey-light;
     img {
       @apply h-full w-full object-cover;
     }
@@ -92,7 +92,7 @@ export default {
   &-bottom {
     @apply mt-4 flex items-center justify-between border-b border-black pb-2;
     &-title {
-      @apply w-[65%] overflow-hidden text-ellipsis text-xs font-semibold uppercase md:w-[75%] lg:h-[20px] lg:text-sm;
+      @apply w-[65%] overflow-hidden text-ellipsis text-xs font-semibold uppercase md:w-[70%] lg:h-[20px] lg:text-sm;
       -webkit-line-clamp: 1;
       display: -webkit-box;
       -webkit-box-orient: vertical;

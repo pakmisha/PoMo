@@ -118,6 +118,18 @@
   &-range {
     @apply w-full;
   }
+  &-radio {
+    @apply relative h-6 w-6 cursor-pointer appearance-none rounded-full border border-grey-light;
+    &:after {
+      content: "";
+      @apply invisible absolute left-1/2 top-1/2 h-8 w-8 -translate-x-1/2 -translate-y-1/2 scale-95 rounded-full border border-dark opacity-0 transition-all duration-300 ease-out-quad;
+    }
+    &:checked {
+      &:after {
+        @apply visible scale-100 opacity-100;
+      }
+    }
+  }
 }
 .radio-primary {
   @apply h-5 w-5;

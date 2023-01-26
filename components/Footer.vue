@@ -8,35 +8,100 @@
           alt=""
         />
       </div>
-      <div class="mt-5 grid grid-cols-1 gap-14 md:grid-cols-5 lg:mt-0">
-        <ul class="footer-nav" v-for="(item, index) in items" :key="index">
+      <div class="mt-5 grid grid-cols-1 gap-14 md:grid-cols-3 lg:mt-0">
+        <ul class="footer-nav">
           <li class="">
-            <UIButton class="main-link">{{ item.title }}</UIButton>
+            <p class="main-link">Компания</p>
             <ul class="list">
-              <li v-for="(li, index) in item.links" :key="'link' + index">
-                <UILink :link="li.link" class="simple-link">{{
-                  li.title
-                }}</UILink>
+              <li>
+                <UILink link="" class="simple-link">О нас</UILink>
+              </li>
+              <li>
+                <UILink link="" class="simple-link">Услуги</UILink>
+              </li>
+              <li>
+                <UILink link="" class="simple-link"
+                  >Реализованные проекты</UILink
+                >
+              </li>
+              <li>
+                <UILink link="" class="simple-link">Бренды</UILink>
+              </li>
+              <li>
+                <UILink link="" class="simple-link">Сотрудничество</UILink>
+              </li>
+              <li>
+                <UILink link="" class="simple-link">Контакты</UILink>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="footer-nav">
+          <li class="">
+            <p class="main-link">Клиентам</p>
+            <ul class="list">
+              <li>
+                <UILink link="" class="simple-link">Личный кабинет</UILink>
+              </li>
+              <li>
+                <UILink link="" class="simple-link">Способы оплаты</UILink>
+              </li>
+              <li>
+                <UILink link="" class="simple-link"
+                  >Ответы на частые вопросы</UILink
+                >
+              </li>
+              <li>
+                <UILink link="" class="simple-link">Варианты доставки</UILink>
+              </li>
+              <li>
+                <UILink link="" class="simple-link">Возврат и обмен</UILink>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul v-if="settings != null" class="footer-nav">
+          <li class="">
+            <p class="main-link">Соц. сети</p>
+
+            <ul class="list">
+              <li>
+                <a target="_blank" :href="settings.facebook" class="simple-link"
+                  >Facebook</a
+                >
+              </li>
+              <li>
+                <a
+                  target="_blank"
+                  :href="settings.instagram"
+                  class="simple-link"
+                  >Instagram</a
+                >
+              </li>
+              <li>
+                <a target="_blank" :href="settings.youtube" class="simple-link"
+                  >YouTube</a
+                >
               </li>
             </ul>
           </li>
         </ul>
       </div>
-      <!-- <div class="mt-5 lg:mt-0">
-        <div class="grid grid-cols-2 gap-10">
+      <div class="mt-5 lg:mt-0">
+        <div v-if="settings != null" class="grid grid-cols-2 gap-10">
           <ul class="footer-nav">
             <li>
               <UILink link="" class="main-link">Контакты</UILink>
               <ul class="list">
                 <li>
-                  <UILink link="tel:+7 (701) 655 45 55" class="simple-link"
-                    >+7 (701) 655 45 55
-                  </UILink>
+                  <a :href="'tel:' + settings.phone1" class="simple-link"
+                    >{{ settings.phone1 }}
+                  </a>
                 </li>
                 <li>
-                  <UILink link="mailto: pomosales@pomo.kz" class="simple-link"
-                    >pomosales@pomo.kz</UILink
-                  >
+                  <a :href="'mailto:' + settings.email" class="simple-link">{{
+                    settings.email
+                  }}</a>
                 </li>
               </ul>
             </li>
@@ -45,8 +110,8 @@
             <li>
               <UILink link="" class="main-link">График работы</UILink>
               <ul class="list">
-                <li class="simple-link">Пн-Пт с 9.00 до 19.00</li>
-                <li class="simple-link">Суббота с 10.00 до 18.00</li>
+                <li class="simple-link">Пн-Пт с {{ settings.weekdays }}</li>
+                <li class="simple-link">Суббота с {{ settings.saturday }}</li>
                 <li class="simple-link">Воскресенье — выходной</li>
               </ul>
             </li>
@@ -59,44 +124,22 @@
           <div
             class="flex items-center justify-between overflow-hidden rounded-full bg-white py-px px-px"
           >
-            <div>
+            <div class="w-full">
               <input
                 type="email"
                 class="w-full px-4 py-2 outline-none"
                 placeholder="ВВЕДИТЕ ПОЧТУ"
+                v-model="email"
               />
             </div>
-            <button
+            <UIButton
+              :loader="loading"
               class="btn-secondary"
-              @click.prevent="$nuxt.$emit('open-modal', 'submit')"
+              @click="subscribe"
             >
               подписаться
-            </button>
+            </UIButton>
           </div>
-        </div>
-      </div> -->
-    </div>
-    <div class="mt-7 flex justify-end">
-      <div>
-        <p class="mb-3 text-sm text-gray-400">
-          Подпишитесь на рассылку новостей и акций
-        </p>
-        <div
-          class="flex items-center justify-between overflow-hidden rounded-full bg-white py-px px-px"
-        >
-          <div>
-            <input
-              type="email"
-              class="w-full px-4 py-2 outline-none"
-              placeholder="ВВЕДИТЕ ПОЧТУ"
-            />
-          </div>
-          <button
-            class="btn-secondary"
-            @click.prevent="$nuxt.$emit('open-modal', 'submit')"
-          >
-            подписаться
-          </button>
         </div>
       </div>
     </div>
@@ -104,112 +147,33 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   data: () => ({
-    items: [
-      {
-        title: "Компания",
-        links: [
-          {
-            title: "О нас",
-            link: "",
-          },
-          {
-            title: "Услуги",
-            link: "",
-          },
-          {
-            title: "Реализованные проекты",
-            link: "",
-          },
-          {
-            title: "Бренды",
-            link: "",
-          },
-          {
-            title: "Сотрудничество",
-            link: "",
-          },
-          {
-            title: "Контакты",
-            link: "",
-          },
-        ],
-      },
-      {
-        title: "Клиентам",
-        links: [
-          {
-            title: "Личный кабинет",
-            link: "",
-          },
-          {
-            title: "Способы оплаты",
-            link: "",
-          },
-          {
-            title: "Ответы на частые вопросы",
-            link: "",
-          },
-          {
-            title: "Варианты доставки",
-            link: "",
-          },
-          {
-            title: "Возврат и обмен",
-            link: "",
-          },
-        ],
-      },
-      {
-        title: "Контакты",
-        links: [
-          {
-            title: "+7 (701) 655 45 55",
-            link: "",
-          },
-          {
-            title: "pomosales@pomo.kz",
-            link: "",
-          },
-        ],
-      },
-      {
-        title: "График работы",
-        links: [
-          {
-            title: "Пн-Пт с 9.00 до 19.00",
-            link: "",
-          },
-          {
-            title: "Суббота с 10.00 до 18.00",
-            link: "",
-          },
-          {
-            title: "Воскресенье — выходной",
-            link: "",
-          },
-        ],
-      },
-      {
-        title: "Соц. сети",
-        links: [
-          {
-            title: "Facebook",
-            link: "",
-          },
-          {
-            title: "Instagram",
-            link: "",
-          },
-          {
-            title: "YouTube",
-            link: "",
-          },
-        ],
-      },
-    ],
+    loading: false,
+    email: null,
   }),
+  computed: {
+    ...mapGetters({
+      settings: "settings/settings",
+    }),
+  },
+  methods: {
+    async subscribe() {
+      this.loading = true;
+      try {
+        const response = await this.$axios.post("home/subscribe", {
+          email: this.email,
+        });
+        this.email = null;
+        $nuxt.$emit("open-modal", "submit");
+      } catch (e) {
+        this.$toast.error(e.response.data.message);
+      } finally {
+        this.loading = false;
+      }
+    },
+  },
 };
 </script>
 

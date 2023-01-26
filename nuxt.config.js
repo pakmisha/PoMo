@@ -22,6 +22,7 @@ export default {
     { src: "~/plugins/helpers.js" },
     { src: "~/plugins/axios.js" },
     { src: "~/plugins/swiper.js", mode: "client" },
+    { src: "~/plugins/toaster.js", mode: "client" },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -60,7 +61,7 @@ export default {
     ],
     // langDir: "~/lang/",
     // differentDomains: true,
-    // defaultLocale: "ru",
+    defaultLocale: "ru",
     // vueI18n: {
     //   fallbackLocale: "ru",
     // },

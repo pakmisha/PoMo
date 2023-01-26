@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="settings != null">
     <div class="section-container">
       <h1
         class="heading-big section-title-distance mx-auto max-w-[1490px] text-center"
@@ -24,7 +24,7 @@
               <div class="w-[80%]">
                 <div class="mb-2 text-sm text-grey-light lg:mb-5">Адрес</div>
                 <div class="text-sm text-dark">
-                  Самал-1, дом 4 по пр.Достык, ниже ул. Жолдасбекова
+                  {{ settings.address[$i18n.locale] }}
                 </div>
               </div>
             </div>
@@ -43,9 +43,9 @@
                   Номер телефона
                 </div>
                 <a
-                  href="tel: +7 (701) 655 45 55"
+                  :href="'tel:' + settings.phone1"
                   class="block text-sm text-dark"
-                  >+7 (701) 655 45 55</a
+                  >{{ settings.phone1 }}</a
                 >
               </div>
             </div>
@@ -64,10 +64,10 @@
                   Электронная почта
                 </div>
                 <a
-                  href="mailto: pomosales@pomo.kz"
+                  :href="'mailto:' + settings.email"
                   class="block text-sm text-dark"
                 >
-                  pomosales@pomo.kz
+                  {{ settings.email }}
                 </a>
               </div>
             </div>
@@ -86,8 +86,8 @@
                   График работы
                 </div>
                 <div class="text-sm text-dark">
-                  <p>10:00 - 19:00 по будням</p>
-                  <p>10:00 - 18:00 по субботам</p>
+                  <p>{{ settings.weekdays }} по будням</p>
+                  <p>{{ settings.saturday }} по субботам</p>
                 </div>
               </div>
             </div>
@@ -99,7 +99,7 @@
       <div class="section-container mt-10 lg:mt-20">
         <div class="h-[450px] w-full lg:h-[800px]">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2906.744107458813!2d76.9549280514913!3d43.235824487233735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38836f224751b7b7%3A0x53f6efe78311e19e!2sPoMo%20Design%20Center!5e0!3m2!1sru!2skz!4v1673853894378!5m2!1sru!2skz"
+            :src="settings.map"
             width="100%"
             height="100%"
             style="border: 0"
@@ -114,7 +114,14 @@
 </template>
 
 <script>
-export default {};
+import { mapGetters } from "vuex";
+export default {
+  computed: {
+    ...mapGetters({
+      settings: "settings/settings",
+    }),
+  },
+};
 </script>
 
 <style lang="scss">

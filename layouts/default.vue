@@ -16,7 +16,10 @@
 </template>
 
 <script>
-export default {};
+import AppMixins from "~/mixins/app";
+export default {
+  mixins: [AppMixins],
+};
 </script>
 
 <style></style>

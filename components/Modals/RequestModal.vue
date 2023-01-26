@@ -15,23 +15,25 @@
         <div class="space-y-2 md:space-y-3">
           <div class="input-wrapper">
             <label for="">Имя*</label>
-            <input type="text" class="input-primary" />
+            <input v-model="name" type="text" class="input-primary" />
           </div>
           <div class="input-wrapper">
             <label for="">Название компании</label>
-            <input type="text" class="input-primary" />
+            <input v-model="company" type="text" class="input-primary" />
           </div>
           <div class="input-wrapper">
             <label for="">Адрес электронной почты*</label>
-            <input type="email" class="input-primary" />
+            <input v-model="email" type="email" class="input-primary" />
           </div>
           <div class="input-wrapper">
             <label for="">Номер телефона*</label>
-            <input type="text" class="input-primary" />
+            <input v-model="phone" type="text" class="input-primary" />
           </div>
         </div>
         <div class="flex items-center justify-center">
-          <button class="btn-primary mt-4">оставить заявку</button>
+          <button class="btn-primary mt-4" @click.prevent="send">
+            оставить заявку
+          </button>
         </div>
         <p class="mt-4 text-center text-xs text-grey">
           Нажимая кнопку «Оставить заявку», вы соглашаетесь с политикой
@@ -61,7 +63,31 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data: () => ({
+    name: null,
+    company: null,
+    email: null,
+    phone: null,
+  }),
+  methods: {
+    async send() {
+      const response = await this.$axios.post("cooperation", {
+        name: this.name,
+        company: this.company,
+        email: this.email,
+        phone: this.phone,
+      });
+      $nuxt.$emit("close-modal", "request");
+    },
+    reset() {
+      this.name = null;
+      this.company = null;
+      this.email = null;
+      this.phone = null;
+    },
+  },
+};
 </script>
 
 <style></style>
