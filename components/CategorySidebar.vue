@@ -9,11 +9,15 @@
           class="category"
           v-for="(item, index) in items"
           :key="index"
-          :class="{ active: item.active }"
+          :class="{ active: active.includes(item.id) }"
         >
           <button
             class="category-toggle"
-            @click.prevent="item.active = !item.active"
+            @click.prevent="
+              active.includes(item.id)
+                ? active.splice(active.indexOf(item.id), 1)
+                : active.push(item.id)
+            "
           >
             <p>{{ item.title }}</p>
             <div class="category-toggle-icon">
@@ -33,18 +37,20 @@
               </svg>
             </div>
           </button>
-          <div class="category-details">
-            <ul>
-              <li
-                v-for="(category, index) in item.categorys"
-                :key="'category-' + index"
-              >
-                <UILink link="" class="text-sm text-grey">
-                  {{ category.title }}
-                </UILink>
-              </li>
-            </ul>
-          </div>
+          <Transition name="slide-fade" :key="'a-' + index">
+            <div v-if="active.includes(item.id)" class="category-details">
+              <ul>
+                <li
+                  v-for="(category, index) in item.categorys"
+                  :key="'category-' + index"
+                >
+                  <UILink link="" class="text-sm text-grey">
+                    {{ category.title }}
+                  </UILink>
+                </li>
+              </ul>
+            </div>
+          </Transition>
         </div>
       </div>
     </div>
@@ -56,7 +62,7 @@ export default {
   data: () => ({
     items: [
       {
-        active: false,
+        id: 1,
         title: "Диваны",
         categorys: [
           {
@@ -74,7 +80,7 @@ export default {
         ],
       },
       {
-        active: false,
+        id: 2,
         title: "Столы",
         categorys: [
           {
@@ -92,7 +98,7 @@ export default {
         ],
       },
       {
-        active: false,
+        id: 3,
         title: "Мебель для хранения",
         categorys: [
           {
@@ -110,7 +116,7 @@ export default {
         ],
       },
       {
-        active: false,
+        id: 4,
         title: "Столики",
         categorys: [
           {
@@ -128,7 +134,7 @@ export default {
         ],
       },
       {
-        active: false,
+        id: 5,
         title: "Стулья",
         categorys: [
           {
@@ -146,6 +152,7 @@ export default {
         ],
       },
     ],
+    active: [],
   }),
 };
 </script>
@@ -161,7 +168,7 @@ export default {
     }
   }
   &-details {
-    @apply invisible h-0 overflow-hidden opacity-0 transition-all duration-300 ease-in-out;
+    @apply pb-3;
     ul {
       @apply space-y-1;
       li {
@@ -171,9 +178,6 @@ export default {
   &.active {
     .category-toggle-icon {
       @apply rotate-180;
-    }
-    .category-details {
-      @apply visible h-auto overflow-auto pb-3 opacity-100;
     }
   }
 }

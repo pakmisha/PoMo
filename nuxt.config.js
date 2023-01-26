@@ -59,7 +59,11 @@ export default {
       },
     ],
     // langDir: "~/lang/",
-    differentDomains: true,
+    // differentDomains: true,
+    // defaultLocale: "ru",
+    // vueI18n: {
+    //   fallbackLocale: "ru",
+    // },
   },
   // axios
   axios: {

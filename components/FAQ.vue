@@ -3,21 +3,27 @@
     <div class="space-y-10 lg:space-y-20">
       <div class="faq" v-for="(item, index) in faqs" :key="index">
         <div class="faq__title heading-secondary mb-4 lg:mb-0">
-          {{ item.title.ru }}
+          {{ item.title[$i18n.locale] }}
         </div>
         <div class="faq__questions">
           <div
             class="faq__questions__item"
             v-for="(question, index) in item.questions"
             :key="'question-' + index"
-            :class="{ active: question.active }"
+            :class="{
+              active: activeIndex === index,
+            }"
           >
             <button
               class="faq-toggle"
-              @click.prevent="question.active = !question.active"
+              @click.prevent="
+                activeIndex == index
+                  ? (activeIndex = null)
+                  : (activeIndex = index)
+              "
             >
               <div class="w-[90%] text-left text-sm uppercase text-dark">
-                {{ question.question }}
+                {{ question.question[$i18n.locale] }}
               </div>
               <div class="faq-toggle-icon">
                 <svg
@@ -37,7 +43,7 @@
               </div>
             </button>
             <div class="faq-details plaintext">
-              {{ question.answer }}
+              {{ question.answer[$i18n.locale] }}
             </div>
           </div>
         </div>
@@ -50,6 +56,7 @@
 export default {
   data: () => ({
     faqs: [],
+    activeIndex: null,
   }),
   created() {
     this.questions();
@@ -59,7 +66,6 @@ export default {
       try {
         const response = await this.$axios.get("questions");
         this.faqs = response.data.data.titles;
-        console.log(response);
       } catch (e) {
         console.log("ERROR GETTING QUESTIONS");
       }

@@ -72,9 +72,13 @@
       </nav>
       <div class="navigation">
         <div class="navigation-left">
-          <UILink link="" class="lang-btn active">РУ</UILink>
-          <UILink link="" class="lang-btn"> EN</UILink>
-          <UILink link="" class="lang-btn"> КЗ</UILink>
+          <nuxt-link
+            class="lang-btn active"
+            v-for="locale in availableLocales"
+            :key="locale.code"
+            :to="switchLocalePath(locale.code)"
+            >{{ locale.name }}</nuxt-link
+          >
         </div>
         <div class="navigation-right">
           <button @click.prevent="$nuxt.$emit('toggle', 'search')">
