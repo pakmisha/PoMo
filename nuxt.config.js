@@ -33,7 +33,7 @@ export default {
   buildModules: ["@nuxt/postcss8"],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ["@nuxtjs/axios", "@nuxtjs/i18n"],
+  modules: ["@nuxtjs/axios", "@nuxtjs/i18n", "@nuxtjs/auth-next"],
 
   // API
   publicRuntimeConfig: {
@@ -90,6 +90,43 @@ export default {
 
   router: {
     base: "/",
+  },
+
+  auth: {
+    redirect: {
+      login: "/login",
+      logout: "/login",
+      callback: false,
+      home: "/",
+    },
+    watchLoggedIn: true,
+    rewriteRedirects: true,
+    resetOnError: true,
+    strategies: {
+      local: {
+        token: {
+          property: "token",
+          global: true,
+          maxAge: 3600 * 60 * 60,
+        },
+        user: {
+          property: "user",
+          autoFetch: true,
+        },
+        google: {
+          clinetId: "...",
+        },
+        endpoints: {
+          login: { url: process.env.API_URL + "/auth/login", method: "post" },
+          user: { url: process.env.API_URL + "/auth/user", method: "get" },
+          logout: {
+            url: process.env.API_URL + "/auth/logout",
+            method: "delete",
+          },
+        },
+        autoLogout: false,
+      },
+    },
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

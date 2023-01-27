@@ -16,28 +16,75 @@
           <div class="space-y-4">
             <div class="input-wrapper">
               <label for="">Имя Фамилия*</label>
-              <input type="text" class="input-primary" />
+              <input
+                type="text"
+                v-model="credentials.full_name"
+                class="input-primary"
+              />
+              <div
+                class="text-error"
+                v-if="errors && errors.hasOwnProperty('full_name')"
+              >
+                {{ errors.full_name[0] }}
+              </div>
             </div>
             <div class="input-wrapper">
               <label for="">Адрес электронной почты*</label>
-              <input type="email" class="input-primary" />
+              <input
+                type="email"
+                v-model="credentials.email"
+                class="input-primary"
+              />
+              <div
+                class="text-error"
+                v-if="errors && errors.hasOwnProperty('email')"
+              >
+                {{ errors.email[0] }}
+              </div>
             </div>
             <div class="input-wrapper">
               <label for="">Номер телефона</label>
-              <input type="number" class="input-primary" />
+              <input
+                type="number"
+                v-model="credentials.phone"
+                class="input-primary"
+              />
+              <div
+                class="text-error"
+                v-if="errors && errors.hasOwnProperty('phone')"
+              >
+                {{ errors.phone[0] }}
+              </div>
             </div>
             <div class="input-wrapper">
               <label for="">Пароль*</label>
-              <input type="password" class="input-primary" />
+              <input
+                type="password"
+                v-model="credentials.password"
+                class="input-primary"
+              />
+              <div
+                class="text-error"
+                v-if="errors && errors.hasOwnProperty('password')"
+              >
+                {{ errors.password[0] }}
+              </div>
             </div>
             <div class="input-wrapper">
-              <label for="">Повторите пароль**</label>
-              <input type="password" class="input-primary" />
+              <label for="">Повторите пароль*</label>
+              <input
+                type="password"
+                v-model="credentials.password_confirmation"
+                class="input-primary"
+              />
             </div>
           </div>
           <div class="mt-5 flex flex-col justify-between md:mt-10 md:flex-row">
             <div class="flex">
-              <UIButton class="btn-secondary text-grey"
+              <UIButton
+                :loader="loading"
+                class="btn-secondary text-grey"
+                @click="register"
                 >создать аккаунт</UIButton
               >
             </div>
@@ -61,7 +108,54 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data: () => ({
+    loading: false,
+    errors: null,
+    credentials: {
+      full_name: null,
+      email: null,
+      phone: null,
+      password: null,
+      password_confirmation: null,
+    },
+  }),
+  methods: {
+    async register() {
+      this.loading = true;
+      try {
+        const response = await this.$axios.post("auth/register", {
+          full_name: this.credentials.full_name,
+          email: this.credentials.email,
+          phone: this.credentials.phone,
+          password: this.credentials.password,
+          password_confirmation: this.credentials.password_confirmation,
+        });
+        this.$toast.success(response.data.message);
+        this.reset();
+      } catch (e) {
+        this.handleValidationErrors(e);
+      } finally {
+        this.loading = false;
+      }
+    },
+    handleValidationErrors(e) {
+      if (e.response.status == 422) {
+        this.errors = e.response.data.errors;
+        this.$toast.error("Ошибка валидации данных!");
+      } else {
+        this.$toast.error(e.response.data.message);
+      }
+    },
+    reset() {
+      this.credentials.full_name = null;
+      this.credentials.email = null;
+      this.credentials.phone = null;
+      this.credentials.password = null;
+      this.credentials.password_confirmation = null;
+    },
+  },
+};
 </script>
 
 <style></style>

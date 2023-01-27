@@ -16,8 +16,8 @@
               <input type="text" class="input-primary" />
             </div>
             <div class="input-wrapper">
-              <label for="">Электронная почта или номер телефона</label>
-              <input type="text" class="input-primary" />
+              <label for="">Пароль</label>
+              <input type="password" class="input-primary" />
             </div>
           </div>
           <div class="mt-10 flex justify-between">
