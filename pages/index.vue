@@ -1,5 +1,6 @@
 <template>
   <div>
+    <ModalsRequestModal />
     <section>
       <div class="section-container section-title-distance">
         <div class="text-center">

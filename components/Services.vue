@@ -1,5 +1,6 @@
 <template>
   <section>
+    <ModalsServicesModal />
     <Tabs
       titles="Интерьер «под ключ»,Концепт проект,Комплектация мебелью и декором,декорирование интерьера,Поставка мебели на заказ,Примерка мебели"
       class="horizontal"
@@ -16,7 +17,7 @@
             </p>
             <button
               class="btn-primary"
-              @click.prevent="$nuxt.$emit('open-modal', 'request')"
+              @click.prevent="$nuxt.$emit('open-modal', 'services')"
             >
               Заказать услугу
             </button>

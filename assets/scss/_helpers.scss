@@ -22,12 +22,27 @@
     @apply block whitespace-nowrap rounded-full border border-dark bg-white px-6 py-3 text-center text-sm uppercase text-dark transition-all duration-300 ease-out-quad;
     &:hover {
       @apply bg-dark text-white;
+      svg {
+        circle {
+          @apply stroke-white;
+        }
+      }
+    }
+    svg {
+      circle {
+        @apply stroke-dark;
+      }
     }
   }
   &-secondary {
     @apply block whitespace-nowrap rounded-full bg-dark px-6 py-3 text-center text-sm uppercase text-white transition-all duration-300 ease-out-quad;
     &:hover {
       @apply bg-grey;
+    }
+    svg {
+      circle {
+        @apply stroke-white;
+      }
     }
   }
   &-underline {
@@ -181,6 +196,9 @@
   &-number {
     @apply mx-1 text-sm md:mx-2;
   }
+}
+.text-error {
+  @apply mt-1 text-xs text-red-500;
 }
 .page-icon {
   @apply absolute;

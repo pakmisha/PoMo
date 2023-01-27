@@ -1,9 +1,9 @@
 <template>
-  <ModalsModal name="request" class="modal modal-xl">
+  <ModalsModal name="services" class="modal modal-xl">
     <div class="modal-wrapper">
       <div class="text-center">
         <h1 class="mb-3 text-xl font-medium uppercase md:text-2xl 2xl:text-3xl">
-          Оставьте заявку на сотрудничество
+          Заказать услугу
         </h1>
         <p class="text-xs text-grey md:text-sm">
           Мы с большим теплом принимаем энергичных и талантливых людей, чтобы
@@ -16,42 +16,24 @@
           <div class="input-wrapper">
             <label for="">Имя*</label>
             <input v-model="name" type="text" class="input-primary" />
-            <div
-              v-if="errors && errors.hasOwnProperty('name')"
-              class="text-error"
-            >
-              {{ errors.name[0] }}
-            </div>
           </div>
           <div class="input-wrapper">
-            <label for="">Название компании</label>
+            <label for="">Услуга</label>
             <input v-model="company" type="text" class="input-primary" />
           </div>
           <div class="input-wrapper">
             <label for="">Адрес электронной почты*</label>
             <input v-model="email" type="email" class="input-primary" />
-            <div
-              v-if="errors && errors.hasOwnProperty('email')"
-              class="text-error"
-            >
-              {{ errors.email[0] }}
-            </div>
           </div>
           <div class="input-wrapper">
             <label for="">Номер телефона*</label>
             <input v-model="phone" type="text" class="input-primary" />
-            <div
-              v-if="errors && errors.hasOwnProperty('phone')"
-              class="text-error"
-            >
-              {{ errors.phone[0] }}
-            </div>
           </div>
         </div>
         <div class="flex items-center justify-center">
-          <UIButton class="btn-primary mt-4" :loader="loading" @click="send">
+          <button class="btn-primary mt-4" @click.prevent="send">
             оставить заявку
-          </UIButton>
+          </button>
         </div>
         <p class="mt-4 text-center text-xs text-grey">
           Нажимая кнопку «Оставить заявку», вы соглашаетесь с политикой
@@ -60,7 +42,7 @@
       </form>
       <button
         class="absolute top-4 right-4"
-        @click.prevent="$nuxt.$emit('close-modal', 'request')"
+        @click.prevent="$nuxt.$emit('close-modal', 'services')"
       >
         <svg
           width="16"
@@ -87,42 +69,22 @@ export default {
     company: null,
     email: null,
     phone: null,
-    loading: false,
-    errors: null,
   }),
   methods: {
     async send() {
-      this.loading = true;
-      this.errors = null;
-      try {
-        const response = await this.$axios.post("cooperation", {
-          name: this.name,
-          company: this.company,
-          email: this.email,
-          phone: this.phone,
-        });
-        this.reset();
-        $nuxt.$emit("close-modal", "request");
-        this.$toast.success(response.data.message);
-      } catch (e) {
-        this.handleValidationErrors(e);
-      } finally {
-        this.loading = false;
-      }
+      const response = await this.$axios.post("cooperation", {
+        name: this.name,
+        company: this.company,
+        email: this.email,
+        phone: this.phone,
+      });
+      $nuxt.$emit("close-modal", "request");
     },
     reset() {
       this.name = null;
       this.company = null;
       this.email = null;
       this.phone = null;
-    },
-    handleValidationErrors(e) {
-      if (e.response.status == 422) {
-        this.errors = e.response.data.errors;
-        this.$toast.error("Ошибка валидации данных!");
-      } else {
-        this.$toast.error(e.response.data.message);
-      }
     },
   },
 };
