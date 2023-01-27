@@ -52,6 +52,13 @@
 
 <script>
 export default {
-  name: "IndexPage",
+  created() {
+    this.get();
+  },
+  methods: {
+    async get() {
+      const response = await this.$axios.get("");
+    },
+  },
 };
 </script>

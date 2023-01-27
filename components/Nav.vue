@@ -140,7 +140,7 @@ export default {
       },
       {
         title: "Офисные решения",
-        image: "bg/category-card-3.png",
+        image: "bg/category-card-3.jpg",
       },
       {
         title: "Текстиль",

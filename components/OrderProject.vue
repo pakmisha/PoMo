@@ -50,13 +50,13 @@ export default {
   data: () => ({
     items: [
       {
-        image: "img/bg/bg-project.png",
+        image: "img/bg/bg-project.jpg",
       },
       {
         image: "img/bg/about-1.png",
       },
       {
-        image: "img/bg/bg-project.png",
+        image: "img/bg/bg-project.jpg",
       },
       {
         image: "img/bg/about-1.png",

@@ -19,7 +19,12 @@
           </div>
           <div class="input-wrapper">
             <label for="">Услуга</label>
-            <input v-model="company" type="text" class="input-primary" />
+            <input
+              v-model="service"
+              disabled
+              type="text"
+              class="input-primary"
+            />
           </div>
           <div class="input-wrapper">
             <label for="">Адрес электронной почты*</label>
@@ -66,19 +71,20 @@
 export default {
   data: () => ({
     name: null,
-    company: null,
+    service: null,
     email: null,
     phone: null,
   }),
+
   methods: {
     async send() {
-      const response = await this.$axios.post("cooperation", {
+      const response = await this.$axios.post("services", {
         name: this.name,
         company: this.company,
         email: this.email,
         phone: this.phone,
       });
-      $nuxt.$emit("close-modal", "request");
+      $nuxt.$emit("close-modal", "services");
     },
     reset() {
       this.name = null;

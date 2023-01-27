@@ -56,7 +56,7 @@
     <div class="section-distance relative">
       <div class="h-[450px] lg:h-auto">
         <img
-          src="~/assets/img/bg/banner-cooperation.png"
+          src="~/assets/img/bg/banner-cooperation.jpg"
           class="h-full w-full object-cover"
           alt=""
         />

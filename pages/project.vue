@@ -18,7 +18,7 @@
     <section>
       <div>
         <img
-          src="~/assets/img/bg/bg-project.png"
+          src="~/assets/img/bg/bg-project.jpg"
           class="w-full object-cover"
           alt=""
         />

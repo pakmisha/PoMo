@@ -1,5 +1,6 @@
 <template>
   <footer class="section-container section-distance bg-dark py-24 lg:py-32">
+    <ModalsSubmitModal />
     <div class="flex flex-col justify-between lg:flex-row">
       <div>
         <img

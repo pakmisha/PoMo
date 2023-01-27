@@ -85,7 +85,7 @@ export default {
         title: "освещение",
       },
       {
-        image: "img/bg/category-card-3.png",
+        image: "img/bg/category-card-3.jpg",
         title: "паркет",
       },
       {

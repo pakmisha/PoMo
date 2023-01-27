@@ -61,7 +61,7 @@ export default {
 
 <style lang="scss">
 .search {
-  @apply invisible absolute top-[101%] left-0 z-30 w-full opacity-0 transition-all duration-300 ease-in-quad;
+  @apply invisible absolute top-[101%] left-0 z-40 w-full opacity-0 transition-all duration-300 ease-in-quad;
   &-content {
     @apply invisible relative z-30 flex w-full translate-y-10 items-center justify-between bg-light py-2 opacity-0 transition-all duration-300 ease-in-quad lg:py-4;
     &-icon {

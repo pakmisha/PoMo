@@ -49,6 +49,14 @@ export default {
       },
     ],
   }),
+  created() {
+    // this.getMarquee();
+  },
+  methods: {
+    // async getMarquee() {
+    //   const response = await this.$axios.get("");
+    // },
+  },
 };
 </script>
 

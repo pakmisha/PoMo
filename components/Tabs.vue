@@ -2,7 +2,7 @@
   <div class="tabs">
     <div class="tabs__nav">
       <ul>
-        <li class="" v-for="(item, index) in titles.split(',')" :key="index">
+        <li class="" v-for="(item, index) in titles" :key="index">
           <a
             :href="'.tab-' + index"
             :class="{ 'active-tab': index === activeTab }"

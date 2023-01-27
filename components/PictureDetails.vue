@@ -4,7 +4,7 @@
       class="relative inline-block h-full w-[1000px] overflow-y-hidden lg:w-full lg:overflow-y-visible"
     >
       <img
-        src="~/assets/img/bg/picture-details.png"
+        src="~/assets/img/bg/picture-details.jpg"
         class="object-center"
         alt=""
       />
