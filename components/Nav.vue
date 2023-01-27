@@ -91,7 +91,7 @@
             <img src="~/assets/img/icons/compare.svg" alt="" />
             <DialogCompare />
           </UILink>
-          <UILink link="/login">
+          <UILink :link="$auth.state.loggedIn ? '/cabinet' : '/login'">
             <img src="~/assets/img/icons/person.svg" alt="" />
           </UILink>
           <UILink link="" class="hidden lg:block">

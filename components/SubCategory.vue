@@ -54,7 +54,7 @@ export default {
         title: "Кухня",
       },
       {
-        image: "bg/sub-category-3.png",
+        image: "bg/sub-category-3.jpg",
         title: "Гостиная",
         classes: "row",
       },

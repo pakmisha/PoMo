@@ -51,17 +51,18 @@ export default {
 
 <style lang="scss" scoped>
 .orders {
-  @apply flex flex-col;
+  @apply flex  flex-col overflow-x-auto;
   &__nav {
-    @apply flex items-center border-b border-grey-light bg-light py-5 px-3;
+    @apply flex w-fit items-center border-b border-grey-light bg-light py-5 px-3 lg:w-full;
   }
   &__wrapper {
+    @apply w-fit lg:w-full;
     &__item {
       @apply flex border-b border-grey-light py-5 px-3;
     }
   }
   .orders-item {
-    @apply mr-5 w-1/5 whitespace-nowrap text-sm text-grey;
+    @apply mr-5 w-[150px] whitespace-nowrap text-sm text-grey lg:w-1/5;
     &.orders-item-nav {
       @apply text-sm font-medium uppercase;
     }

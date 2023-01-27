@@ -45,7 +45,7 @@
             <div class="input-wrapper">
               <label for="">Номер телефона</label>
               <input
-                type="number"
+                type="tel"
                 v-model="credentials.phone"
                 class="input-primary"
               />

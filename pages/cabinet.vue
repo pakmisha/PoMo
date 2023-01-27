@@ -9,7 +9,7 @@
     </div>
     <section>
       <div class="section-container">
-        <Tabs titles="Личные данные, Адреса, Заказы" class="vertical">
+        <Tabs :titles="['Личные данные', 'Адреса', 'Заказы']" class="vertical">
           <CabinetPersonalData />
           <div class="space-y-10">
             <CabinetAddresses />
@@ -23,7 +23,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data: () => ({}),
+};
 </script>
 
 <style lang="scss"></style>
