@@ -21,30 +21,44 @@
           </svg>
         </button>
       </div>
-      <div class="h-full">
-        <CartProduct class="px-5" />
-      </div>
-      <div
-        class="border-t border-dark px-7 pt-4 pb-7 lg:px-10 lg:pt-6 lg:pb-10"
-      >
-        <div class="flex justify-between">
-          <p class="ext-sm uppercase">Всего:</p>
-          <div class="text-xl font-semibold">515 300 ₸</div>
+      <div class="flex h-full flex-col justify-between" v-if="items.length > 0">
+        <div class="h-full overflow-y-auto">
+          <CartProduct
+            v-for="(item, index) in items"
+            :key="index"
+            :item="item"
+            class="px-5"
+          />
         </div>
-        <div class="mt-5 flex flex-col items-center">
-          <a href="/order" class="btn-secondary w-full">оформить заказ</a>
-          <a href="/cart" class="btn-underline mt-3">перейти в корзину</a>
+        <div
+          class="border-t border-dark px-7 pt-4 pb-7 lg:px-10 lg:pt-6 lg:pb-10"
+        >
+          <div class="flex justify-between">
+            <p class="ext-sm uppercase">Всего:</p>
+            <div class="text-xl font-semibold">515 300 ₸</div>
+          </div>
+          <div class="mt-5 flex flex-col items-center">
+            <a href="/order" class="btn-secondary w-full">оформить заказ</a>
+            <a href="/cart" class="btn-underline mt-3">перейти в корзину</a>
+          </div>
         </div>
       </div>
+      <div v-else class="h-full uppercase text-grey">Ваша корзина пуста</div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   data: () => ({
     active: false,
   }),
+  computed: {
+    ...mapGetters({
+      items: "cart/items",
+    }),
+  },
   created() {
     this.$nuxt.$on("toggle", (name) => {
       if (name == "sidebarCart") {

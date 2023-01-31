@@ -190,6 +190,15 @@
 }
 .counter {
   @apply flex items-center rounded-full border border-dark p-1;
+  &.counter-big {
+    @apply flex items-center rounded-full border border-dark p-1;
+    .counter-btn {
+      @apply flex h-8  w-12 items-center justify-center;
+    }
+    .counter-number {
+      @apply mx-1 text-sm md:mx-6;
+    }
+  }
   &-btn {
     @apply flex h-6 w-7 items-center justify-center md:w-10;
   }

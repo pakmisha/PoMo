@@ -1,17 +1,19 @@
 <template>
-  <div class="flex border-b border-grey py-7 md:flex-row">
+  <div v-if="item" class="flex border-b border-grey py-7 md:flex-row">
     <div class="mr-5 w-[125px] md:w-[200px]">
-      <img src="~/assets/img/products/product-2.jpeg" alt="" />
+      <img :src="$asset(item.product.image)" alt="" />
     </div>
     <div class="flex w-full flex-col justify-between">
       <div class="mb-5 flex justify-between">
         <div class="w-[80%]">
           <p class="mb-2 text-xs font-medium uppercase text-dark md:text-sm">
-            Кресло TANGYUAN, MAYA A2267–2A
+            {{ item.product.title }}
           </p>
-          <p class="text-sm text-grey">Цвет: белый</p>
+          <p class="text-sm text-grey">
+            Цвет: {{ item.product.color_langs[$i18n.locale] }}
+          </p>
         </div>
-        <button class="flex">
+        <button @click="remove(item)" class="flex">
           <svg
             width="16"
             height="16"
@@ -26,47 +28,7 @@
       </div>
       <div class="flex items-center justify-between">
         <div class="flex">
-          <div class="counter">
-            <button class="counter-btn">
-              <svg
-                width="12"
-                height="1"
-                viewBox="0 0 12 1"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M1.33203 0.5H10.6654"
-                  stroke="#101820"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </button>
-            <p class="counter-number">0</p>
-            <button class="counter-btn">
-              <svg
-                width="16"
-                height="17"
-                viewBox="0 0 16 17"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M8 3.83398V13.1673"
-                  stroke="#101820"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M3.33203 8.5H12.6654"
-                  stroke="#101820"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </button>
-          </div>
+          <UICounter :value="item.quantity" />
         </div>
         <div class="text-sm font-medium">2 085 200 ₸</div>
       </div>
@@ -75,7 +37,19 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    item: {
+      type: Object,
+      required: true,
+    },
+  },
+  methods: {
+    remove(item) {
+      this.$store.dispatch("cart/remove", { item });
+    },
+  },
+};
 </script>
 
 <style></style>

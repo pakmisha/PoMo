@@ -1,6 +1,6 @@
 <template>
   <div class="product">
-    <div class="product-image">
+    <div v-if="product.media.length > 0" class="product-image">
       <img class="first-image" :src="$asset(product.media[0].file_name)" />
       <img
         class="second-image"

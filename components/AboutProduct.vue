@@ -15,10 +15,10 @@
                 v-for="(item, index) in product.media"
                 :key="'addition-' + index"
               >
-                <div class="h-full w-full">
+                <div class="h-[140px] w-full">
                   <img
                     :src="$asset(item.file_name)"
-                    class="object-cover"
+                    class="h-full w-full object-cover"
                     alt=""
                   />
                 </div>
@@ -96,17 +96,31 @@
                       type="radio"
                       class="input-radio"
                       name="color-radio"
+                      v-model="color"
+                      :value="item"
                       :style="'background-color:' + item.color_code"
                     />
                   </div>
                 </div>
+                <div class="text-error" v-if="color_error">Выберите цвет</div>
               </div>
             </div>
           </div>
           <div>
-            <div class="flex items-center">
-              <UIButton class="btn-secondary mr-4">добавить в корзину</UIButton>
+            <div
+              class="flex flex-col space-y-3 lg:flex-row lg:items-center lg:space-y-0"
+            >
+              <div class="flex">
+                <UICounter
+                  class="counter-big mr-3"
+                  @change="quantity = $event"
+                />
+              </div>
+
               <div class="flex items-center">
+                <UIButton class="btn-secondary mr-4" @click="addToCart"
+                  >добавить в корзину</UIButton
+                >
                 <UIButton class="mr-3">
                   <svg
                     width="24"
@@ -145,7 +159,11 @@ export default {
       required: true,
     },
   },
-  data: () => ({}),
+  data: () => ({
+    quantity: 1,
+    color: null,
+    color_error: null,
+  }),
   filters: {
     formatPrice,
   },
@@ -178,6 +196,21 @@ export default {
         },
       },
     });
+  },
+  methods: {
+    addToCart() {
+      this.color_error = null;
+      if (this.color == null) {
+        this.color_error = true;
+        return;
+      }
+      const item = {
+        product_id: this.product.id,
+        color_id: this.color.id,
+        quantity: this.quantity,
+      };
+      this.$store.dispatch("cart/add", item);
+    },
   },
 };
 </script>

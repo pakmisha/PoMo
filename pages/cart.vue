@@ -1,15 +1,19 @@
 <template>
-  <section>
-    <div class="section-container">
-      <h1
-        class="heading-big section-title-distance mx-auto max-w-[1490px] text-center"
-      >
-        корзина
-      </h1>
-    </div>
-    <section class="mx-auto max-w-[1920px] px-5 lg:px-44 2xl:px-64">
-      <CartProduct />
-      <CartProduct />
+  <div>
+    <section>
+      <div class="section-container">
+        <h1
+          class="heading-big section-title-distance mx-auto max-w-[1490px] text-center"
+        >
+          корзина
+        </h1>
+      </div>
+    </section>
+    <section
+      v-if="items.length > 0"
+      class="mx-auto max-w-[1920px] px-5 lg:px-44 2xl:px-64"
+    >
+      <CartProduct v-for="(item, index) in items" :key="index" :item="item" />
       <div class="mt-5 flex items-center justify-between lg:justify-end">
         <div class="mr-10 text-sm font-medium uppercase">Всего:</div>
         <div class="text-xl font-medium uppercase lg:text-2xl">1 580 300 ₸</div>
@@ -22,6 +26,19 @@
           Стоимость доставки не включена в сумму заказа. Доставка по г. Алматы и
           Астана при сумме заказа от 500 000 ₸ осуществляется бесплатно
         </div>
+        <UIButton
+          class="tetx-grey mt-5 text-sm underline"
+          @click="$store.dispatch('cart/remove', items)"
+          >Очистить корзину</UIButton
+        >
+      </div>
+    </section>
+    <section v-else>
+      <div class="flex flex-col items-center">
+        <div class="mb-10 text-sm text-grey">
+          В вашей корзине пока нет товаров
+        </div>
+        <UILink link="/catalog" class="btn-primary">перейти в каталог</UILink>
       </div>
     </section>
     <section>
@@ -73,207 +90,18 @@
         </div>
       </div>
     </section>
-  </section>
+  </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
-  data: () => ({
-    products: [
-      {
-        id: 1,
-        media: [
-          {
-            file_name: "product-1.jpeg",
-          },
-          {
-            file_name: "product-2.jpeg",
-          },
-          {
-            file_name: "product-1.jpeg",
-          },
-        ],
-        title: "Кресло TANGYUAN, MAYA A2267–2A",
-        price: "515 300",
-      },
-      {
-        id: 2,
-        media: [
-          {
-            file_name: "product-1.jpeg",
-          },
-          {
-            file_name: "product-2.jpeg",
-          },
-          {
-            file_name: "product-1.jpeg",
-          },
-        ],
-        title: "Стул TANGYUAN",
-        price: "590 300",
-      },
-      {
-        id: 1,
-        media: [
-          {
-            file_name: "product-1.jpeg",
-          },
-          {
-            file_name: "product-2.jpeg",
-          },
-          {
-            file_name: "product-1.jpeg",
-          },
-        ],
-        title: "Кресло TANGYUAN, MAYA A2267–2A",
-        price: "515 300",
-      },
-      {
-        id: 2,
-        media: [
-          {
-            file_name: "product-1.jpeg",
-          },
-          {
-            file_name: "product-2.jpeg",
-          },
-          {
-            file_name: "product-1.jpeg",
-          },
-        ],
-        title: "Стул TANGYUAN",
-        price: "590 300",
-      },
-      {
-        id: 1,
-        media: [
-          {
-            file_name: "product-1.jpeg",
-          },
-          {
-            file_name: "product-2.jpeg",
-          },
-          {
-            file_name: "product-1.jpeg",
-          },
-        ],
-        title: "Кресло TANGYUAN, MAYA A2267–2A",
-        price: "515 300",
-      },
-      {
-        id: 2,
-        media: [
-          {
-            file_name: "product-1.jpeg",
-          },
-          {
-            file_name: "product-2.jpeg",
-          },
-          {
-            file_name: "product-1.jpeg",
-          },
-        ],
-        title: "Стул TANGYUAN",
-        price: "590 300",
-      },
-      {
-        id: 1,
-        media: [
-          {
-            file_name: "product-1.jpeg",
-          },
-          {
-            file_name: "product-2.jpeg",
-          },
-          {
-            file_name: "product-1.jpeg",
-          },
-        ],
-        title: "Кресло TANGYUAN, MAYA A2267–2A",
-        price: "515 300",
-      },
-      {
-        id: 2,
-        media: [
-          {
-            file_name: "product-1.jpeg",
-          },
-          {
-            file_name: "product-2.jpeg",
-          },
-          {
-            file_name: "product-1.jpeg",
-          },
-        ],
-        title: "Стул TANGYUAN",
-        price: "590 300",
-      },
-      {
-        id: 1,
-        media: [
-          {
-            file_name: "product-1.jpeg",
-          },
-          {
-            file_name: "product-2.jpeg",
-          },
-          {
-            file_name: "product-1.jpeg",
-          },
-        ],
-        title: "Кресло TANGYUAN, MAYA A2267–2A",
-        price: "515 300",
-      },
-      {
-        id: 2,
-        media: [
-          {
-            file_name: "product-1.jpeg",
-          },
-          {
-            file_name: "product-2.jpeg",
-          },
-          {
-            file_name: "product-1.jpeg",
-          },
-        ],
-        title: "Стул TANGYUAN",
-        price: "590 300",
-      },
-      {
-        id: 1,
-        media: [
-          {
-            file_name: "product-1.jpeg",
-          },
-          {
-            file_name: "product-2.jpeg",
-          },
-          {
-            file_name: "product-1.jpeg",
-          },
-        ],
-        title: "Кресло TANGYUAN, MAYA A2267–2A",
-        price: "515 300",
-      },
-      {
-        id: 2,
-        media: [
-          {
-            file_name: "product-1.jpeg",
-          },
-          {
-            file_name: "product-2.jpeg",
-          },
-          {
-            file_name: "product-1.jpeg",
-          },
-        ],
-        title: "Стул TANGYUAN",
-        price: "590 300",
-      },
-    ],
-  }),
+  data: () => ({}),
+  computed: {
+    ...mapGetters({
+      items: "cart/items",
+    }),
+  },
 };
 </script>
 

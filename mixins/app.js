@@ -6,5 +6,6 @@ export default {
     // this.$store.dispatch("favourites/get");
     this.$store.dispatch("home/get");
     this.$store.dispatch("products/getCategories");
+    this.$store.dispatch("cart/get");
   },
 };
