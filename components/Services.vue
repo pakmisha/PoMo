@@ -19,7 +19,10 @@
             </button>
           </div>
           <div class="services__right">
-            <div class="mb-14 lg:mb-24 2xl:mb-32" v-if="item.offers.length > 0">
+            <div
+              class="mb-14 lg:mb-24 2xl:mb-32"
+              v-if="item?.offers?.length > 0"
+            >
               <p class="plaintext mb-5 uppercase">Вы получаете:</p>
               <div class="space-y-5">
                 <div v-for="(offer, index) in item.offers" :key="index">
@@ -34,28 +37,44 @@
               </div>
             </div>
             <div
-              v-if="item.package.length > 0"
+              v-if="item.package_title.ru"
               class="max-w-[600px] border border-grey-light px-5 py-7 lg:px-11 lg:py-12"
             >
-              <p class="heading-secondary mb-6" v-tr="$i18n">
-                {{ item.package[0].attributes.title }}
-              </p>
+              <div v-if="item.package_title.ru">
+                <p class="heading-secondary mb-6" v-tr="$i18n">
+                  {{ item.package_title }}
+                </p>
+              </div>
+
               <div
+                v-if="item.package_description.ru"
                 class="package-list"
-                v-html="item.package[0].attributes.body"
+                v-html="item.package_description"
                 v-tr="$i18n"
               ></div>
               <div>
                 <div class="mb-3 flex flex-col lg:flex-row lg:items-center">
                   <p
                     class="mb-2 text-sm font-medium uppercase text-dark lg:mb-0 lg:mr-5"
+                    v-tr="$i18n"
+                    v-if="item.package_price_text.ru"
                   >
-                    Стоимость услуги от:
+                    {{ item.package_price_text }}
                   </p>
-                  <p class="heading-secondary">29 000 ₸ за 1 кв.</p>
+                  <p
+                    class="heading-secondary"
+                    v-if="item.package_price.ru"
+                    v-tr="$i18n"
+                  >
+                    {{ item.package_price }}
+                  </p>
                 </div>
-                <p class="text-xs text-grey">
-                  *Авторский надзор — 20% от стоимости проекта
+                <p
+                  class="text-xs text-grey"
+                  v-if="item.package_note.ru"
+                  v-tr="$i18n"
+                >
+                  {{ item.package_note }}
                 </p>
               </div>
             </div>
@@ -87,6 +106,7 @@ export default {
     async getServices() {
       const response = await this.$axios.get("services");
       this.services = response.data.data.services;
+      console.log(this.services);
     },
   },
 };
@@ -95,7 +115,7 @@ export default {
 <style lang="scss">
 .package-list {
   ul {
-    @apply mb-10 list-disc space-y-3 pl-5 text-sm text-grey lg:mb-14 2xl:mb-16;
+    @apply mb-5 list-disc space-y-3 pl-5 text-sm text-grey lg:mb-10;
     li {
     }
   }

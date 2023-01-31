@@ -6,16 +6,10 @@
       <p class="heading-sub">[О нас]</p>
       <div class="my-3 h-16 w-px bg-dark-blue"></div>
       <h2 class="heading-primary mb-6 lg:mb-10">
-        Мы предлагаем не просто интерьерные решения, а атмосферу, в которую
-        человек хочет погружаться
+        {{ home.about_title[$i18n.locale] }}
       </h2>
       <p class="plaintext lg:mx-32">
-        Идея открытия PoMo родилась с мечты о создании уникального дизайнерского
-        пространства, где будут представлены коллекции мебели и предметов декора
-        от ведущих мировых производителей. Мы стремимся помочь миру дизайна
-        резонировать с жизнью и эмоциональными желаниями людей. Наша миссия —
-        формировать творческие решения, способные чувственно обогатить жизни
-        людей.
+        {{ home.about_description[$i18n.locale] }}
       </p>
     </div>
     <div class="flex items-center space-x-5">
@@ -36,7 +30,14 @@
 </template>
 
 <script>
-export default {};
+import { mapGetters } from "vuex";
+export default {
+  computed: {
+    ...mapGetters({
+      home: "home/home",
+    }),
+  },
+};
 </script>
 
 <style></style>

@@ -1,11 +1,7 @@
 <template>
   <div class="product">
     <div class="product-image">
-      <img
-        class="first-image"
-        :src="$asset(product.media[0].file_name)"
-        alt=""
-      />
+      <img class="first-image" :src="$asset(product.media[0].file_name)" />
       <img
         class="second-image"
         :src="$asset(product.media[1].file_name)"
@@ -40,25 +36,29 @@
       <p class="product-bottom-title">
         {{ product.title[$i18n.locale] }}
       </p>
-      <p class="text-sm">{{ product.new_price }} ₸</p>
+      <p class="text-sm">{{ product.new_price | formatPrice }} ₸</p>
     </UILink>
   </div>
 </template>
 
 <script>
+import formatPrice from "~/filters/formatPrice";
 export default {
   props: {
     product: Object,
     required: true,
+  },
+  filters: {
+    formatPrice,
   },
 };
 </script>
 
 <style lang="scss">
 .product {
-  @apply flex h-full flex-col justify-between;
+  @apply flex h-full w-full flex-col justify-between;
   &-image {
-    @apply relative h-[400px] overflow-hidden border border-grey-light;
+    @apply relative h-[400px] w-full overflow-hidden border border-grey-light lg:h-[450px];
     img {
       @apply h-full w-full object-cover;
     }

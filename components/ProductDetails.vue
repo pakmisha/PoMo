@@ -1,7 +1,7 @@
 <template>
   <div class="section-distance">
     <Tabs
-      titles="доступные цвета и материалы,модели,конфигурации "
+      :titles="['доступные цвета и материалы', 'модели', 'конфигурации']"
       class="horizontal"
     >
       <div>

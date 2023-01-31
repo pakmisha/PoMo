@@ -4,7 +4,7 @@
       <div class="w-full lg:w-1/3">
         <p class="heading-sub mb-9 lg:mb-12">[популярные товары]</p>
         <div class="mb-10 text-2xl font-semibold uppercase text-dark lg:mb-20">
-          предоставляем выбор стильной и эргономичной мебели и элементов декора
+          {{ home.popular_title[$i18n.locale] }}
         </div>
         <div class="flex">
           <UILink link="/catalog" class="btn-primary">перейти в каталог</UILink>
@@ -62,203 +62,25 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   data: () => ({
-    products: [
-      {
-        id: 1,
-        media: [
-          {
-            file_name: "product-1.jpeg",
-          },
-          {
-            file_name: "product-2.jpeg",
-          },
-          {
-            file_name: "product-1.jpeg",
-          },
-        ],
-        title: "Кресло TANGYUAN, MAYA A2267–2A",
-        price: "515 300",
-      },
-      {
-        id: 2,
-        media: [
-          {
-            file_name: "product-1.jpeg",
-          },
-          {
-            file_name: "product-2.jpeg",
-          },
-          {
-            file_name: "product-1.jpeg",
-          },
-        ],
-        title: "Стул TANGYUAN",
-        price: "590 300",
-      },
-      {
-        id: 1,
-        media: [
-          {
-            file_name: "product-1.jpeg",
-          },
-          {
-            file_name: "product-2.jpeg",
-          },
-          {
-            file_name: "product-1.jpeg",
-          },
-        ],
-        title: "Кресло TANGYUAN, MAYA A2267–2A",
-        price: "515 300",
-      },
-      {
-        id: 2,
-        media: [
-          {
-            file_name: "product-1.jpeg",
-          },
-          {
-            file_name: "product-2.jpeg",
-          },
-          {
-            file_name: "product-1.jpeg",
-          },
-        ],
-        title: "Стул TANGYUAN",
-        price: "590 300",
-      },
-      {
-        id: 1,
-        media: [
-          {
-            file_name: "product-1.jpeg",
-          },
-          {
-            file_name: "product-2.jpeg",
-          },
-          {
-            file_name: "product-1.jpeg",
-          },
-        ],
-        title: "Кресло TANGYUAN, MAYA A2267–2A",
-        price: "515 300",
-      },
-      {
-        id: 2,
-        media: [
-          {
-            file_name: "product-1.jpeg",
-          },
-          {
-            file_name: "product-2.jpeg",
-          },
-          {
-            file_name: "product-1.jpeg",
-          },
-        ],
-        title: "Стул TANGYUAN",
-        price: "590 300",
-      },
-      {
-        id: 1,
-        media: [
-          {
-            file_name: "product-1.jpeg",
-          },
-          {
-            file_name: "product-2.jpeg",
-          },
-          {
-            file_name: "product-1.jpeg",
-          },
-        ],
-        title: "Кресло TANGYUAN, MAYA A2267–2A",
-        price: "515 300",
-      },
-      {
-        id: 2,
-        media: [
-          {
-            file_name: "product-1.jpeg",
-          },
-          {
-            file_name: "product-2.jpeg",
-          },
-          {
-            file_name: "product-1.jpeg",
-          },
-        ],
-        title: "Стул TANGYUAN",
-        price: "590 300",
-      },
-      {
-        id: 1,
-        media: [
-          {
-            file_name: "product-1.jpeg",
-          },
-          {
-            file_name: "product-2.jpeg",
-          },
-          {
-            file_name: "product-1.jpeg",
-          },
-        ],
-        title: "Кресло TANGYUAN, MAYA A2267–2A",
-        price: "515 300",
-      },
-      {
-        id: 2,
-        media: [
-          {
-            file_name: "product-1.jpeg",
-          },
-          {
-            file_name: "product-2.jpeg",
-          },
-          {
-            file_name: "product-1.jpeg",
-          },
-        ],
-        title: "Стул TANGYUAN",
-        price: "590 300",
-      },
-      {
-        id: 1,
-        media: [
-          {
-            file_name: "product-1.jpeg",
-          },
-          {
-            file_name: "product-2.jpeg",
-          },
-          {
-            file_name: "product-1.jpeg",
-          },
-        ],
-        title: "Кресло TANGYUAN, MAYA A2267–2A",
-        price: "515 300",
-      },
-      {
-        id: 2,
-        media: [
-          {
-            file_name: "product-1.jpeg",
-          },
-          {
-            file_name: "product-2.jpeg",
-          },
-          {
-            file_name: "product-1.jpeg",
-          },
-        ],
-        title: "Стул TANGYUAN",
-        price: "590 300",
-      },
-    ],
+    products: [],
   }),
+  computed: {
+    ...mapGetters({
+      home: "home/home",
+    }),
+  },
+  created() {
+    this.getPopular();
+  },
+  methods: {
+    async getPopular() {
+      const response = await this.$axios.get("products/popular");
+      this.products = response.data.data.products;
+    },
+  },
 };
 </script>
 

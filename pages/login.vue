@@ -79,20 +79,16 @@ export default {
     async login() {
       this.loading = true;
       this.errors = null;
-      // try {
-      await this.$auth.loginWith("local", {
-        data: this.credentials,
-      });
-      // const response = await this.$axios.post("auth/login", {
-      //   login: this.credentials.login,
-      //   password: this.credentials.password,
-      // });
-      this.$router.push("/");
-      // } catch (e) {
-      //   this.handleValidationErrors(e);
-      // } finally {
-      //   this.loading = false;
-      // }
+      try {
+        await this.$auth.loginWith("local", {
+          data: this.credentials,
+        });
+        this.$router.push("/");
+      } catch (e) {
+        this.handleValidationErrors(e);
+      } finally {
+        this.loading = false;
+      }
     },
     handleValidationErrors(e) {
       if (e.response.status == 422) {

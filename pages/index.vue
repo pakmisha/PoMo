@@ -1,12 +1,14 @@
 <template>
-  <div>
+  <div v-if="home != null">
     <ModalsRequestModal />
     <section>
       <div class="section-container section-title-distance">
         <div class="text-center">
-          <h1 class="heading-big mb-5 lg:mb-8">Готовые атмосферные решения</h1>
+          <h1 class="heading-big mb-5 lg:mb-8">
+            {{ home.title[$i18n.locale] }}
+          </h1>
           <p class="heading-sub uppercase">
-            В которых рождаются красивые чувства и мысли
+            {{ home.subtitle[$i18n.locale] }}
           </p>
         </div>
       </div>
@@ -39,7 +41,7 @@
           <p class="heading-sub">[наши бренды]</p>
           <div class="my-3 h-16 w-px bg-dark-blue"></div>
           <h2 class="heading-primary mb-6 lg:mb-10">
-            Мы являемся эксклюзивными дистрибьюторами трёх международных брендов
+            {{ home.brand_title[$i18n.locale] }}
           </h2>
         </div>
         <Brands />
@@ -51,14 +53,12 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
-  created() {
-    this.get();
-  },
-  methods: {
-    async get() {
-      const response = await this.$axios.get("");
-    },
+  computed: {
+    ...mapGetters({
+      home: "home/home",
+    }),
   },
 };
 </script>

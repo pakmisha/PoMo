@@ -5,7 +5,7 @@
     >
       <img
         src="~/assets/img/bg/picture-details.jpg"
-        class="object-center"
+        class="w-full object-center"
         alt=""
       />
       <div class="absolute left-0 top-0 right-0 bottom-0">

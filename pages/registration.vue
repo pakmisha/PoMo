@@ -133,6 +133,7 @@ export default {
         });
         this.$toast.success(response.data.message);
         this.reset();
+        this.$router.push("/login");
       } catch (e) {
         this.handleValidationErrors(e);
       } finally {

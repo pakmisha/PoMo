@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  data: () => ({}),
+  middleware: "auth",
 };
 </script>
 

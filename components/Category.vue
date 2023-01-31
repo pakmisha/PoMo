@@ -43,19 +43,21 @@
           <div class="swiper-wrapper">
             <div
               class="swiper-slide"
-              v-for="(item, index) in items"
+              v-for="(item, index) in categories"
               :key="index"
             >
-              <div
-                href=""
-                class="category"
-                :style="{
-                  'background-image':
-                    'url(' + require('~/assets/' + item.image) + ')',
-                }"
-              >
-                <div class="heading-primary">
-                  {{ item.title }}
+              <div class="category">
+                <img
+                  class="h-full w-full object-cover"
+                  :src="$asset(item.image)"
+                  alt=""
+                />
+                <div
+                  class="absolute left-1/2 -translate-x-1/2 -translate-y-1/2"
+                >
+                  <div class="heading-primary text-center">
+                    {{ item.title[$i18n.locale] }}
+                  </div>
                 </div>
                 <div
                   class="absolute left-1/2 bottom-4 -translate-x-1/2 lg:bottom-6"
@@ -73,33 +75,19 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
-  data: () => ({
-    items: [
-      {
-        image: "img/bg/category-card-1.png",
-        title: "Мебель",
-      },
-      {
-        image: "img/bg/category-card-2.png",
-        title: "освещение",
-      },
-      {
-        image: "img/bg/category-card-3.jpg",
-        title: "паркет",
-      },
-      {
-        image: "img/bg/category-card-1.png",
-        title: "кухня",
-      },
-    ],
-  }),
+  computed: {
+    ...mapGetters({
+      categories: "products/categories",
+    }),
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .category {
-  @apply relative flex h-[450px] items-center justify-center overflow-hidden border border-black bg-cover bg-center bg-no-repeat transition-all duration-1000 ease-in-out md:h-[500px] lg:h-[600px] 2xl:h-[800px];
+  @apply relative flex h-[400px] items-center justify-center overflow-hidden border border-black transition-all duration-1000 ease-in-out md:h-[500px] lg:h-[600px] 2xl:h-[800px];
   &:hover {
   }
 }

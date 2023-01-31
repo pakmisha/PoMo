@@ -76,7 +76,7 @@ export default {
     port: process.env.API_PORT,
     proxy: true,
     credentials: true,
-    debug: true,
+    debug: false,
   },
 
   // proxy

@@ -1,61 +1,36 @@
 <template>
-  <div class="flex overflow-hidden border-t border-dark py-4">
+  <div
+    v-if="settings.ribbon != null"
+    class="flex overflow-hidden border-t border-dark py-4"
+  >
     <div class="marquee">
-      <div class="marquee-item" v-for="(item, index) in items" :key="index">
-        {{ item.title }}
+      <div
+        class="marquee-item"
+        v-for="(item, index) in settings.ribbon.split('/')"
+        :key="index"
+      >
+        {{ item }}
       </div>
     </div>
     <div aria-hidden="true" class="marquee">
-      <div class="marquee-item" v-for="(item, index) in items" :key="index">
-        {{ item.title }}
+      <div
+        class="marquee-item"
+        v-for="(item, index) in settings.ribbon.split('/')"
+        :key="index"
+      >
+        {{ item }}
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
-  data: () => ({
-    items: [
-      {
-        title: "[Не про мебель — а про чувства]",
-      },
-      {
-        title: "[Не про декор — а про детали]",
-      },
-      {
-        title: "[Не про искусство — а про историю]",
-      },
-      {
-        title: "[Не про мебель — а про атмосферу]",
-      },
-      {
-        title: "[Не про рынок — а про возможности]",
-      },
-      {
-        title: "[Не про мебель — а про чувства]",
-      },
-      {
-        title: "[Не про декор — а про детали]",
-      },
-      {
-        title: "[Не про искусство — а про историю]",
-      },
-      {
-        title: "[Не про мебель — а про атмосферу]",
-      },
-      {
-        title: "[Не про рынок — а про возможности]",
-      },
-    ],
-  }),
-  created() {
-    // this.getMarquee();
-  },
-  methods: {
-    // async getMarquee() {
-    //   const response = await this.$axios.get("");
-    // },
+  computed: {
+    ...mapGetters({
+      settings: "settings/settings",
+    }),
   },
 };
 </script>

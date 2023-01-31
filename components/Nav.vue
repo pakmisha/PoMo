@@ -29,18 +29,15 @@
                 <div class="swiper-wrapper">
                   <div
                     class="swiper-slide"
-                    v-for="(item, index) in items"
+                    v-for="(item, index) in categories"
                     :key="index"
                   >
                     <UILink link="" class="submenu-item">
                       <div class="submenu-item-image mb-2">
-                        <img
-                          :src="require(`~/assets/img/${item.image}`)"
-                          alt=""
-                        />
+                        <img :src="$asset(item.image)" alt="" />
                       </div>
                       <p class="text-sm font-semibold uppercase text-dark">
-                        {{ item.title }}
+                        {{ item.title[$i18n.locale] }}
                       </p>
                     </UILink>
                     <div>
@@ -120,45 +117,12 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   data: () => ({
     opened: false,
     stick: false,
     scrollPosition: 0,
-    items: [
-      {
-        title: "Мебель",
-        image: "bg/category-card-1.png",
-        subCategoryOne: "В наличии",
-        subCategoryTwo: "На заказ",
-      },
-      {
-        title: "освещение",
-        image: "bg/category-card-2.png",
-        subCategoryOne: "Декоративное",
-        subCategoryTwo: "Техническое",
-      },
-      {
-        title: "Офисные решения",
-        image: "bg/category-card-3.jpg",
-      },
-      {
-        title: "Текстиль",
-        image: "bg/category-card-1.png",
-      },
-      {
-        title: "Декор",
-        image: "bg/category-card-2.png",
-      },
-      {
-        title: "Текстиль",
-        image: "bg/category-card-1.png",
-      },
-      {
-        title: "Декор",
-        image: "bg/category-card-2.png",
-      },
-    ],
   }),
   created() {
     this.$nuxt.$on("toggle", (name) => {
@@ -173,6 +137,9 @@ export default {
     // });
   },
   computed: {
+    ...mapGetters({
+      categories: "products/categories",
+    }),
     availableLocales() {
       return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale);
     },
