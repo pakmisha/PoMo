@@ -12,8 +12,14 @@
         <Tabs :titles="['Личные данные', 'Адреса', 'Заказы']" class="vertical">
           <CabinetPersonalData />
           <div class="space-y-10">
-            <CabinetAddresses />
-            <CabinetNewAddress />
+            <CabinetAddresses
+              v-for="(item, index) in addresses"
+              :key="index"
+              :item="item"
+              :countries="countries"
+              :addresses="addresses"
+            />
+            <CabinetNewAddress :addresses="addresses" :countries="countries" />
           </div>
           <CabinetOrders />
         </Tabs>
@@ -25,6 +31,29 @@
 <script>
 export default {
   middleware: "auth",
+  data: () => ({
+    addresses: [],
+    countries: [
+      {
+        name: "Kazakhstan",
+      },
+      {
+        name: "Russia",
+      },
+      {
+        name: "Georgia",
+      },
+    ],
+  }),
+  created() {
+    this.getAddresses();
+  },
+  methods: {
+    async getAddresses() {
+      const response = await this.$axios.get("addresses");
+      this.addresses = response.data.data.addresses;
+    },
+  },
 };
 </script>
 

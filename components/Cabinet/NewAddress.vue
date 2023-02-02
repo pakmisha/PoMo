@@ -5,37 +5,38 @@
       <form action="">
         <div class="space-y-4">
           <div class="input-wrapper">
-            <label for="">Имя Фамилия</label>
-            <input type="text" class="input-primary" />
-          </div>
-          <div class="input-wrapper">
-            <label for="">Электронная почта</label>
-            <input type="email" class="input-primary" />
-          </div>
-          <div class="input-wrapper">
-            <label for="">Страна</label>
-            <input type="text" class="input-primary" />
-          </div>
-          <div class="input-wrapper">
-            <label for="">Имя Фамилия</label>
-            <input type="text" class="input-primary" />
+            <label>Страна</label>
+            <select v-model="country" name="" id="" class="select-secondary">
+              <option :value="null" selected disabled>Выберите страну</option>
+              <option
+                :value="item.name"
+                v-for="(item, index) in countries"
+                :key="index"
+              >
+                {{ item.name }}
+              </option>
+            </select>
           </div>
           <div class="input-wrapper">
             <label for="">Город</label>
-            <input type="text" class="input-primary" />
+            <input v-model="city" type="text" class="input-primary" />
           </div>
           <div class="input-wrapper">
             <label for="">Адрес</label>
-            <input type="text" class="input-primary" />
+            <input v-model="address" type="text" class="input-primary" />
           </div>
           <div class="input-wrapper">
             <label for="">Почтовый индекс</label>
-            <input type="text" class="input-primary" />
+            <input v-model="post_id" type="text" class="input-primary" />
           </div>
         </div>
         <div class="mt-5 flex items-center justify-between lg:mt-10">
-          <UIButton class="btn-primary">Сохранить адрес</UIButton>
-          <UIButton class="btn-underline text-grey">Сбросить все</UIButton>
+          <UIButton :loader="loading" class="btn-primary" @click="add"
+            >Сохранить адрес</UIButton
+          >
+          <UIButton @click="reset" class="btn-underline text-grey"
+            >Сбросить все</UIButton
+          >
         </div>
       </form>
     </div>
@@ -43,7 +44,49 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    addresses: {
+      type: Array,
+    },
+    countries: {
+      type: Array,
+    },
+  },
+  data: () => ({
+    country: null,
+    city: null,
+    address: null,
+    post_id: null,
+    loading: false,
+  }),
+  methods: {
+    async add() {
+      this.loading = true;
+      try {
+        const response = await this.$axios.post("addresses", {
+          country: this.country,
+          city: this.city,
+          address: this.address,
+          index: this.post_id,
+        });
+        this.addresses.push(response.data.data.address);
+        this.$toast.success(response.data.message);
+        this.reset();
+      } catch (e) {
+        this.$toast.error(e.response.data.message);
+      } finally {
+        this.loading = false;
+      }
+    },
+    reset() {
+      this.country = null;
+      this.city = null;
+      this.address = null;
+      this.post_id = null;
+    },
+  },
+};
 </script>
 
 <style></style>

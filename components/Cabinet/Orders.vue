@@ -45,7 +45,18 @@
 
 <script>
 export default {
-  data: () => ({}),
+  data: () => ({
+    orders: [],
+  }),
+  created() {
+    this.get();
+  },
+  methods: {
+    async get() {
+      const response = await this.$axios.get("orders");
+      this.orders = response.data.data.orders;
+    },
+  },
 };
 </script>
 

@@ -102,7 +102,7 @@
             <div
               class="absolute -right-2 -bottom-2 flex h-5 w-5 items-center justify-center rounded-full bg-dark text-xs text-white"
             >
-              0
+              {{ cart.length > 0 ? cart.length : "0" }}
             </div>
           </button>
         </div>
@@ -139,6 +139,7 @@ export default {
   computed: {
     ...mapGetters({
       categories: "products/categories",
+      cart: "cart/items",
     }),
     availableLocales() {
       return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale);

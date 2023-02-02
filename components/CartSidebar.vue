@@ -41,7 +41,10 @@
           </div>
           <div class="mt-5 flex flex-col items-center">
             <a href="/order" class="btn-secondary w-full">оформить заказ</a>
-            <UILink link="/cart" class="btn-underline mt-3"
+            <UILink
+              link="/cart"
+              @click.native="active = false"
+              class="btn-underline mt-3"
               >перейти в корзину</UILink
             >
           </div>
