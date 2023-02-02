@@ -206,6 +206,13 @@
     @apply mx-1 text-sm md:mx-2;
   }
 }
+.favourite {
+  &.active {
+    svg {
+      fill: black;
+    }
+  }
+}
 .text-error {
   @apply mt-1 text-xs text-red-500;
 }

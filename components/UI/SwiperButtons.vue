@@ -1,5 +1,5 @@
 <template>
-  <div class="swiper-buttons">
+  <div class="swiper-buttons contents">
     <button class="sw-prev">
       <svg
         width="14"

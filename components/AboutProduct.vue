@@ -121,7 +121,11 @@
                 <UIButton class="btn-secondary mr-4" @click="addToCart"
                   >добавить в корзину</UIButton
                 >
-                <UIButton class="mr-3">
+                <UIButton
+                  class="favourite mr-3"
+                  :class="{ active: product.favourite_id != null }"
+                  @click="$store.dispatch('favourites/toggle', product)"
+                >
                   <svg
                     width="24"
                     height="24"

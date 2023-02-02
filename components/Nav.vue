@@ -91,7 +91,7 @@
           <UILink :link="$auth.state.loggedIn ? '/cabinet' : '/login'">
             <img src="~/assets/img/icons/person.svg" alt="" />
           </UILink>
-          <UILink link="" class="hidden lg:block">
+          <UILink link="/favorite" class="hidden lg:block">
             <img src="~/assets/img/icons/favorite.svg" alt="" />
           </UILink>
           <button

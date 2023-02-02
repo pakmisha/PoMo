@@ -15,7 +15,11 @@
             <p>Добавить в сравнение</p>
           </div> -->
           </UIButton>
-          <UIButton class="favorite">
+          <UIButton
+            class="favourite"
+            :class="{ active: product.favourite_id != null }"
+            @click="$store.dispatch('favourites/toggle', product)"
+          >
             <svg
               width="24"
               height="24"
@@ -45,8 +49,14 @@
 import formatPrice from "~/filters/formatPrice";
 export default {
   props: {
-    product: Object,
-    required: true,
+    product: {
+      type: Object,
+      required: true,
+    },
+    favourite: {
+      type: Object,
+      required: true,
+    },
   },
   filters: {
     formatPrice,
@@ -89,6 +99,7 @@ export default {
       @apply absolute right-0 bottom-full;
     }
   }
+
   &-bottom {
     @apply mt-4 flex items-center justify-between border-b border-black pb-2;
     &-title {
