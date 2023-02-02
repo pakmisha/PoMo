@@ -16,7 +16,9 @@
       <CartProduct v-for="(item, index) in items" :key="index" :item="item" />
       <div class="mt-5 flex items-center justify-between lg:justify-end">
         <div class="mr-10 text-sm font-medium uppercase">Всего:</div>
-        <div class="text-xl font-medium uppercase lg:text-2xl">1 580 300 ₸</div>
+        <div class="text-xl font-medium uppercase lg:text-2xl">
+          {{ $store.getters["cart/total"] | formatPrice }} ₸
+        </div>
       </div>
       <div class="mt-10 flex flex-col items-center lg:mt-20">
         <UILink link="" class="btn-secondary"
@@ -26,9 +28,7 @@
           Стоимость доставки не включена в сумму заказа. Доставка по г. Алматы и
           Астана при сумме заказа от 500 000 ₸ осуществляется бесплатно
         </div>
-        <UIButton
-          class="tetx-grey mt-5 text-sm underline"
-          @click="$store.dispatch('cart/remove', items)"
+        <UIButton class="tetx-grey mt-5 text-sm underline" @click="clear(items)"
           >Очистить корзину</UIButton
         >
       </div>
@@ -95,12 +95,34 @@
 
 <script>
 import { mapGetters } from "vuex";
+import formatPrice from "~/filters/formatPrice";
 export default {
-  data: () => ({}),
+  data: () => ({
+    products: null,
+  }),
   computed: {
     ...mapGetters({
       items: "cart/items",
     }),
+  },
+  created() {
+    this.get();
+  },
+  filters: {
+    formatPrice,
+  },
+  methods: {
+    async get() {
+      const response = await this.$axios.get("cart/interests");
+      this.products = response.data.data.products;
+    },
+    clear(items) {
+      const ids = [];
+      for (let i of items) {
+        this.items[i] = ids.push(i.id);
+      }
+      this.$store.dispatch("cart/remove", ids);
+    },
   },
 };
 </script>

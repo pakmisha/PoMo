@@ -35,21 +35,28 @@
         >
           <div class="flex justify-between">
             <p class="ext-sm uppercase">Всего:</p>
-            <div class="text-xl font-semibold">515 300 ₸</div>
+            <div class="text-xl font-semibold">
+              {{ $store.getters["cart/total"] | formatPrice }} ₸
+            </div>
           </div>
           <div class="mt-5 flex flex-col items-center">
             <a href="/order" class="btn-secondary w-full">оформить заказ</a>
-            <a href="/cart" class="btn-underline mt-3">перейти в корзину</a>
+            <UILink link="/cart" class="btn-underline mt-3"
+              >перейти в корзину</UILink
+            >
           </div>
         </div>
       </div>
-      <div v-else class="h-full uppercase text-grey">Ваша корзина пуста</div>
+      <div v-else class="h-full px-7 py-5 uppercase text-grey lg:py-8 lg:px-10">
+        Ваша корзина пуста
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import formatPrice from "~/filters/formatPrice";
 export default {
   data: () => ({
     active: false,
@@ -58,6 +65,9 @@ export default {
     ...mapGetters({
       items: "cart/items",
     }),
+  },
+  filters: {
+    formatPrice,
   },
   created() {
     this.$nuxt.$on("toggle", (name) => {

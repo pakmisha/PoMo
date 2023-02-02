@@ -1,5 +1,6 @@
 export const state = () => ({
   items: [],
+  total: null,
 });
 export const mutations = {
   SET(state, items) {
@@ -13,8 +14,23 @@ export const mutations = {
       state.items.push(product);
     }
   },
-  REMOVE(state, ids, item) {
-    state.items.splice(state.items.indexOf(ids), 1);
+  REMOVE(state, ids) {
+    if (ids.length == 1) {
+      state.items.splice(state.items.indexOf(ids), 1);
+    } else {
+      state.items = state.items.filter((item) => item.id == ids);
+    }
+  },
+  QUANTITY(state, item) {
+    const current = state.items.find((current) => current.id == item.id);
+    if (current) {
+      state.items[state.items.indexOf(current)]["quantity"] = item.quantity;
+      state.items[state.items.indexOf(current)]["total_price"] =
+        item.total_price;
+    }
+  },
+  TOTAL(state, total) {
+    state.total = total;
   },
 };
 export const actions = {
@@ -22,6 +38,7 @@ export const actions = {
     const response = await this.$axios.get("cart");
     const items = response.data.data.items;
     commit("SET", items);
+    commit("TOTAL", response.data.data.total);
   },
   async add({ commit, dispatch }, item) {
     try {
@@ -38,16 +55,26 @@ export const actions = {
       this._vm.$toast.error(e.response.data.message);
     }
   },
-  async remove({ commit, dispatch, state }, { items, item }) {
+  async quantity({ commit, state }, item) {
+    const response = await this.$axios.put("cart/" + item.id, {
+      quantity: item.quantity,
+    });
+    commit("QUANTITY", {
+      id: response.data.data.item.id,
+      quantity: response.data.data.item.quantity,
+      total_price: response.data.data.item.total_price,
+    });
+    commit("TOTAL", response.data.data.total);
+  },
+  async remove({ commit }, ids) {
+    if (!confirm("Вы действительно хотите удалить товар(ы)?")) {
+      return;
+    }
     try {
-      const ids = [];
-      for (let i of items) {
-        state.items[i] = ids.push(i.id);
-      }
       const response = await this.$axios.post("cart/delete", {
-        ids: ids > 1 ? [product.id] : ids,
+        ids: ids,
       });
-      commit("REMOVE", { ids, item });
+      commit("REMOVE", ids);
       this._vm.$toast.success(response.data.message);
     } catch (e) {
       this._vm.$toast.error(e.response.data.message);
@@ -57,5 +84,8 @@ export const actions = {
 export const getters = {
   items(state) {
     return state.items;
+  },
+  total(state) {
+    return state.total;
   },
 };

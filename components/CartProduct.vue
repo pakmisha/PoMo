@@ -28,15 +28,18 @@
       </div>
       <div class="flex items-center justify-between">
         <div class="flex">
-          <UICounter :value="item.quantity" />
+          <UICounter :value="item.quantity" @change="update" />
         </div>
-        <div class="text-sm font-medium">2 085 200 ₸</div>
+        <div class="text-sm font-medium">
+          {{ item.total_price | formatPrice }} ₸
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import formatPrice from "~/filters/formatPrice";
 export default {
   props: {
     item: {
@@ -44,9 +47,20 @@ export default {
       required: true,
     },
   },
+  filters: {
+    formatPrice,
+  },
   methods: {
+    update(quantity) {
+      const cart = {
+        id: this.item.id,
+        quantity: quantity,
+      };
+      this.$store.dispatch("cart/quantity", cart);
+    },
     remove(item) {
-      this.$store.dispatch("cart/remove", { item });
+      const ids = [item.id];
+      this.$store.dispatch("cart/remove", ids);
     },
   },
 };
