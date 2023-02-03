@@ -30,10 +30,10 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   middleware: "auth",
   data: () => ({
-    addresses: [],
     countries: [
       {
         name: "Kazakhstan",
@@ -46,14 +46,10 @@ export default {
       },
     ],
   }),
-  created() {
-    this.getAddresses();
-  },
-  methods: {
-    async getAddresses() {
-      const response = await this.$axios.get("addresses");
-      this.addresses = response.data.data.addresses;
-    },
+  computed: {
+    ...mapGetters({
+      addresses: "addresses/addresses",
+    }),
   },
 };
 </script>

@@ -100,36 +100,21 @@ export default {
     loading: false,
     active: false,
   }),
+
   methods: {
     async remove(item) {
-      if (!confirm("Вы действительно хотите удалить адрес?")) {
-        return;
-      }
-      try {
-        const response = await this.$axios.delete("addresses/" + item.id);
-        this.addresses.splice(this.addresses.indexOf(item), 1);
-        this.$toast.success(response.data.message);
-      } catch (e) {
-        this.$toast.error(e.response.data.message);
-      }
+      this.$store.dispatch("addresses/remove", item);
     },
     async update(item) {
-      this.loading = true;
-      try {
-        const response = await this.$axios.put("addresses/" + item.id, {
-          name: this.item.name,
-          country: this.item.country,
-          city: this.item.city,
-          address: this.item.address,
-          index: this.item.post_id,
-        });
-        this.$toast.success(response.data.message);
-        this.active = false;
-      } catch (e) {
-        this.$toast.error(e.response.data.message);
-      } finally {
-        this.loading = false;
-      }
+      this.active = false;
+      // const edit = {
+      //   name: this.item.name,
+      //   country: this.item.country,
+      //   city: this.item.city,
+      //   address: this.item.address,
+      //   index: this.item.post_id,
+      // };
+      this.$store.dispatch("addresses/update", item);
     },
   },
 };

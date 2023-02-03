@@ -84,6 +84,7 @@ export default {
           data: this.credentials,
         });
         this.$router.push("/");
+        this.$store.dispatch("cart/get");
       } catch (e) {
         this.handleValidationErrors(e);
       } finally {

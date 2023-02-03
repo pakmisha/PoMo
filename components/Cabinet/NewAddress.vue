@@ -67,23 +67,16 @@ export default {
   }),
   methods: {
     async add() {
-      this.loading = true;
-      try {
-        const response = await this.$axios.post("addresses", {
-          name: this.name,
-          country: this.country,
-          city: this.city,
-          address: this.address,
-          index: this.post_id,
-        });
-        this.addresses.push(response.data.data.address);
-        this.$toast.success(response.data.message);
-        this.reset();
-      } catch (e) {
-        this.$toast.error(e.response.data.message);
-      } finally {
-        this.loading = false;
-      }
+      // this.loading = true;
+      const item = {
+        name: this.name,
+        country: this.country,
+        city: this.city,
+        address: this.address,
+        post_id: this.post_id,
+      };
+      this.$store.dispatch("addresses/add", item);
+      this.reset();
     },
     reset() {
       this.name = null;

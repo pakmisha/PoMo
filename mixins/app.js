@@ -7,5 +7,6 @@ export default {
     this.$store.dispatch("home/get");
     this.$store.dispatch("products/getCategories");
     this.$store.dispatch("cart/get");
+    this.$store.dispatch("addresses/get");
   },
 };

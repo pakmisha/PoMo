@@ -16,15 +16,70 @@
           </div>
         </div>
         <div>
-          <div class="flex items-center justify-between">
-            <h2 class="heading-secondary mb-7">Адрес доставки</h2>
-            <select name="" id="" class="select-primary text-center">
-              <option value="" selected>Адрес 1</option>
-              <option value="">Адрес 2</option>
-              <option value="">Адрес 3</option>
-            </select>
+          <div
+            class="mb-5 flex flex-col justify-between lg:flex-row lg:items-center"
+          >
+            <h2 class="heading-secondary">Адрес доставки</h2>
+            <div class="flex items-center">
+              <select
+                name=""
+                v-model="selected.name"
+                id=""
+                @change="onChange($event)"
+                class="select-primary mr-3 text-center"
+              >
+                <option :value="null" selected disabled>Выберите адрес</option>
+                <option
+                  :value="address.id"
+                  v-for="(address, index) in addresses"
+                  :key="index"
+                >
+                  {{ address.name }}
+                </option>
+              </select>
+
+              <UIButton class="btn-small" @click="active = true"
+                >Новый адрес
+              </UIButton>
+            </div>
           </div>
-          <div class="space-y-4">
+          <div
+            v-if="selectedAddress != null && !active"
+            class="border border-dark px-5 py-5 lg:px-10 lg:py-10"
+          >
+            <div class="flex flex-col border-b border-dark py-4 lg:flex-row">
+              <div
+                class="mb-2 w-full text-sm font-semibold uppercase text-dark lg:mb-0 lg:w-2/5"
+              >
+                имя Фамилия
+              </div>
+              <div class="w-3/5 text-sm font-semibold text-dark">
+                {{ $auth.$state.user.full_name }}
+              </div>
+            </div>
+            <div class="flex flex-col border-b border-dark py-5 lg:flex-row">
+              <div
+                class="mb-2 w-full text-sm font-semibold uppercase text-dark lg:mb-0 lg:w-2/5"
+              >
+                Адрес
+              </div>
+              <div class="w-3/5 text-sm font-semibold text-dark">
+                {{
+                  selectedAddress.country +
+                  ", " +
+                  selectedAddress.city +
+                  ", " +
+                  selectedAddress.address
+                }}
+              </div>
+            </div>
+            <div class="mt-5 flex">
+              <UIButton class="text-sm text-grey-light underline"
+                >Редактировать адрес</UIButton
+              >
+            </div>
+          </div>
+          <div class="space-y-4" v-if="active">
             <div class="input-wrapper">
               <label>Страна*</label>
               <select name="" id="" class="select-secondary">
@@ -151,6 +206,10 @@
 import { mapGetters } from "vuex";
 export default {
   data: () => ({
+    active: false,
+    selected: {
+      name: null,
+    },
     user: {
       email: null,
       phone: null,
@@ -162,11 +221,23 @@ export default {
         this.user[i] = this.$auth.$state.user[i];
       }
     }
+    return { ...this.$auth.$state.user };
   },
   computed: {
     ...mapGetters({
       items: "cart/items",
+      addresses: "addresses/addresses",
+      selectedAddress: "checkout/address",
+      selectedDelivery: "checkout/delivery",
     }),
+  },
+  methods: {
+    onChange(event) {
+      this.active = false;
+      const id = event.target.value;
+      const item = this.addresses.find((i) => i.id == id);
+      this.$store.dispatch("checkout/address", item);
+    },
   },
 };
 </script>
