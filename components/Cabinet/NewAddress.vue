@@ -5,6 +5,10 @@
       <form action="">
         <div class="space-y-4">
           <div class="input-wrapper">
+            <label for="">Название адреса</label>
+            <input v-model="name" type="text" class="input-primary" />
+          </div>
+          <div class="input-wrapper">
             <label>Страна</label>
             <select v-model="country" name="" id="" class="select-secondary">
               <option :value="null" selected disabled>Выберите страну</option>
@@ -54,6 +58,7 @@ export default {
     },
   },
   data: () => ({
+    name: "Новый адрес",
     country: null,
     city: null,
     address: null,
@@ -65,6 +70,7 @@ export default {
       this.loading = true;
       try {
         const response = await this.$axios.post("addresses", {
+          name: this.name,
           country: this.country,
           city: this.city,
           address: this.address,
@@ -80,6 +86,7 @@ export default {
       }
     },
     reset() {
+      this.name = null;
       this.country = null;
       this.city = null;
       this.address = null;

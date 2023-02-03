@@ -5,10 +5,10 @@
         <div class="section-container section-title-distance">
           <div class="text-center">
             <h1 class="heading-big mx-auto mb-5 max-w-[1490px] lg:mb-8">
-              {{ about.title }}
+              {{ about.title[$i18n.locale] }}
             </h1>
             <p class="mx-auto max-w-[650px] text-sm text-grey">
-              {{ about.subtitle }}
+              {{ about.subtitle[$i18n.locale] }}
             </p>
           </div>
         </div>
@@ -34,7 +34,7 @@
         </div>
       </section>
       <AboutUs :about="about" />
-      <OurMission />
+      <OurMission :mission="about" />
     </div>
   </div>
 </template>

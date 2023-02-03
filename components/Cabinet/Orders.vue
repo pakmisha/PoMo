@@ -10,29 +10,22 @@
           <div class="orders-item orders-item-nav">Статус</div>
           <div class="orders-item orders-item-nav text-end">Подробнее</div>
         </div>
-        <div class="orders__wrapper">
+        <div
+          class="orders__wrapper"
+          v-for="(item, index) in orders"
+          :key="index"
+        >
           <div class="orders__wrapper__item">
-            <div class="orders-item">78900HY</div>
-            <div class="orders-item">19.12.2022</div>
-            <div class="orders-item">1 200 480 ₸</div>
-            <div class="orders-item">Ожидается доставка</div>
+            <div class="orders-item">{{ item.order_number }}</div>
+            <div class="orders-item">{{ formatDate(item.created_at) }}</div>
+            <div class="orders-item">{{ item.price | formatPrice }} ₸</div>
+            <div class="orders-item">Ожидается оплата</div>
+            <!-- <div class="orders-item" v-if="item.hasOwnProperty(in_process)">
+              {{ item.in_process }}
+            </div> -->
             <button
               class="orders-item text-end underline"
-              @click.prevent="$nuxt.$emit('open-modal', 'order')"
-            >
-              Смотреть подробнее
-            </button>
-          </div>
-        </div>
-        <div class="orders__wrapper">
-          <div class="orders__wrapper__item">
-            <div class="orders-item">78900HY</div>
-            <div class="orders-item">19.12.2022</div>
-            <div class="orders-item">1 200 480 ₸</div>
-            <div class="orders-item">Ожидается доставка</div>
-            <button
-              class="orders-item text-end underline"
-              @click.prevent="$nuxt.$emit('open-modal', 'order')"
+              @click.prevent="$nuxt.$emit('open-modal', 'order'), order(item)"
             >
               Смотреть подробнее
             </button>
@@ -44,6 +37,8 @@
 </template>
 
 <script>
+import formatPrice from "~/filters/formatPrice";
+// import formatDate from "~/filters/formatDate";
 export default {
   data: () => ({
     orders: [],
@@ -51,10 +46,34 @@ export default {
   created() {
     this.get();
   },
+  filters: {
+    formatPrice,
+    // formatDate,
+  },
   methods: {
     async get() {
-      const response = await this.$axios.get("orders");
-      this.orders = response.data.data.orders;
+      try {
+        const response = await this.$axios.get("orders");
+        this.orders = response.data.data.orders;
+      } catch (e) {
+        console.log("ERROR GETTING ORDERS");
+      }
+    },
+    formatDate(date) {
+      var d = new Date(date),
+        month = "" + (d.getMonth() + 1),
+        day = "" + d.getDate(),
+        year = d.getFullYear();
+      if (month.length < 2) {
+        month = "0" + month;
+      }
+      if (day.length < 2) {
+        day = "0" + day;
+      }
+      return [day, month, year].join(".");
+    },
+    order(item) {
+      this.$nuxt.$emit("send", item);
     },
   },
 };

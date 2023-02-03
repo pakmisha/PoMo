@@ -25,6 +25,7 @@
         </Tabs>
       </div>
     </section>
+    <ModalsOrderModal />
   </div>
 </template>
 

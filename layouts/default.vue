@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <ModalsOrderModal />
     <MobileFilters />
     <MobileCategory />
     <CartSidebar />

@@ -7,16 +7,23 @@
           <div class="space-y-4">
             <div class="input-wrapper">
               <label for="">Электронная почта*</label>
-              <input type="email" class="input-primary" />
+              <input v-model="user.email" type="email" class="input-primary" />
             </div>
             <div class="input-wrapper">
               <label for="">Номер телефона*</label>
-              <input type="number" class="input-primary" />
+              <input v-model="user.phone" type="phone" class="input-primary" />
             </div>
           </div>
         </div>
         <div>
-          <h2 class="heading-secondary mb-7">Адрес доставки</h2>
+          <div class="flex items-center justify-between">
+            <h2 class="heading-secondary mb-7">Адрес доставки</h2>
+            <select name="" id="" class="select-primary text-center">
+              <option value="" selected>Адрес 1</option>
+              <option value="">Адрес 2</option>
+              <option value="">Адрес 3</option>
+            </select>
+          </div>
           <div class="space-y-4">
             <div class="input-wrapper">
               <label>Страна*</label>
@@ -126,8 +133,11 @@
         </div>
       </div>
       <div class="mt-5 w-full lg:mt-0 lg:w-[45%] 2xl:w-2/5">
-        <CheckoutProduct />
-        <CheckoutProduct />
+        <CheckoutProduct
+          v-for="(item, index) in items"
+          :key="index"
+          :product="item.product"
+        />
         <div class="mt-5 flex items-center justify-between lg:mt-10">
           <p class="text-sm font-medium uppercase text-dark">Всего:</p>
           <p class="text-xl font-semibold text-dark">2 600 500 ₸</p>
@@ -138,9 +148,27 @@
 </template>
 
 <script>
-import CheckoutProduct from "../components/CheckoutProduct.vue";
-
-export default { components: { CheckoutProduct } };
+import { mapGetters } from "vuex";
+export default {
+  data: () => ({
+    user: {
+      email: null,
+      phone: null,
+    },
+  }),
+  created() {
+    if (this.$auth.$state.loggedIn == true) {
+      for (let i in this.user) {
+        this.user[i] = this.$auth.$state.user[i];
+      }
+    }
+  },
+  computed: {
+    ...mapGetters({
+      items: "cart/items",
+    }),
+  },
+};
 </script>
 
 <style></style>
