@@ -10,22 +10,11 @@
     <div class="section-container">
       <div class="projects">
         <div class="projects__item">
-          <Project />
-        </div>
-        <div class="projects__item">
-          <Project />
-        </div>
-        <div class="projects__item">
-          <Project />
-        </div>
-        <div class="projects__item">
-          <Project />
-        </div>
-        <div class="projects__item">
-          <Project />
-        </div>
-        <div class="projects__item">
-          <Project />
+          <Project
+            :project="project"
+            v-for="(project, index) in projects"
+            :key="index"
+          />
         </div>
       </div>
     </div>
@@ -33,15 +22,14 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
-  data: () => ({
-    project: [
-      {
-        id: 1,
-        media: "project-1.png",
-      },
-    ],
-  }),
+  data: () => ({}),
+  computed: {
+    ...mapGetters({
+      projects: "projects/projects",
+    }),
+  },
 };
 </script>
 

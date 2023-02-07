@@ -2,16 +2,34 @@
   <div
     class="w-full border border-grey bg-white px-5 py-5 md:px-10 md:py-10 lg:px-20 lg:py-20"
   >
-    <div
-      class="flex items-center border-b border-grey py-3"
-      v-for="(item, index) in items"
-      :key="index"
-    >
-      <div class="w-1/2 text-xs uppercase lg:text-sm">
-        {{ item.title }}
-      </div>
+    <div class="flex items-center border-b border-grey py-3">
+      <div class="w-1/2 text-xs uppercase lg:text-sm">Локация</div>
       <div class="w-1/2 text-sm font-medium text-grey">
-        {{ item.description }}
+        {{ project.location[$i18n.locale] }}
+      </div>
+    </div>
+    <div class="flex items-center border-b border-grey py-3">
+      <div class="w-1/2 text-xs uppercase lg:text-sm">Год реализации</div>
+      <div class="w-1/2 text-sm font-medium text-grey">
+        {{ project.year }}
+      </div>
+    </div>
+    <div class="flex items-center border-b border-grey py-3">
+      <div class="w-1/2 text-xs uppercase lg:text-sm">Тип здания</div>
+      <div class="w-1/2 text-sm font-medium text-grey">
+        {{ project.location[$i18n.locale] }}
+      </div>
+    </div>
+    <div class="flex items-center border-b border-grey py-3">
+      <div class="w-1/2 text-xs uppercase lg:text-sm">Площадь</div>
+      <div class="w-1/2 text-sm font-medium text-grey">
+        {{ project.square }} м2
+      </div>
+    </div>
+    <div class="flex items-center border-b border-grey py-3">
+      <div class="w-1/2 text-xs uppercase lg:text-sm">Услуга</div>
+      <div class="w-1/2 text-sm font-medium text-grey">
+        {{ project.service.title[$i18n.locale] }}
       </div>
     </div>
   </div>
@@ -19,30 +37,12 @@
 
 <script>
 export default {
-  data: () => ({
-    items: [
-      {
-        title: "Локация",
-        description: "Алматы, Казахстан",
-      },
-      {
-        title: "Год реализации",
-        description: "2022",
-      },
-      {
-        title: "Тип здания",
-        description: "Жилой дом",
-      },
-      {
-        title: "Площадь",
-        description: "50 500 м2",
-      },
-      {
-        title: "Услуга",
-        description: "Интерьер «Под ключ»",
-      },
-    ],
-  }),
+  props: {
+    project: {
+      type: Object,
+    },
+  },
+  data: () => ({}),
 };
 </script>
 

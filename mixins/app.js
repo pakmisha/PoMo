@@ -8,5 +8,6 @@ export default {
     this.$store.dispatch("products/getCategories");
     this.$store.dispatch("cart/get");
     this.$store.dispatch("addresses/get");
+    this.$store.dispatch("projects/getProjects");
   },
 };

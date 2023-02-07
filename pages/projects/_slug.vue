@@ -4,13 +4,10 @@
       <div class="section-container section-title-distance">
         <div class="text-center">
           <h1 class="heading-big mx-auto mb-5 max-w-[1490px] lg:mb-8">
-            Интерьер «Под ключ» двухэтажного дома в алматы
+            {{ project.title[$i18n.locale] }}
           </h1>
           <p class="mx-auto max-w-[650px] text-sm text-grey">
-            Данный проект — это комплексный подход к обустройству интерьера
-            двухэтажного жилого дома в Алматы, который включает в себя
-            планирование и разработка концепций дизайна, создание эскизов
-            и планов, выбор материалов и фурнитуры, реализация проекта.
+            {{ project.description[$i18n.locale] }}
           </p>
         </div>
       </div>
@@ -18,8 +15,8 @@
     <section>
       <div>
         <img
-          src="~/assets/img/bg/bg-project.jpg"
-          class="w-full object-cover"
+          :src="$asset(project.cover)"
+          class="w-full object-cover lg:h-[1000px]"
           alt=""
         />
       </div>
@@ -27,11 +24,11 @@
     <div
       class="section-container relative -mt-10 w-full md:w-[90%] lg:-mt-20 lg:w-[70%] 2xl:w-[60%]"
     >
-      <ProjectDetails />
+      <ProjectDetails :project="project" />
     </div>
     <section>
       <div class="section-container section-distance">
-        <OrderProject />
+        <OrderProject :project="project" />
       </div>
     </section>
     <section>
@@ -70,20 +67,12 @@
             }"
           >
             <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <Project />
-              </div>
-              <div class="swiper-slide">
-                <Project />
-              </div>
-              <div class="swiper-slide">
-                <Project />
-              </div>
-              <div class="swiper-slide">
-                <Project />
-              </div>
-              <div class="swiper-slide">
-                <Project />
+              <div
+                class="swiper-slide"
+                v-for="(project, index) in others"
+                :key="index"
+              >
+                <Project :project="project" />
               </div>
             </div>
           </UISlider>
@@ -95,7 +84,35 @@
 </template>
 
 <script>
-export default {};
+import { mapGetters } from "vuex";
+export default {
+  async asyncData({ params, $axios, store }) {
+    const response = await $axios.get(`projects/${params.slug}`);
+    const project = response.data.data.project;
+    store.dispatch("projects/setProject", project);
+    return { project };
+  },
+  data: () => ({
+    others: null,
+  }),
+  created() {
+    this.getOthers();
+  },
+  computed: {
+    ...mapGetters({
+      projects: "projects/projects",
+    }),
+  },
+  methods: {
+    async getOthers() {
+      const response = await this.$axios.get(
+        `projects/others/${this.project.id}`
+      );
+      this.others = response.data.data.projects;
+      // console.log(this.project.id);
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped></style>

@@ -26,11 +26,15 @@
         }"
       >
         <div class="swiper-wrapper">
-          <div class="swiper-slide" v-for="(item, index) in items" :key="index">
+          <div
+            class="swiper-slide"
+            v-for="(item, index) in project.media"
+            :key="index"
+          >
             <div class="h-[450px] w-full md:h-[600px] lg:h-[700px]">
               <img
                 class="h-full w-full object-cover"
-                :src="require(`~/assets/${item.image}`)"
+                :src="$asset(item.file_name)"
                 alt=""
               />
             </div>
@@ -47,22 +51,12 @@
 
 <script>
 export default {
-  data: () => ({
-    items: [
-      {
-        image: "img/bg/bg-project.jpg",
-      },
-      {
-        image: "img/bg/about-1.png",
-      },
-      {
-        image: "img/bg/bg-project.jpg",
-      },
-      {
-        image: "img/bg/about-1.png",
-      },
-    ],
-  }),
+  props: {
+    project: {
+      type: Object,
+    },
+  },
+  data: () => ({}),
 };
 </script>
 

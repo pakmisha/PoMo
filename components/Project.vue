@@ -1,16 +1,21 @@
 <template>
-  <div class="project">
+  <UILink :link="'/projects/' + project.slug" class="project">
     <div class="project-image">
-      <img :src="require('~/assets/img/projects/project-2.png')" alt="" />
+      <img :src="$asset(project.cover)" alt="" />
     </div>
-    <UILink link="/project" class="project-bottom">
-      <p class="project-bottom-title">Дизайн интерьера двухэтажного дома</p>
-      <p class="text-sm">2022</p>
-    </UILink>
-  </div>
+    <div class="project-bottom">
+      <p class="project-bottom-title">{{ project.title[$i18n.locale] }}</p>
+      <p class="text-sm">{{ project.year }}</p>
+    </div>
+  </UILink>
 </template>
 <script>
 export default {
+  props: {
+    project: {
+      type: Object,
+    },
+  },
   data: () => ({}),
 };
 </script>
