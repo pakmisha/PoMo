@@ -2,7 +2,14 @@
   <div class="cabinet">
     <div class="cabinet-wrapper">
       <div v-if="!active">
-        <h3 class="heading-secondary mb-5 lg:mb-10">{{ item.name }}</h3>
+        <div class="mb-5 flex items-center justify-between">
+          <h3 class="heading-secondary">{{ item.name }}</h3>
+          <div class="flex items-center justify-end">
+            <p class="mr-3 text-sm uppercase text-grey">По умолчанию:</p>
+            <UIToggle @onToggle="defaultToggle" :active="item.is_default" />
+          </div>
+        </div>
+
         <div class="address">
           <div class="address__item">
             <p class="address__item__left">Страна</p>
@@ -15,6 +22,10 @@
           <div class="address__item">
             <p class="address__item__left">Адрес</p>
             <p class="address__item__right">{{ item.address }}</p>
+          </div>
+          <div class="address__item">
+            <p class="address__item__left">Название компании</p>
+            <p class="address__item__right">{{ item.company }}</p>
           </div>
           <div class="address__item">
             <p class="address__item__left">Почтовый индекс</p>
@@ -63,6 +74,10 @@
           <div class="input-wrapper">
             <label for="">Адрес</label>
             <input v-model="item.address" type="text" class="input-primary" />
+          </div>
+          <div class="input-wrapper">
+            <label for="">Название компании</label>
+            <input v-model="item.company" type="text" class="input-primary" />
           </div>
           <div class="input-wrapper">
             <label for="">Почтовый индекс</label>
@@ -115,6 +130,15 @@ export default {
       //   index: this.item.post_id,
       // };
       this.$store.dispatch("addresses/update", item);
+    },
+    toggle() {
+      this.isActive = !this.isActive;
+    },
+    async defaultToggle() {
+      const response = await this.$axios.get(
+        "addresses/toggle/" + this.item.id
+      );
+      this.$store.dispatch("addresses/toggleDefault", this.item);
     },
   },
 };

@@ -24,10 +24,26 @@
           <div class="input-wrapper">
             <label for="">Город</label>
             <input v-model="city" type="text" class="input-primary" />
+            <div
+              class="text-error"
+              v-if="errors && errors.hasOwnProperty('city')"
+            >
+              {{ errors.city[0] }}
+            </div>
           </div>
           <div class="input-wrapper">
             <label for="">Адрес</label>
             <input v-model="address" type="text" class="input-primary" />
+            <div
+              class="text-error"
+              v-if="errors && errors.hasOwnProperty('address')"
+            >
+              {{ errors.address[0] }}
+            </div>
+          </div>
+          <div class="input-wrapper">
+            <label for="">Название компании</label>
+            <input v-model="company" type="text" class="input-primary" />
           </div>
           <div class="input-wrapper">
             <label for="">Почтовый индекс</label>
@@ -63,26 +79,43 @@ export default {
     city: null,
     address: null,
     post_id: null,
+    company: null,
     loading: false,
+    errors: null,
   }),
   methods: {
     async add() {
       // this.loading = true;
-      const item = {
-        name: this.name,
-        country: this.country,
-        city: this.city,
-        address: this.address,
-        post_id: this.post_id,
-      };
-      this.$store.dispatch("addresses/add", item);
-      this.reset();
+      this.errors = null;
+      try {
+        const item = {
+          name: this.name,
+          country: this.country,
+          city: this.city,
+          address: this.address,
+          company: this.company,
+          post_id: this.post_id,
+        };
+        this.$store.dispatch("addresses/add", item);
+        this.reset();
+      } catch (e) {
+        this.handleValidationErrors(e);
+      }
+    },
+    handleValidationErrors(e) {
+      if (e.response.status == 422) {
+        this.errors = e.response.data.errors;
+        this.$toast.error("Ошибка валидации данных!");
+      } else {
+        this.$toast.error(e.response.data.message);
+      }
     },
     reset() {
       this.name = null;
       this.country = null;
       this.city = null;
       this.address = null;
+      this.company = null;
       this.post_id = null;
     },
   },

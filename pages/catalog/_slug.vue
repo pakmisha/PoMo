@@ -115,7 +115,8 @@
 export default {
   async asyncData({ params, $axios, store }) {
     const response = await $axios.get(`products/${params.slug}`);
-    const product = response.data.data.product;
+    console.log(response);
+    const product = response.data.product;
     store.dispatch("products/setProduct", product);
     return { product };
   },

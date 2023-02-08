@@ -4,6 +4,7 @@
       <img class="first-image" :src="$asset(product.media[0].file_name)" />
       <img
         class="second-image"
+        v-if="product.media[1]"
         :src="$asset(product.media[1].file_name)"
         alt=""
       />

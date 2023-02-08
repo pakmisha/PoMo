@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="mt-10 flex flex-col items-center lg:mt-20">
-        <UILink link="" class="btn-secondary"
+        <UILink link="/checkout" class="btn-secondary"
           >перейти к оформлению заказа</UILink
         >
         <div class="mx-auto mt-5 max-w-[600px] text-center text-sm text-grey">

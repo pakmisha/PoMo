@@ -14,7 +14,7 @@
           Цвет: {{ product.color_langs[$i18n.locale] }}
         </p>
       </div>
-      <div class="text-sm font-medium">{{ product.price | formatPrice }}₸</div>
+      <div class="text-sm font-medium">{{ product.price | formatPrice }} ₸</div>
     </div>
   </div>
 </template>

@@ -1,201 +1,308 @@
 <template>
-  <section class="section-container">
-    <div class="mt-10 flex flex-col justify-between lg:flex-row">
-      <div class="w-full space-y-10 lg:w-1/2 lg:space-y-12">
-        <div>
-          <h2 class="heading-secondary mb-7">Контактная информация</h2>
-          <div class="space-y-4">
-            <div class="input-wrapper">
-              <label for="">Электронная почта*</label>
-              <input v-model="user.email" type="email" class="input-primary" />
-            </div>
-            <div class="input-wrapper">
-              <label for="">Номер телефона*</label>
-              <input v-model="user.phone" type="phone" class="input-primary" />
-            </div>
-          </div>
-        </div>
-        <div>
-          <div
-            class="mb-5 flex flex-col justify-between lg:flex-row lg:items-center"
-          >
-            <h2 class="heading-secondary">Адрес доставки</h2>
-            <div class="flex items-center">
-              <select
-                name=""
-                v-model="selected.name"
-                id=""
-                @change="onChange($event)"
-                class="select-primary mr-3 text-center"
-              >
-                <option :value="null" selected disabled>Выберите адрес</option>
-                <option
-                  :value="address.id"
-                  v-for="(address, index) in addresses"
-                  :key="index"
-                >
-                  {{ address.name }}
-                </option>
-              </select>
-
-              <UIButton class="btn-small" @click="active = true"
-                >Новый адрес
-              </UIButton>
-            </div>
-          </div>
-          <div
-            v-if="selectedAddress != null && !active"
-            class="border border-dark px-5 py-5 lg:px-10 lg:py-10"
-          >
-            <div class="flex flex-col border-b border-dark py-4 lg:flex-row">
-              <div
-                class="mb-2 w-full text-sm font-semibold uppercase text-dark lg:mb-0 lg:w-2/5"
-              >
-                имя Фамилия
-              </div>
-              <div class="w-3/5 text-sm font-semibold text-dark">
-                {{ $auth.$state.user.full_name }}
-              </div>
-            </div>
-            <div class="flex flex-col border-b border-dark py-5 lg:flex-row">
-              <div
-                class="mb-2 w-full text-sm font-semibold uppercase text-dark lg:mb-0 lg:w-2/5"
-              >
-                Адрес
-              </div>
-              <div class="w-3/5 text-sm font-semibold text-dark">
-                {{
-                  selectedAddress.country +
-                  ", " +
-                  selectedAddress.city +
-                  ", " +
-                  selectedAddress.address
-                }}
-              </div>
-            </div>
-            <div class="mt-5 flex">
-              <UIButton class="text-sm text-grey-light underline"
-                >Редактировать адрес</UIButton
-              >
-            </div>
-          </div>
-          <div class="space-y-4" v-if="active">
-            <div class="input-wrapper">
-              <label>Страна*</label>
-              <select name="" id="" class="select-secondary">
-                <option value="" selected>Казахстан</option>
-                <option value="">Россия</option>
-                <option value="">Америка</option>
-                <option value="">Китай</option>
-              </select>
-            </div>
-
-            <div class="input-wrapper">
-              <label for="">Фамилия Имя*</label>
-              <input type="number" class="input-primary" />
-            </div>
-            <div class="input-wrapper">
-              <label for="">Название компании</label>
-              <input
-                type="number"
-                class="input-primary"
-                placeholder="Укажите, если хотите оформить заказ на компанию"
-              />
-            </div>
-            <div class="input-wrapper">
-              <label for="">Город*</label>
-              <input type="number" class="input-primary" />
-            </div>
-            <div class="input-wrapper">
-              <label for="">Адрес*</label>
-              <input
-                type="number"
-                class="input-primary"
-                placeholder="Улица, номер дома, квартира"
-              />
-            </div>
-            <div class="input-wrapper">
-              <label for="">Комментарий к заказу</label>
-              <textarea
-                rows="5"
-                cols="33"
-                class="textarea"
-                placeholder="Сообщите дополнительную информацию в случае необходимости"
-              ></textarea>
-            </div>
-          </div>
-        </div>
-        <div>
-          <p class="heading-secondary mb-7">Способ доставки</p>
-          <div class="space-y-4">
-            <div class="flex items-center">
-              <input
-                type="radio"
-                name="radio-1"
-                id="radio-1"
-                class="radio-primary mr-3"
-              />
-              <label for="radio-1">
-                <p class="mb-1 font-medium">
-                  Доставка, подъем, и сборка товара по Алматы
-                </p>
-                <p class="text-xs text-grey">
-                  Бесплатно при заказе от 500 000 ₸. При сумме заказа меньше 500
-                  000 ₸ узнавайте стоимость доставки у менеджера
-                </p>
-              </label>
-            </div>
-            <div class="flex items-center">
-              <input
-                type="radio"
-                name="radio-1"
-                id="radio-2"
-                class="radio-primary mr-3"
-              />
-              <label for="radio-2">
-                <p class="mb-1 font-medium">
-                  Самовывоз по адресу Алматы, Самал-1, дом 4
-                </p>
-                <p class="text-xs text-grey">
-                  Время работы пункта самовывоза: с 9:00 до 20:00
-                </p>
-              </label>
-            </div>
-            <div class="flex items-center">
-              <input
-                type="radio"
-                name="radio-1"
-                id="radio-3"
-                class="radio-primary mr-3"
-              />
-              <label for="radio-3">
-                <p class="mb-1 font-medium">
-                  Доставка в другие города Казахстана
-                </p>
-                <p class="text-xs text-grey">
-                  Стоимость доставки уточняйте у менеджера
-                </p>
-              </label>
-            </div>
-          </div>
-        </div>
-        <div>
-          <UIButton class="btn-secondary mb-7">оформить заказ</UIButton>
-          <p class="max-w-[400px] text-sm text-grey">
-            Нажимая кнопку «Оформить заказ», вы соглашаетесь с политикой
-            конфиденциальности
+  <section class="section-container mt-10">
+    <div v-if="success">
+      <div class="flex justify-between">
+        <div class="w-full lg:w-1/2">
+          <h1 class="heading-primary mb-10">Спасибо! Ваш заказ оформлен</h1>
+          <p class="mb-10 text-sm text-grey">
+            Оплата наличными или картой в офисе компании. После оплаты с вами
+            свяжется сотрудник сервисной службы и сообщит дату и время доставки.
+            <br />
+            <br />
+            Мы пришлем вам всю необходимую информацию по заказу на электронную
+            почту.
           </p>
+          <div class="flex">
+            <UILink link="/catalog" class="btn-secondary"
+              >Продолжить покупки</UILink
+            >
+          </div>
+        </div>
+        <div class="w-2/5"></div>
+      </div>
+    </div>
+    <div v-else>
+      <div
+        class="flex flex-col justify-between lg:flex-row"
+        v-if="items.length > 0"
+      >
+        <div class="w-full space-y-10 lg:w-1/2 lg:space-y-12">
+          <div>
+            <h2 class="heading-secondary mb-7">Контактная информация</h2>
+            <div class="space-y-4">
+              <div class="input-wrapper">
+                <label for="">Электронная почта*</label>
+                <input
+                  v-model="user.email"
+                  type="email"
+                  class="input-primary"
+                />
+              </div>
+              <div class="input-wrapper">
+                <label for="">Номер телефона*</label>
+                <input
+                  v-model="user.phone"
+                  type="phone"
+                  class="input-primary"
+                />
+              </div>
+            </div>
+          </div>
+          <div>
+            <div
+              class="mb-5 flex flex-col justify-between lg:flex-row lg:items-center"
+            >
+              <h2 class="heading-secondary">Адрес доставки</h2>
+              <div class="flex items-center">
+                <select
+                  v-if="selAddress"
+                  name=""
+                  v-model="selAddress.id"
+                  id=""
+                  @change="changeAddress($event)"
+                  class="select-primary mr-3 text-center"
+                >
+                  <!-- <option :value="null" selected disabled>
+                    Выберите адрес
+                  </option> -->
+                  <option
+                    :value="address.id"
+                    v-for="(address, index) in addresses"
+                    :key="index"
+                  >
+                    {{ address.name }}
+                  </option>
+                </select>
+
+                <UIButton class="btn-small" @click="active = true"
+                  >Новый адрес
+                </UIButton>
+              </div>
+            </div>
+            <div
+              class="text-error"
+              v-if="errors && errors.hasOwnProperty('email')"
+            >
+              {{ errors.email[0] }}
+            </div>
+            <div
+              v-if="selectedAddress != null && !active"
+              class="border border-dark px-5 py-5 lg:px-10 lg:py-10"
+            >
+              <div class="flex flex-col border-b border-dark py-4 lg:flex-row">
+                <div
+                  class="mb-2 w-full text-sm font-semibold uppercase text-dark lg:mb-0 lg:w-2/5"
+                >
+                  имя Фамилия
+                </div>
+                <div class="w-3/5 text-sm font-semibold text-dark">
+                  {{ user.full_name }}
+                </div>
+              </div>
+              <div class="flex flex-col border-b border-dark py-5 lg:flex-row">
+                <div
+                  class="mb-2 w-full text-sm font-semibold uppercase text-dark lg:mb-0 lg:w-2/5"
+                >
+                  Адрес
+                </div>
+                <div class="w-3/5 text-sm font-semibold text-dark">
+                  {{
+                    selectedAddress.country +
+                    ", " +
+                    selectedAddress.city +
+                    ", " +
+                    selectedAddress.address
+                  }}
+                </div>
+              </div>
+              <div class="mt-5 flex">
+                <UILink
+                  link="/cabinet"
+                  class="text-sm text-grey-light underline"
+                  >Редактировать адрес</UILink
+                >
+              </div>
+            </div>
+            <div class="space-y-4" v-if="active">
+              <div class="input-wrapper">
+                <label for="">Название адреса</label>
+                <input
+                  v-model="address_info.name"
+                  type="text"
+                  class="input-primary"
+                />
+              </div>
+              <div class="input-wrapper">
+                <label>Страна*</label>
+                <select
+                  v-model="address_info.country"
+                  name=""
+                  id=""
+                  class="select-secondary"
+                >
+                  <option :value="null" selected disabled>
+                    Выберите страну
+                  </option>
+                  <option
+                    :value="item.name"
+                    v-for="(item, index) in countries"
+                    :key="index"
+                  >
+                    {{ item.name }}
+                  </option>
+                </select>
+              </div>
+              <div class="input-wrapper">
+                <label for="">Фамилия Имя*</label>
+                <input
+                  v-model="address_info.full_name"
+                  type="text"
+                  class="input-primary"
+                />
+              </div>
+              <div class="input-wrapper">
+                <label for="">Название компании</label>
+                <input
+                  type="text"
+                  class="input-primary"
+                  placeholder="Укажите, если хотите оформить заказ на компанию"
+                  v-model="address_info.company"
+                />
+              </div>
+              <div class="input-wrapper">
+                <label for="">Город*</label>
+                <input
+                  type="text"
+                  class="input-primary"
+                  v-model="address_info.city"
+                />
+              </div>
+              <div class="input-wrapper">
+                <label for="">Адрес*</label>
+                <input
+                  type="text"
+                  class="input-primary"
+                  v-model="address_info.address"
+                  placeholder="Улица, номер дома, квартира"
+                />
+              </div>
+              <div class="input-wrapper">
+                <label for="">Почтовый идекс</label>
+                <input
+                  type="text"
+                  class="input-primary"
+                  v-model="address_info.post_id"
+                  placeholder="Улица, номер дома, квартира"
+                />
+              </div>
+              <div class="input-wrapper">
+                <label for="">Комментарий к заказу</label>
+                <textarea
+                  rows="5"
+                  cols="33"
+                  class="textarea"
+                  v-model="address_info.comment"
+                  placeholder="Сообщите дополнительную информацию в случае необходимости"
+                ></textarea>
+              </div>
+              <UIButton class="btn-secondary" @click="addAddress"
+                >Добавить новый адрес</UIButton
+              >
+            </div>
+          </div>
+          <div>
+            <p class="heading-secondary mb-7">Способ доставки</p>
+            <div class="space-y-4">
+              <div
+                class="flex items-center"
+                v-for="(item, index) in delivery"
+                :key="index"
+              >
+                <input
+                  type="radio"
+                  name="radio-delivery"
+                  @change="changeDelivery($event)"
+                  :value="item.id"
+                  :id="'delivery-' + item.id"
+                  class="radio-primary mr-3"
+                />
+                <label :for="'delivery-' + item.id">
+                  <p class="mb-1 font-medium">
+                    {{ item.method[$i18n.locale] }}
+                  </p>
+                  <p class="text-xs text-grey">
+                    {{ item.description[$i18n.locale] }}
+                  </p>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="heading-secondary mb-7">Способ оплаты</p>
+            <div class="space-y-4">
+              <div
+                class="flex items-center"
+                v-for="(item, index) in payment"
+                :key="index"
+              >
+                <input
+                  type="radio"
+                  name="payment"
+                  @change="changePayment($event)"
+                  :value="item.id"
+                  :id="'payment-' + item.id"
+                  class="radio-primary mr-3"
+                />
+                <label :for="'payment-' + item.id">
+                  <p class="mb-1 font-medium">
+                    {{ item.method[$i18n.locale] }}
+                  </p>
+                  <p class="text-xs text-grey">
+                    {{ item.description[$i18n.locale] }}
+                  </p>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div>
+            <UIButton
+              class="btn-secondary mb-7"
+              :loader="loading"
+              @click="sendOrder"
+              >оформить заказ</UIButton
+            >
+            <p class="max-w-[400px] text-sm text-grey">
+              Нажимая кнопку «Оформить заказ», вы соглашаетесь с политикой
+              конфиденциальности
+            </p>
+          </div>
+        </div>
+        <div class="mt-5 w-full lg:mt-0 lg:w-[45%] 2xl:w-2/5">
+          <CartProduct
+            v-for="(item, index) in items"
+            :key="index"
+            :item="item"
+          />
+          <div class="mt-5 flex items-center justify-between lg:mt-10">
+            <p class="text-sm font-medium uppercase text-dark">Всего:</p>
+            <p class="text-xl font-semibold text-dark">
+              {{ $store.getters["cart/total"] | formatPrice }} ₸
+            </p>
+          </div>
         </div>
       </div>
-      <div class="mt-5 w-full lg:mt-0 lg:w-[45%] 2xl:w-2/5">
-        <CheckoutProduct
-          v-for="(item, index) in items"
-          :key="index"
-          :product="item.product"
-        />
-        <div class="mt-5 flex items-center justify-between lg:mt-10">
-          <p class="text-sm font-medium uppercase text-dark">Всего:</p>
-          <p class="text-xl font-semibold text-dark">2 600 500 ₸</p>
+      <div v-else>
+        <div class="section-container">
+          <h1
+            class="heading-big section-title-distance mx-auto max-w-[1490px] text-center"
+          >
+            Ваша корзина пуста
+          </h1>
+          <div class="flex items-center justify-center">
+            <UILink link="/catalog" class="btn-secondary"
+              >Перейти в каталог</UILink
+            >
+          </div>
         </div>
       </div>
     </div>
@@ -204,18 +311,57 @@
 
 <script>
 import { mapGetters } from "vuex";
+import formatPrice from "~/filters/formatPrice";
 export default {
+  filters: {
+    formatPrice,
+  },
   data: () => ({
+    errors: null,
+    success: false,
+    payment: null,
+    delivery: null,
+    delivery_info: null,
     active: false,
-    selected: {
-      name: null,
-    },
+    loading: false,
+    selAddress: null,
     user: {
       email: null,
       phone: null,
+      full_name: null,
+    },
+    countries: [
+      {
+        name: "Kazakhstan",
+      },
+      {
+        name: "Russia",
+      },
+      {
+        name: "Georgia",
+      },
+    ],
+    address_info: {
+      name: "Новый адрес",
+      full_name: null,
+      country: null,
+      city: null,
+      company: null,
+      address: null,
+      comment: null,
+      post_id: null,
     },
   }),
+  watch: {
+    addresses(addresses) {
+      const isDef = addresses.find((i) => i.is_default);
+      this.selAddress = isDef;
+      // this.selAddress = isDef?.id ?? addresses[0]["id"];
+    },
+  },
   created() {
+    this.getDelivery();
+    this.getPayment();
     if (this.$auth.$state.loggedIn == true) {
       for (let i in this.user) {
         this.user[i] = this.$auth.$state.user[i];
@@ -227,16 +373,75 @@ export default {
     ...mapGetters({
       items: "cart/items",
       addresses: "addresses/addresses",
+      settings: "settings/settings",
       selectedAddress: "checkout/address",
       selectedDelivery: "checkout/delivery",
     }),
   },
   methods: {
-    onChange(event) {
-      this.active = false;
+    async addAddress() {
+      const item = {
+        name: this.name,
+        full_name: this.full_name,
+        country: this.country,
+        city: this.city,
+        address: this.address,
+        company: this.company,
+        post_id: this.post_id,
+      };
+      this.$store.dispatch("addresses/add", item);
+    },
+    async getDelivery() {
+      const response = await this.$axios.get("home/delivery-methods");
+      this.delivery = response.data.delivery_methods;
+    },
+    async getPayment() {
+      const response = await this.$axios.get("home/payment-methods");
+      this.payment = response.data.payment_methods;
+    },
+    changeDelivery(event) {
       const id = event.target.value;
-      const item = this.addresses.find((i) => i.id == id);
-      this.$store.dispatch("checkout/address", item);
+      this.$store.dispatch("checkout/delivery", id);
+    },
+    changePayment(event) {
+      const id = event.target.value;
+      this.$store.dispatch("checkout/payment", id);
+    },
+    changeAddress(event) {
+      this.active = false;
+      console.log(event.target.value);
+      // const id = event.target.value;
+      // const item = this.addresses.find((i) => i.id == id);
+      // this.$store.dispatch("checkout/address", item);
+    },
+    async sendOrder() {
+      this.errors = null;
+
+      // try {
+      const response = await this.$axios.post("orders", {
+        fullname: this.user.full_name,
+        phone: this.user.phone,
+        email: this.user.email,
+        country: this.$store.getters["checkout/address"]["country"],
+        city: this.$store.getters["checkout/address"]["city"],
+        company: this.$store.getters["checkout/address"]["company"],
+        address: this.$store.getters["checkout/address"]["address"],
+        comment: this.address_info.comment,
+        delivery_id: this.$store.getters["checkout/delivery"],
+        payment_id: this.$store.getters["checkout/payment"],
+      });
+      // this.$toast.success(response.data.message);
+      // } catch (e) {
+      // this.handleValidationErrors(e);
+      // }
+    },
+    handleValidationErrors(e) {
+      if (e.response.status == 422) {
+        this.errors = e.response.data.errors;
+        this.$toast.error("Ошибка валидации данных!");
+      } else {
+        this.$toast.error(e.response.data.message);
+      }
     },
   },
 };

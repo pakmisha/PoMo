@@ -11,6 +11,11 @@ export const mutations = {
   REMOVE(state, address) {
     state.addresses.splice(state.addresses.indexOf(address), 1);
   },
+  TOGGLE(state, item) {
+    state.addresses.map((i) => (i.is_default = false));
+    const el = state.addresses.find((i) => i.id == item.id);
+    el.is_default = true;
+  },
   UPDATE(state, address) {},
 };
 export const actions = {
@@ -25,6 +30,7 @@ export const actions = {
         country: item.country,
         city: item.city,
         address: item.address,
+        company: item.company,
         index: item.post_id,
       });
       commit("ADD", response.data.data.address);
@@ -68,6 +74,10 @@ export const actions = {
     //   //   this.loading = false;
     // }
     // commit("UPDATE", item);
+  },
+  toggleDefault({ commit }, item) {
+    console.log(item);
+    // commit("TOGGLE", item);
   },
 };
 export const getters = {

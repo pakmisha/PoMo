@@ -1,6 +1,7 @@
 export const state = () => ({
   address: null,
   delivery: null,
+  payment: null,
 });
 export const mutations = {
   ADDRESS(state, item) {
@@ -8,6 +9,9 @@ export const mutations = {
   },
   DELIVERY(state, item) {
     state.delivery = item;
+  },
+  PAYMENT(state, item) {
+    state.payment = item;
   },
 };
 export const actions = {
@@ -17,6 +21,9 @@ export const actions = {
   delivery({ commit }, item) {
     commit("DELIVERY", item);
   },
+  payment({ commit }, item) {
+    commit("PAYMENT", item);
+  },
 };
 export const getters = {
   address(state) {
@@ -24,5 +31,8 @@ export const getters = {
   },
   delivery(state) {
     return state.delivery;
+  },
+  payment(state) {
+    return state.payment;
   },
 };

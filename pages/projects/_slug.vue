@@ -31,7 +31,7 @@
         <OrderProject :project="project" />
       </div>
     </section>
-    <section>
+    <section v-if="others.length > 0">
       <div class="section-container section-distance">
         <div class="flex flex-col justify-between lg:flex-row lg:items-center">
           <h2 class="heading-primary mb-4 lg:mb-0">Другие наши проекты</h2>
