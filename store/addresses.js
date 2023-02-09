@@ -19,9 +19,11 @@ export const mutations = {
   UPDATE(state, address) {},
 };
 export const actions = {
-  async get({ commit }) {
+  async get({ commit, dispatch, state }) {
     const response = await this.$axios.get("addresses");
     commit("SET", response.data.data.addresses);
+    const item = state.addresses.find((i) => i.is_default);
+    dispatch("checkout/address", { item }, { root: true });
   },
   async add({ commit }, item) {
     try {
@@ -32,6 +34,7 @@ export const actions = {
         address: item.address,
         company: item.company,
         index: item.post_id,
+        is_default: item.is_default,
       });
       commit("ADD", response.data.data.address);
       this._vm.$toast.success(response.data.message);
@@ -76,8 +79,7 @@ export const actions = {
     // commit("UPDATE", item);
   },
   toggleDefault({ commit }, item) {
-    console.log(item);
-    // commit("TOGGLE", item);
+    commit("TOGGLE", item);
   },
 };
 export const getters = {

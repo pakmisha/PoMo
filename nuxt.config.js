@@ -47,20 +47,20 @@ export default {
       {
         code: "ru",
         name: "РУ",
-        // file: "ru.js",
+        file: "ru.js",
       },
       {
         code: "en",
         name: "EN",
-        // file: "kz.js",
+        file: "kz.js",
       },
       {
         code: "kz",
         name: "КЗ",
-        // file: "en.js",
+        file: "en.js",
       },
     ],
-    // langDir: "~/lang/",
+    langDir: "~/lang/",
     // differentDomains: true,
     defaultLocale: "ru",
     // vueI18n: {

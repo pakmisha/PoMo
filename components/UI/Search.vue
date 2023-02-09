@@ -26,6 +26,7 @@
           type="text"
           class="w-full bg-light py-2 outline-none"
           placeholder="ВВЕДИТЕ ЗАПРОС..."
+          @keyup="showResults($event.target.value)"
         />
       </div>
       <button class="serach-content-close" @click.prevent="active = false">
@@ -40,6 +41,26 @@
           <path d="M13 1L1 13" stroke="#101820" stroke-linecap="round" />
         </svg>
       </button>
+      <div id="searchResults" class="search-result section-container">
+        <div class="search-result-content">
+          <UISlider
+            :options="{
+              slidesPerView: 4,
+              spaceBetween: 10,
+            }"
+          >
+            <div class="swiper-wrapper">
+              <div
+                v-for="(product, index) in products"
+                :key="index"
+                class="swiper-slide"
+              >
+                <Product :product="product" />
+              </div>
+            </div>
+          </UISlider>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -48,6 +69,7 @@
 export default {
   data: () => ({
     active: false,
+    products: [],
   }),
   created() {
     this.$nuxt.$on("toggle", (name) => {
@@ -55,6 +77,64 @@ export default {
         this.active = !this.active;
       }
     });
+  },
+  methods: {
+    async showResults(val) {
+      this.debounce(this.searchProducts(val), 3000);
+    },
+    async searchProducts(val) {
+      const searchValue = val.toLowerCase();
+      console.log(val);
+      if (searchValue.length >= 3) {
+        // document.getElementById("searchResults").innerHTML = "";
+        const response = await this.$axios.$get("search?query=product_title", {
+          params: {
+            query: searchValue,
+          },
+        });
+        const res = response.data.products;
+        var results = res;
+        this.products = results;
+        if (results.length == 0) {
+          document.querySelector(".search-result").classList.add("hidden");
+        }
+        // document.querySelector('.no-results').classList.add('show');
+        // } else if(results.length >= 1) {
+        //     document.querySelector('.no-results').classList.remove('show');
+        // }
+        results.forEach((item, index) => {
+          // if(index < 1) {
+          let text = item.title[this.$i18n.locale];
+          if (text.toLowerCase().includes(searchValue)) {
+            console.log(searchValue);
+            document.querySelector(".search-result").classList.remove("hidden");
+            // document
+            //   .getElementById("searchResults")
+            //   .insertAdjacentHTML(
+            //     "beforeend",
+            //     "<li><a href='/catalog/" +
+            //       item.slug +
+            //       "' class='link-underline'><img src='" +
+            //       item.media[0].original_url +
+            //       "'><p>" +
+            //       text +
+            //       "</p></a></li>"
+            //   );
+          }
+          // }
+        });
+        this.resultsData = res;
+      } else {
+        document.querySelector(".search-result").classList.add("hidden");
+      }
+    },
+    debounce(callback, delay) {
+      let timeout;
+      return function () {
+        clearTimeout(timeout);
+        timeout = setTimeout(callback, delay);
+      };
+    },
   },
 };
 </script>
@@ -68,6 +148,11 @@ export default {
     }
     &-input {
       @apply w-full;
+    }
+    .search-result {
+      @apply absolute left-0 right-0 top-full bg-light;
+      &-content {
+      }
     }
   }
   &.active {

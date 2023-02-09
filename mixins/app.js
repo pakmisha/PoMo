@@ -9,5 +9,7 @@ export default {
     this.$store.dispatch("cart/get");
     this.$store.dispatch("addresses/get");
     this.$store.dispatch("projects/getProjects");
+    this.$store.dispatch("settings/getPayment");
+    this.$store.dispatch("settings/getDelivery");
   },
 };

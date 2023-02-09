@@ -94,7 +94,7 @@
                   >
                     <input
                       type="radio"
-                      class="input-radio"
+                      class="input-color"
                       name="color-radio"
                       v-model="color"
                       :value="item"

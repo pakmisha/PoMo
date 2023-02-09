@@ -19,13 +19,16 @@ export const mutations = {
   },
 };
 export const actions = {
-  async getProducts({ commit }) {
-    try {
-      const response = await this.$axios.get("products");
-      commit("SET_PRODUCTS", response.data.data.products);
-    } catch (e) {
-      console.log("ERROR GETTING PRODUCTS");
-    }
+  async getProducts({ commit, state }) {
+    // try {
+    // const response = await this.$axios.post(
+    //   `catalog?category=${state.category.slug}`
+    // );
+    const response = await this.$axios.get("products");
+    commit("SET_PRODUCTS", response.data.data.products);
+    // } catch (e) {
+    //   console.log("ERROR GETTING PRODUCTS");
+    // }
   },
   setProduct(context, product) {
     context.commit("SET_PRODUCT", product);
@@ -38,6 +41,10 @@ export const actions = {
       console.log("ERROR GETTING CATEGORIES");
     }
   },
+  setCategory(context, category) {
+    console.log(category);
+    context.commit("SET_CATEGORY", category);
+  },
 };
 export const getters = {
   selected(state) {
@@ -48,5 +55,8 @@ export const getters = {
   },
   categories(state) {
     return state.categories;
+  },
+  category(state) {
+    return state.category;
   },
 };

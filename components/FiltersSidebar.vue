@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="mb-10">
+  <div class="space-y-10">
+    <div>
       <h3 class="mb-5 text-sm font-medium uppercase text-dark">Наличие</h3>
       <div class="space-y-2">
         <div class="flex items-center">
@@ -62,6 +62,38 @@
         </div>
       </div>
     </div>
+    <div>
+      <h3 class="mb-5 text-sm font-medium uppercase text-dark">Цвет обивки</h3>
+      <div class="flex flex-wrap">
+        <div class="color">
+          <input type="checkbox" class="input-color" />
+        </div>
+        <div class="color">
+          <input type="checkbox" class="input-color" />
+        </div>
+        <div class="color">
+          <input type="checkbox" class="input-color" />
+        </div>
+      </div>
+    </div>
+    <div>
+      <h3 class="mb-5 text-sm font-medium uppercase text-dark">
+        Материал обивки
+      </h3>
+      <div class="space-y-2">
+        <div class="flex items-center">
+          <input type="checkbox" id="check-3" class="input-checkbox mr-2" />
+          <label class="text-sm text-dark" for="check-3">Кожа</label>
+        </div>
+        <div class="flex items-center">
+          <input type="checkbox" id="check-4" class="input-checkbox mr-2" />
+          <label class="text-sm text-dark" for="check-4">Ткань</label>
+        </div>
+      </div>
+    </div>
+    <div class="flex">
+      <UIButton class="btn-primary">сбросить фильтры</UIButton>
+    </div>
   </div>
 </template>
 
@@ -102,4 +134,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.color {
+  @apply mr-4 h-6 w-6 cursor-pointer rounded-full bg-black transition-all duration-300 ease-in-quad;
+}
+</style>

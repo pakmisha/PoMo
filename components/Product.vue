@@ -10,7 +10,10 @@
       />
       <div class="absolute right-2 top-2">
         <div class="flex">
-          <UIButton class="product-compare mr-1">
+          <UIButton
+            @click="$store.dispatch('compare/add', product)"
+            class="product-compare mr-1"
+          >
             <img src="~/assets/img/icons/compare.svg" alt="" />
             <!-- <div class="product-compare-dialog">
             <p>Добавить в сравнение</p>
@@ -51,10 +54,6 @@ import formatPrice from "~/filters/formatPrice";
 export default {
   props: {
     product: {
-      type: Object,
-      required: true,
-    },
-    favourite: {
       type: Object,
       required: true,
     },

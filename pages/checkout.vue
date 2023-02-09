@@ -37,6 +37,12 @@
                   type="email"
                   class="input-primary"
                 />
+                <div
+                  class="text-error"
+                  v-if="errors && errors.hasOwnProperty('email')"
+                >
+                  {{ errors.email[0] }}
+                </div>
               </div>
               <div class="input-wrapper">
                 <label for="">Номер телефона*</label>
@@ -45,6 +51,12 @@
                   type="phone"
                   class="input-primary"
                 />
+                <div
+                  class="text-error"
+                  v-if="errors && errors.hasOwnProperty('phone')"
+                >
+                  {{ errors.phone[0] }}
+                </div>
               </div>
             </div>
           </div>
@@ -57,14 +69,11 @@
                 <select
                   v-if="selAddress"
                   name=""
-                  v-model="selAddress.id"
+                  v-model="selAddress"
                   id=""
                   @change="changeAddress($event)"
                   class="select-primary mr-3 text-center"
                 >
-                  <!-- <option :value="null" selected disabled>
-                    Выберите адрес
-                  </option> -->
                   <option
                     :value="address.id"
                     v-for="(address, index) in addresses"
@@ -213,6 +222,9 @@
           <div>
             <p class="heading-secondary mb-7">Способ доставки</p>
             <div class="space-y-4">
+              <div class="text-error" v-if="delivery_error">
+                {{ $t("delivery_error") }}
+              </div>
               <div
                 class="flex items-center"
                 v-for="(item, index) in delivery"
@@ -240,6 +252,9 @@
           <div>
             <p class="heading-secondary mb-7">Способ оплаты</p>
             <div class="space-y-4">
+              <div class="text-error" v-if="payment_error">
+                {{ $t("payment_error") }}
+              </div>
               <div
                 class="flex items-center"
                 v-for="(item, index) in payment"
@@ -319,11 +334,12 @@ export default {
   data: () => ({
     errors: null,
     success: false,
-    payment: null,
-    delivery: null,
-    delivery_info: null,
     active: false,
     loading: false,
+    delivery_id: null,
+    delivery_error: false,
+    payment_id: null,
+    payment_error: false,
     selAddress: null,
     user: {
       email: null,
@@ -355,13 +371,13 @@ export default {
   watch: {
     addresses(addresses) {
       const isDef = addresses.find((i) => i.is_default);
-      this.selAddress = isDef;
-      // this.selAddress = isDef?.id ?? addresses[0]["id"];
+      // this.selAddress = isDef;
+      if (addresses) {
+        this.selAddress = isDef?.id ?? addresses[0]["id"];
+      }
     },
   },
   created() {
-    this.getDelivery();
-    this.getPayment();
     if (this.$auth.$state.loggedIn == true) {
       for (let i in this.user) {
         this.user[i] = this.$auth.$state.user[i];
@@ -376,64 +392,76 @@ export default {
       settings: "settings/settings",
       selectedAddress: "checkout/address",
       selectedDelivery: "checkout/delivery",
+      delivery: "settings/delivery",
+      payment: "settings/payment",
     }),
   },
   methods: {
     async addAddress() {
       const item = {
-        name: this.name,
-        full_name: this.full_name,
-        country: this.country,
-        city: this.city,
-        address: this.address,
-        company: this.company,
-        post_id: this.post_id,
+        name: this.address_info.name,
+        full_name: this.address_info.full_name,
+        country: this.address_info.country,
+        city: this.address_info.city,
+        address: this.address_info.address,
+        company: this.address_info.company,
+        post_id: this.address_info.post_id,
+        is_default: true,
       };
       this.$store.dispatch("addresses/add", item);
-    },
-    async getDelivery() {
-      const response = await this.$axios.get("home/delivery-methods");
-      this.delivery = response.data.delivery_methods;
-    },
-    async getPayment() {
-      const response = await this.$axios.get("home/payment-methods");
-      this.payment = response.data.payment_methods;
+      this.$store.dispatch("addresses/get");
+      this.$store.dispatch("checkout/address", item);
+      this.active = false;
     },
     changeDelivery(event) {
       const id = event.target.value;
+      this.delivery_id = id;
       this.$store.dispatch("checkout/delivery", id);
     },
     changePayment(event) {
       const id = event.target.value;
+      this.payment_id = id;
       this.$store.dispatch("checkout/payment", id);
     },
     changeAddress(event) {
       this.active = false;
-      console.log(event.target.value);
-      // const id = event.target.value;
-      // const item = this.addresses.find((i) => i.id == id);
-      // this.$store.dispatch("checkout/address", item);
+      const id = event.target.value;
+      const item = this.addresses.find((i) => i.id == id);
+      this.$store.dispatch("checkout/address", { item });
     },
     async sendOrder() {
       this.errors = null;
-
-      // try {
-      const response = await this.$axios.post("orders", {
-        fullname: this.user.full_name,
-        phone: this.user.phone,
-        email: this.user.email,
-        country: this.$store.getters["checkout/address"]["country"],
-        city: this.$store.getters["checkout/address"]["city"],
-        company: this.$store.getters["checkout/address"]["company"],
-        address: this.$store.getters["checkout/address"]["address"],
-        comment: this.address_info.comment,
-        delivery_id: this.$store.getters["checkout/delivery"],
-        payment_id: this.$store.getters["checkout/payment"],
-      });
-      // this.$toast.success(response.data.message);
-      // } catch (e) {
-      // this.handleValidationErrors(e);
-      // }
+      this.loading = true;
+      this.delivery_error = false;
+      this.payment_error = false;
+      if (this.delivery_id == null) {
+        this.delivery_error = true;
+      }
+      if (this.payment_id == null) {
+        this.payment_error = true;
+      }
+      if (this.delivery_error == null || this.payment_error == null) return;
+      try {
+        const response = await this.$axios.post("orders", {
+          fullname: this.user.full_name,
+          phone: this.user.phone,
+          email: this.user.email,
+          country: this.$store.getters["checkout/address"]["country"],
+          city: this.$store.getters["checkout/address"]["city"],
+          company: this.$store.getters["checkout/address"]["company"],
+          address: this.$store.getters["checkout/address"]["address"],
+          comment: this.address_info.comment,
+          delivery_id: this.$store.getters["checkout/delivery"],
+          payment_id: this.$store.getters["checkout/payment"],
+        });
+        this.$toast.success(response.data.message);
+        this.success = true;
+        this.$store.dispatch("cart/get");
+      } catch (e) {
+        this.handleValidationErrors(e);
+      } finally {
+        this.loading = false;
+      }
     },
     handleValidationErrors(e) {
       if (e.response.status == 422) {

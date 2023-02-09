@@ -4,7 +4,7 @@ export const state = () => ({
   payment: null,
 });
 export const mutations = {
-  ADDRESS(state, item) {
+  ADDRESS(state, { item }) {
     state.address = item;
   },
   DELIVERY(state, item) {

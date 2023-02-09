@@ -65,6 +65,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   data: () => ({
     products: [
@@ -118,6 +119,11 @@ export default {
       },
     ],
   }),
+  computed: {
+    ...mapGetters({
+      compare: "compare/compare",
+    }),
+  },
 };
 </script>
 

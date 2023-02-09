@@ -3,17 +3,24 @@
     <div class="section-container">
       <UIPath />
     </div>
-    <div class="section-container">
-      <SubCategory />
+    <div class="section-container section-distance-bottom">
+      <SubCategory :categories="categories" />
     </div>
-    <section class="section-distance section-container">
+    <section class="section-container">
       <ProductsWrapper />
     </section>
   </div>
 </template>
 
 <script>
-export default {};
+import { mapGetters } from "vuex";
+export default {
+  computed: {
+    ...mapGetters({
+      categories: "products/categories",
+    }),
+  },
+};
 </script>
 
 <style></style>

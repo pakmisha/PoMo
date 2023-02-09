@@ -45,7 +45,7 @@
             <div class="swiper-wrapper">
               <div
                 class="swiper-slide"
-                v-for="(product, index) in products"
+                v-for="(product, index) in interesting"
                 :key="index"
               >
                 <Product :product="product" />
@@ -97,7 +97,7 @@
             <div class="swiper-wrapper">
               <div
                 class="swiper-slide"
-                v-for="(product, index) in products"
+                v-for="(product, index) in atmosphere"
                 :key="index"
               >
                 <Product :product="product" />
@@ -120,7 +120,32 @@ export default {
     store.dispatch("products/setProduct", product);
     return { product };
   },
-  data: () => ({}),
+  data: () => ({
+    interesting: null,
+    atmosphere: null,
+  }),
+  created() {
+    this.getInteresting();
+    this.getAtmosphere();
+  },
+  methods: {
+    async getInteresting() {
+      try {
+        const response = await this.$axios.get('products/interests/' + this.product.id)
+        this.interesting = response.data.data.products;
+      } catch (e) {
+        console.log("ERROR GETTING INTERESTING");
+      }
+    },
+    async getAtmosphere() {
+      try {
+        const response = await this.$axios.get('products/atmosphere/' + this.product.id);
+        this.atmosphere = response.data.data.products;
+      } catch (e) {
+        console.log("ERROR GETTING ATMOSPHERE");
+      }
+    }
+  },
 };
 </script>
 

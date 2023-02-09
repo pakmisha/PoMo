@@ -4,7 +4,9 @@
       <div
         class="mb-10 flex w-full flex-col items-center justify-between lg:mb-20 lg:w-[75%] lg:flex-row"
       >
-        <h2 class="heading-primary">Все товары</h2>
+        <h2 class="heading-primary">
+          {{ category == null ? "Все товары" : category.title[$i18n.locale] }}
+        </h2>
         <div class="mt-4 lg:mt-0">
           <select name="" id="" class="select-primary text-center">
             <option value="" selected>По дате добавления</option>
@@ -57,6 +59,7 @@ export default {
   computed: {
     ...mapGetters({
       products: "products/products",
+      category: "products/category",
     }),
   },
 };
