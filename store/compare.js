@@ -11,15 +11,38 @@ export const mutations = {
       state.compare.push(product);
     }
   },
+  REMOVE(state, product) {
+    console.log(product);
+  },
 };
 export const actions = {
   async get({ commit }) {
-    const response = await this.$axios.get("compare");
-    commit("SET", response.data.data.products);
+    try {
+      const response = await this.$axios.get("compare");
+      commit("SET", response.data.data.products);
+    } catch (e) {
+      console.log("ERROR GETTING COMPARE");
+    }
   },
-  async add({ commit }, product) {
-    const response = await this.$axios.post(`compare/${product.id}`);
-    commit("ADD", product);
+  async add({ commit, state, dispatch }, product) {
+    const item = state.compare.find((i) => i.id == product.id);
+    if (!item) {
+      try {
+        const response = await this.$axios.post(`compare/${product.id}`);
+        commit("ADD", product);
+        this._vm.$toast.success(response.data.message);
+      } catch (e) {
+        this._vm.$toast.error(e.response.data.message);
+      }
+    } else {
+      try {
+        const response = await this.$axios.delete(`compare/${product.id}`);
+        commit("REMOVE", product);
+        this._vm.$toast.success(response.data.message);
+      } catch (e) {
+        this._vm.$toast.error(e.response.data.message);
+      }
+    }
   },
 };
 export const getters = {

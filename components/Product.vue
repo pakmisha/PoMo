@@ -1,5 +1,5 @@
 <template>
-  <div class="product">
+  <UILink :link="'/catalog/' + product.slug" class="product">
     <div v-if="product.media.length > 0" class="product-image">
       <img class="first-image" :src="$asset(product.media[0].file_name)" />
       <img
@@ -40,13 +40,13 @@
         </div>
       </div>
     </div>
-    <UILink :link="'/catalog/' + product.slug" class="product-bottom">
+    <div class="product-bottom">
       <p class="product-bottom-title">
         {{ product.title[$i18n.locale] }}
       </p>
       <p class="text-sm">{{ product.new_price | formatPrice }} ₸</p>
-    </UILink>
-  </div>
+    </div>
+  </UILink>
 </template>
 
 <script>
@@ -68,7 +68,7 @@ export default {
 .product {
   @apply flex h-full w-full flex-col justify-between;
   &-image {
-    @apply relative h-[400px] w-full overflow-hidden border border-grey-light lg:h-[450px];
+    @apply relative h-full w-full overflow-hidden border border-grey-light;
     img {
       @apply h-full w-full object-cover;
     }

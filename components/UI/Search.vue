@@ -42,7 +42,7 @@
         </svg>
       </button>
       <div id="searchResults" class="search-result section-container">
-        <div class="search-result-content">
+        <div class="search-result-content pb-5">
           <UISlider
             :options="{
               slidesPerView: 4,
@@ -55,7 +55,9 @@
                 :key="index"
                 class="swiper-slide"
               >
-                <Product :product="product" />
+                <div class="h-[400px] w-full">
+                  <Product :product="product" />
+                </div>
               </div>
             </div>
           </UISlider>

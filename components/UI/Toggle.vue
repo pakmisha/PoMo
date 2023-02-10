@@ -21,9 +21,9 @@ export default {
 
 <style lang="scss" scoped>
 .toggle {
-  @apply absolute left-1 h-4 w-4 rounded-full bg-grey-light transition-all duration-500 ease-in-out;
+  @apply h-4 w-4 translate-x-0 rounded-full bg-grey-light transition-all duration-300 ease-in-out;
   &.active {
-    @apply left-auto right-1 bg-dark transition-all duration-500 ease-in-out;
+    @apply translate-x-full bg-dark;
   }
 }
 </style>

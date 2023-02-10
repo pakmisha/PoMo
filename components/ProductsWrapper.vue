@@ -8,11 +8,16 @@
           {{ category == null ? "Все товары" : category.title[$i18n.locale] }}
         </h2>
         <div class="mt-4 lg:mt-0">
-          <select name="" id="" class="select-primary text-center">
-            <option value="" selected>По дате добавления</option>
-            <option value="">Сначала популярные</option>
-            <option value="">Цена: по возрастанию</option>
-            <option value="">Цена: по убыванию</option>
+          <select
+            v-model="sort"
+            name=""
+            id=""
+            class="select-primary text-center"
+            @change="sortBy($event)"
+          >
+            <option :value="null" disabled selected>Сортировать по:</option>
+            <option value="price_asc">Сначала дешевле:</option>
+            <option value="price_desc">Сначала дороже:</option>
           </select>
         </div>
         <div class="mt-4 flex items-center lg:hidden">
@@ -38,15 +43,16 @@
         <FiltersSidebar />
       </div>
       <div class="w-full lg:w-[75%]">
-        <div class="products">
+        <div v-if="products" class="products">
           <div
             class="products__item"
-            v-for="(product, index) in products"
+            v-for="(product, index) in products.data"
             :key="index"
           >
             <Product :product="product" />
           </div>
         </div>
+        <UIPagination :data="products" @changed="getResults" />
       </div>
     </div>
   </div>
@@ -55,12 +61,22 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
-  data: () => ({}),
+  data: () => ({
+    sort: null,
+  }),
   computed: {
     ...mapGetters({
       products: "products/products",
       category: "products/category",
     }),
+  },
+  methods: {
+    sortBy(event) {
+      this.$store.dispatch("products/setSort", event.target.value);
+    },
+    getResults(page = 1) {
+      this.$store.dispatch("products/getProducts", page);
+    },
   },
 };
 </script>
@@ -69,8 +85,9 @@ export default {
 .products {
   @apply grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3;
   &__item {
+    @apply h-[400px] lg:h-[450px];
     &:nth-child(5n) {
-      @apply h-full md:col-span-2 md:row-span-2;
+      @apply h-[400px] md:col-span-2 md:row-span-2 md:h-full;
     }
   }
 }

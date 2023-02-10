@@ -4,11 +4,23 @@
       <h3 class="mb-5 text-sm font-medium uppercase text-dark">Наличие</h3>
       <div class="space-y-2">
         <div class="flex items-center">
-          <input type="checkbox" id="check-1" class="input-checkbox mr-2" />
+          <input
+            type="checkbox"
+            id="check-1"
+            value="IN_STOCK"
+            class="input-checkbox mr-2"
+            @click="sendStatus($event.target.value)"
+          />
           <label class="text-sm text-dark" for="check-1">В наличии</label>
         </div>
         <div class="flex items-center">
-          <input type="checkbox" id="check-2" class="input-checkbox mr-2" />
+          <input
+            type="checkbox"
+            id="check-2"
+            value="TO_ORDER"
+            class="input-checkbox mr-2"
+            @click="sendStatus($event.target.value)"
+          />
           <label class="text-sm text-dark" for="check-2">На заказ</label>
         </div>
       </div>
@@ -62,32 +74,49 @@
         </div>
       </div>
     </div>
-    <div>
-      <h3 class="mb-5 text-sm font-medium uppercase text-dark">Цвет обивки</h3>
-      <div class="flex flex-wrap">
-        <div class="color">
-          <input type="checkbox" class="input-color" />
-        </div>
-        <div class="color">
-          <input type="checkbox" class="input-color" />
-        </div>
-        <div class="color">
-          <input type="checkbox" class="input-color" />
+    <div class="space-y-10" v-for="(filter, index) in filters" :key="index">
+      <div v-if="filter.slug.includes('colors')">
+        <h3 class="mb-5 text-sm font-medium uppercase text-dark">
+          {{ filter.title[$i18n.locale] }}
+        </h3>
+        <div class="flex flex-wrap">
+          <div
+            class="color"
+            :style="'background-color:' + item.color_code"
+            v-for="(item, index) in filter.values"
+            :key="index"
+          >
+            <input
+              type="checkbox"
+              class="input-color"
+              @click="setFilter({ filter, item })"
+            />
+          </div>
         </div>
       </div>
-    </div>
-    <div>
-      <h3 class="mb-5 text-sm font-medium uppercase text-dark">
-        Материал обивки
-      </h3>
-      <div class="space-y-2">
-        <div class="flex items-center">
-          <input type="checkbox" id="check-3" class="input-checkbox mr-2" />
-          <label class="text-sm text-dark" for="check-3">Кожа</label>
-        </div>
-        <div class="flex items-center">
-          <input type="checkbox" id="check-4" class="input-checkbox mr-2" />
-          <label class="text-sm text-dark" for="check-4">Ткань</label>
+      <div v-if="!filter.slug.includes('colors')">
+        <h3 class="mb-5 text-sm font-medium uppercase text-dark">
+          {{ filter.title[$i18n.locale] }}
+        </h3>
+        <div class="space-y-2">
+          <div
+            class="flex items-center"
+            v-for="(item, index) in filter.values"
+            :key="index"
+          >
+            <input
+              type="checkbox"
+              :value="item.id"
+              :id="filter.slug + '-' + item.id"
+              @click="setFilter({ filter, item })"
+              class="input-checkbox mr-2"
+            />
+            <label
+              class="text-sm text-dark"
+              :for="filter.slug + '-' + item.id"
+              >{{ item.title[$i18n.locale] }}</label
+            >
+          </div>
         </div>
       </div>
     </div>
@@ -98,12 +127,16 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   data: () => ({
     minAngle: 0,
     maxAngle: 1000,
   }),
   computed: {
+    ...mapGetters({
+      filters: "products/filters",
+    }),
     sliderMin: {
       get: function () {
         var val = parseInt(this.minAngle);
@@ -131,11 +164,23 @@ export default {
       },
     },
   },
+  methods: {
+    setFilter({ filter, item }) {
+      const key = filter.slug;
+      const value = item.id;
+      this.$store.dispatch("products/setFilters", { key, value });
+    },
+    sendStatus(event) {
+      const key = "status";
+      const value = event;
+      this.$store.dispatch("products/setFilters", { key, value });
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .color {
-  @apply mr-4 h-6 w-6 cursor-pointer rounded-full bg-black transition-all duration-300 ease-in-quad;
+  @apply mr-4 h-6 w-6 cursor-pointer rounded-full transition-all duration-300 ease-in-quad;
 }
 </style>

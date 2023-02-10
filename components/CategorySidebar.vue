@@ -116,6 +116,7 @@ export default {
   watch: {
     category(value) {
       this.$store.dispatch("products/getProducts");
+      this.$store.dispatch("products/getFilters");
     },
   },
   computed: {

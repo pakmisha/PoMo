@@ -28,7 +28,6 @@
       </div>
     </button>
     <div v-for="(item, index) in category.childrens" :key="'category-' + index">
-      <!-- {{ item.slug }} -->
       <UICategoryChildren
         v-if="item.childrens"
         :category="item"

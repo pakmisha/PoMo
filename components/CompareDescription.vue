@@ -1,11 +1,11 @@
 <template>
   <div class="">
     <div class="compare">
-      <div class="compare__item" v-for="(item, index) in items" :key="index">
-        <h4 class="title">{{ item.title }}</h4>
-        <div class="description">{{ item.description }}</div>
-        <div class="description">{{ item.description }}</div>
-        <div class="description">{{ item.description }}</div>
+      <div class="compare__item">
+        <h4 class="title">Наличие товара</h4>
+        <div v-for="(item, index) in compare" :key="index" class="description">
+          {{ item.status.includes("IN_STOCK") ? "В наличии" : "На заказ" }}
+        </div>
       </div>
     </div>
   </div>
@@ -13,43 +13,11 @@
 
 <script>
 export default {
-  data: () => ({
-    items: [
-      {
-        title: "Наличие товара",
-        description: "В наличии",
-      },
-      {
-        title: "Коллекция",
-        description: "PIXEL",
-      },
-      {
-        title: "Ширина",
-        description: "204",
-      },
-      {
-        title: "Высота",
-        description: "90",
-      },
-      {
-        title: "Глубина",
-        description: "48",
-      },
-      {
-        title: "Материал опор",
-        description: "Металл",
-      },
-
-      {
-        title: "Код цвета",
-        description: "DENIM GREY+DRIFTWOOD",
-      },
-      {
-        title: "Материал корпуса",
-        description: "Дерево",
-      },
-    ],
-  }),
+  props: {
+    compare: Array,
+    required: true,
+  },
+  data: () => ({}),
 };
 </script>
 
