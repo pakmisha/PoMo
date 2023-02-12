@@ -44,7 +44,11 @@
             <p class="main-link">Клиентам</p>
             <ul class="list">
               <li>
-                <UILink link="" class="simple-link">Личный кабинет</UILink>
+                <UILink
+                  :link="$auth.state.loggedIn ? '/cabinet' : '/login'"
+                  class="simple-link"
+                  >Личный кабинет</UILink
+                >
               </li>
               <li>
                 <UILink link="" class="simple-link">Способы оплаты</UILink>

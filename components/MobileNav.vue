@@ -1,14 +1,14 @@
 <template>
   <div class="mobile-nav" :class="{ opened: opened }">
     <div class="relative flex h-full w-full items-end justify-center px-20">
-      <div class="flex h-full flex-col justify-between">
-        <nav class="flex flex-col items-center pt-56" v-if="submenu">
+      <div class="flex h-full flex-col justify-center">
+        <nav class="flex flex-col items-center" v-if="submenu">
           <ul class="space-y-6">
             <li>
               <UILink link="/about" class="mobile-link">О нас</UILink>
             </li>
             <li>
-              <button
+              <!-- <button
                 class="has-menu mobile-link flex items-center"
                 @click.prevent="submenu = false"
               >
@@ -31,16 +31,21 @@
                     </svg>
                   </div>
                 </span>
-              </button>
+              </button> -->
+              <UILink link="/catalog" class="mobile-link">Каталог</UILink>
             </li>
             <li>
               <UILink link="/brands" class="mobile-link">Бренды</UILink>
             </li>
             <li>
-              <UILink link="" class="mobile-link">Реализованные проекты</UILink>
+              <UILink link="/projects" class="mobile-link"
+                >Реализованные проекты</UILink
+              >
             </li>
             <li>
-              <UILink link="" class="mobile-link">Сравнение товаров</UILink>
+              <UILink link="/compare" class="mobile-link"
+                >Сравнение товаров</UILink
+              >
             </li>
             <li>
               <UILink link="/favorite" class="mobile-link"

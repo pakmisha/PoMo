@@ -1,11 +1,39 @@
 <template>
   <div class="">
-    <div class="compare">
+    <div v-if="compare.length > 0" class="compare">
       <div class="compare__nav">
+        <p class="title">Название товара</p>
         <p class="title">Наличие товара</p>
-        <p class="title" v-for="(item, index) in compare" :key="index">
-          {{ item.characteristics[$i18n.locale] }}
+        <!-- <p class="title" v-tr="$i18n">
+          {{ compare[0].collection.name }}
+        </p> -->
+
+        <p
+          class="title"
+          v-for="(param, index) in compare[0].characteristics"
+          :key="index"
+        >
+          {{ param.title[$i18n.locale] }}
         </p>
+      </div>
+      <div
+        class="compare__content"
+        v-for="(item, index) in compare"
+        :key="index"
+      >
+        <div class="compare__content__item">
+          {{ item.title[$i18n.locale] }}
+        </div>
+        <div class="compare__content__item">
+          {{ item.status.includes("IN_STOCK") ? "В наличии" : "На заказ" }}
+        </div>
+        <div
+          class="compare__content__item"
+          v-for="(param, index) in item.characteristics"
+          :key="index"
+        >
+          <span>{{ param.value }}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -23,9 +51,16 @@ export default {
 
 <style lang="scss" scoped>
 .compare {
+  @apply flex overflow-x-auto;
   &__nav {
+    @apply w-[250px] lg:w-[400px];
     .title {
-      @apply w-[200px] whitespace-nowrap border-b border-grey py-3 text-sm font-medium uppercase lg:w-[300px];
+      @apply w-[400px] whitespace-nowrap border-b border-grey py-4 text-sm font-medium uppercase;
+    }
+  }
+  &__content {
+    &__item {
+      @apply w-[250px] whitespace-nowrap border-b border-grey py-4 text-sm lg:w-[400px];
     }
   }
 }

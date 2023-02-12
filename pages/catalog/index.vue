@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="section-container">
+    <!-- <div class="section-container">
       <UIPath />
-    </div>
+    </div> -->
     <!-- <div class="section-container section-distance-bottom">
       <SubCategory :categories="categories" />
     </div> -->
-    <section class="section-container">
+    <section class="section-container mt-10">
       <ProductsWrapper />
     </section>
   </div>

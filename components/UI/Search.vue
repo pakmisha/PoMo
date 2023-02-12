@@ -42,11 +42,25 @@
         </svg>
       </button>
       <div id="searchResults" class="search-result section-container">
-        <div class="search-result-content pb-5">
+        <div class="search-result-content">
           <UISlider
             :options="{
               slidesPerView: 4,
               spaceBetween: 10,
+              breakpoints: {
+                320: {
+                  slidesPerView: 1.2,
+                },
+                768: {
+                  slidesPerView: 2.1,
+                },
+                1024: {
+                  slidesPerView: 3.1,
+                },
+                1366: {
+                  slidesPerView: 4.1,
+                },
+              },
             }"
           >
             <div class="swiper-wrapper">
@@ -55,7 +69,7 @@
                 :key="index"
                 class="swiper-slide"
               >
-                <div class="h-[400px] w-full">
+                <div class="h-[300px] w-full 2xl:h-[400px]">
                   <Product :product="product" />
                 </div>
               </div>
@@ -98,7 +112,7 @@ export default {
         var results = res;
         this.products = results;
         if (results.length == 0) {
-          document.querySelector(".search-result").classList.add("hidden");
+          document.querySelector(".search-result").classList.remove("active");
         }
         // document.querySelector('.no-results').classList.add('show');
         // } else if(results.length >= 1) {
@@ -109,7 +123,7 @@ export default {
           let text = item.title[this.$i18n.locale];
           if (text.toLowerCase().includes(searchValue)) {
             console.log(searchValue);
-            document.querySelector(".search-result").classList.remove("hidden");
+            document.querySelector(".search-result").classList.add("active");
             // document
             //   .getElementById("searchResults")
             //   .insertAdjacentHTML(
@@ -127,7 +141,7 @@ export default {
         });
         this.resultsData = res;
       } else {
-        document.querySelector(".search-result").classList.add("hidden");
+        document.querySelector(".search-result").classList.add("active");
       }
     },
     debounce(callback, delay) {
@@ -152,8 +166,12 @@ export default {
       @apply w-full;
     }
     .search-result {
-      @apply absolute left-0 right-0 top-full bg-light;
+      @apply invisible absolute left-0 right-0 top-full -translate-y-5 bg-light opacity-0 transition-all duration-300 ease-in-quad;
       &-content {
+        @apply pb-7;
+      }
+      &.active {
+        @apply visible translate-y-0 opacity-100;
       }
     }
   }

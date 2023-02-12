@@ -1,46 +1,105 @@
 <template>
-  <div class="relative h-full w-full overflow-auto lg:overflow-visible">
-    <div
-      class="relative inline-block h-full w-[1000px] overflow-y-hidden lg:w-full lg:overflow-y-visible"
-    >
-      <img
-        src="~/assets/img/bg/picture-details.jpg"
-        class="w-full object-center"
-        alt=""
-      />
-      <div class="absolute left-0 top-0 right-0 bottom-0">
-        <div
-          class="absolute"
-          v-for="(item, index) in items"
-          :key="index"
-          :class="item.position"
-        >
-          <div class="mark">
-            <div class="mark-center"></div>
-            <div class="dialog">
-              <div class="dialog-wrapper">
-                <p
-                  class="mb-2 text-xs font-medium uppercase lg:mb-3 lg:text-sm"
-                >
-                  {{ item.name }}
-                </p>
-                <p class="mb-3 font-light lg:mb-4">
-                  {{ item.cost }}
-                </p>
-                <a href="" class="btn-primary">Смотреть товар</a>
-                <div class="arrow">
-                  <img src="~/assets/img/icons/arrow-black.png" alt="" />
+  <UISlider
+    :options="{
+      slidesPerView: 1,
+      autoplay: {
+        delay: 10000,
+      },
+    }"
+  >
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <div class="relative h-full w-full overflow-auto lg:overflow-visible">
+          <div
+            class="relative inline-block h-full w-[1000px] overflow-y-hidden lg:w-full lg:overflow-y-visible"
+          >
+            <img
+              src="~/assets/img/bg/picture-details.jpg"
+              class="w-full object-center"
+              alt=""
+            />
+            <div class="absolute left-0 top-0 right-0 bottom-0">
+              <div
+                class="absolute"
+                v-for="(item, index) in items"
+                :key="index"
+                :class="item.position"
+              >
+                <div class="mark">
+                  <div class="mark-center"></div>
+                  <div class="dialog">
+                    <div class="dialog-wrapper">
+                      <p
+                        class="mb-2 text-xs font-medium uppercase lg:mb-3 lg:text-sm"
+                      >
+                        {{ item.name }}
+                      </p>
+                      <p class="mb-3 font-light lg:mb-4">
+                        {{ item.cost }}
+                      </p>
+                      <a href="" class="btn-primary">Смотреть товар</a>
+                      <div class="arrow">
+                        <img src="~/assets/img/icons/arrow-black.png" alt="" />
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
+            </div>
+            <div class="absolute left-1/2 bottom-7 -translate-x-1/2">
+              <a href="" class="btn-primary">Приобрести комплект</a>
             </div>
           </div>
         </div>
       </div>
-      <div class="absolute left-1/2 bottom-7 -translate-x-1/2">
-        <a href="" class="btn-primary">Приобрести комплект</a>
+      <div class="swiper-slide">
+        <div class="relative h-full w-full overflow-auto lg:overflow-visible">
+          <div
+            class="relative inline-block h-full w-[1000px] overflow-y-hidden lg:w-full lg:overflow-y-visible"
+          >
+            <img
+              src="~/assets/img/bg/bg-project.jpg"
+              class="w-full object-center"
+              alt=""
+            />
+            <div class="absolute left-0 top-0 right-0 bottom-0">
+              <div
+                class="absolute"
+                v-for="(item, index) in items"
+                :key="index"
+                :class="item.position"
+              >
+                <div class="mark">
+                  <div class="mark-center"></div>
+                  <div class="dialog">
+                    <div class="dialog-wrapper">
+                      <p
+                        class="mb-2 text-xs font-medium uppercase lg:mb-3 lg:text-sm"
+                      >
+                        {{ item.name }}
+                      </p>
+                      <p class="mb-3 font-light lg:mb-4">
+                        {{ item.cost }}
+                      </p>
+                      <a href="" class="btn-primary">Смотреть товар</a>
+                      <div class="arrow">
+                        <img src="~/assets/img/icons/arrow-black.png" alt="" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="absolute left-1/2 bottom-7 -translate-x-1/2">
+              <UILink link="/catalog" class="btn-primary"
+                >Приобрести комплект</UILink
+              >
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </UISlider>
 </template>
 
 <script>

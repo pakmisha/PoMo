@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="brands != null">
     <div class="section-container">
       <h1
         class="heading-big section-title-distance mx-auto max-w-[1490px] text-center"
@@ -11,13 +11,26 @@
       <Brands />
     </section>
     <section class="section-container section-distance">
-      <AllBrands />
+      <div class="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4">
+        <AllBrands
+          :brands="brand"
+          v-for="(brand, index) in brands"
+          :key="index"
+        />
+      </div>
     </section>
   </div>
 </template>
 
 <script>
-export default {};
+import { mapGetters } from "vuex";
+export default {
+  computed: {
+    ...mapGetters({
+      brands: "brands/brands",
+    }),
+  },
+};
 </script>
 
 <style></style>

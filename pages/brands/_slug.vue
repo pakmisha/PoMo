@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="brands != null">
     <div class="section-container">
       <h1
         class="heading-big section-title-distance mx-auto max-w-[1490px] text-center"
@@ -58,7 +58,34 @@
 </template>
 
 <script>
-export default {};
+import { mapGetters } from "vuex";
+export default {
+  async asyncData({ params, $axios, store }) {
+    const response = await $axios.get(`brand/${params.slug}`);
+    const brand = response.data.data.brand;
+    store.dispatch("brands/setBrand", brand);
+    return { brand };
+  },
+
+  data: () => ({
+    others: [],
+  }),
+  created() {
+    this.getOthers();
+  },
+  computed: {
+    ...mapGetters({
+      brands: "brands/brands",
+    }),
+  },
+  methods: {
+    async getOthers() {
+      const response = await this.$axios.get(`brands/others/${this.brand.id}`);
+      this.others = response.data.data.brands;
+      // console.log(this.project.id);
+    },
+  },
+};
 </script>
 
 <style></style>

@@ -12,8 +12,12 @@ export const mutations = {
 };
 export const actions = {
   async getProjects({ commit }) {
-    const response = await this.$axios.get("projects");
-    commit("SET_PROJECTS", response.data.data.projects);
+    try {
+      const response = await this.$axios.get("projects");
+      commit("SET_PROJECTS", response.data.data.projects);
+    } catch (e) {
+      console.log("ERROR GETTING PROJECTS");
+    }
   },
   async setProject(context, project) {
     context.commit("SET", project);

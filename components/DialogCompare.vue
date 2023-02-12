@@ -1,6 +1,6 @@
 <template>
   <div class="dialog-compare">
-    <div class="dialog-compare-wrapper">
+    <div class="dialog-compare-wrapper" v-if="compare.length > 0">
       <p class="mb-3 text-sm font-medium uppercase text-dark">
         сравнение товаров ({{ compare.length }})
       </p>
@@ -39,6 +39,12 @@
           Перейти на страницу сравнения
         </a>
       </div>
+      <div class="arrow">
+        <img src="~/assets/img/icons/arrow-grey.png" alt="" />
+      </div>
+    </div>
+    <div class="dialog-compare-wrapper" v-else>
+      <h1 class="text-sm uppercase text-dark">Выберите товары для сравнения</h1>
       <div class="arrow">
         <img src="~/assets/img/icons/arrow-grey.png" alt="" />
       </div>
