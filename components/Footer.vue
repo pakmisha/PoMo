@@ -15,24 +15,26 @@
             <p class="main-link">Компания</p>
             <ul class="list">
               <li>
-                <UILink link="" class="simple-link">О нас</UILink>
+                <UILink link="/about" class="simple-link">О нас</UILink>
               </li>
               <li>
-                <UILink link="" class="simple-link">Услуги</UILink>
+                <UILink link="/services" class="simple-link">Услуги</UILink>
               </li>
               <li>
-                <UILink link="" class="simple-link"
+                <UILink link="/projects" class="simple-link"
                   >Реализованные проекты</UILink
                 >
               </li>
               <li>
-                <UILink link="" class="simple-link">Бренды</UILink>
+                <UILink link="/brands" class="simple-link">Бренды</UILink>
               </li>
               <li>
-                <UILink link="" class="simple-link">Сотрудничество</UILink>
+                <UILink link="/cooperation" class="simple-link"
+                  >Сотрудничество</UILink
+                >
               </li>
               <li>
-                <UILink link="" class="simple-link">Контакты</UILink>
+                <UILink link="/contacts" class="simple-link">Контакты</UILink>
               </li>
             </ul>
           </li>

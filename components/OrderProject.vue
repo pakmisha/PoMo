@@ -44,7 +44,11 @@
       <UISwiperButtons class="swiper-buttons-centered" />
     </div>
     <div class="mt-5 flex items-center justify-center lg:mt-10">
-      <UIButton class="btn-primary">Заказать услугу дизайна интерьера</UIButton>
+      <UIButton
+        class="btn-primary"
+        @click="$nuxt.$emit('open-modal', 'design-service')"
+        >Заказать услугу дизайна интерьера</UIButton
+      >
     </div>
   </div>
 </template>

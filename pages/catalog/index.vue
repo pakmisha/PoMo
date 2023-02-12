@@ -3,9 +3,9 @@
     <div class="section-container">
       <UIPath />
     </div>
-    <div class="section-container section-distance-bottom">
+    <!-- <div class="section-container section-distance-bottom">
       <SubCategory :categories="categories" />
-    </div>
+    </div> -->
     <section class="section-container">
       <ProductsWrapper />
     </section>

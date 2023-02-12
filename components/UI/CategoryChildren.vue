@@ -1,13 +1,16 @@
 <template>
   <div
     class="sub-category pl-3"
-    :class="{ active: active.includes(category.id) }"
+    :class="{
+      active: active.includes(category.id),
+      'no-children': category.childrens.length <= 0,
+    }"
   >
     <button
       class="flex w-full items-center justify-between"
       @click.prevent="toggleSubcategory(category)"
     >
-      <div class="block text-sm font-medium uppercase text-dark">
+      <div class="title-toggle">
         {{ category.title[$i18n.locale] }}
       </div>
       <div class="subcategory-toggle-icon" v-if="category.childrens.length > 0">
@@ -27,7 +30,11 @@
         </svg>
       </div>
     </button>
-    <div v-for="(item, index) in category.childrens" :key="'category-' + index">
+    <div
+      class="sub-category-content"
+      v-for="(item, index) in category.childrens"
+      :key="'category-' + index"
+    >
       <UICategoryChildren
         v-if="item.childrens"
         :category="item"
@@ -69,4 +76,30 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.sub-category {
+  .title-toggle {
+    @apply block text-sm font-medium uppercase text-dark;
+  }
+  .sub-category-content {
+    @apply invisible h-0 -translate-y-2 opacity-0 transition-all duration-300 ease-in-quad;
+  }
+  .subcategory-toggle-icon {
+    @apply transition-all duration-300 ease-in-quad;
+  }
+  &.no-children {
+    .title-toggle {
+      @apply normal-case text-grey;
+    }
+  }
+  &.active {
+    @apply block;
+    .sub-category-content {
+      @apply visible mt-1 h-auto translate-y-0 opacity-100;
+    }
+    .subcategory-toggle-icon {
+      @apply rotate-180;
+    }
+  }
+}
+</style>

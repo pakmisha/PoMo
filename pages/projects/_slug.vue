@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div v-if="projects != null">
+    <ModalsDesignModal />
     <section>
       <div class="section-container section-title-distance">
         <div class="text-center">
@@ -92,8 +93,9 @@ export default {
     store.dispatch("projects/setProject", project);
     return { project };
   },
+
   data: () => ({
-    others: null,
+    others: [],
   }),
   created() {
     this.getOthers();

@@ -52,7 +52,6 @@
                 </div>
               </UISlider>
             </div>
-
             <!-- <Product :product="product" /> -->
           </div>
         </div>

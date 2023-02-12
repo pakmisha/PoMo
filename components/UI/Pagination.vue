@@ -5,7 +5,7 @@
         <a
           :href="index"
           :class="{ active: link.active }"
-          v-html="link.label.replace(' Назад', '').replace('Вперёд ', '')"
+          v-html="link.label.replace('Назад', '').replace('Вперёд ', '')"
           @click.prevent="change(link)"
         ></a>
       </li>

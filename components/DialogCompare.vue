@@ -2,22 +2,36 @@
   <div class="dialog-compare">
     <div class="dialog-compare-wrapper">
       <p class="mb-3 text-sm font-medium uppercase text-dark">
-        сравнение товаров (2)
+        сравнение товаров ({{ compare.length }})
       </p>
       <div
         class="dialog-compare-item"
-        v-for="(item, index) in items"
+        v-for="(item, index) in compare"
         :key="index"
       >
         <div class="compare-image">
-          <img :src="require(`~/assets/img/${item.image}`)" alt="" />
+          <img :src="$asset(item.media[0].file_name)" alt="" />
         </div>
         <div class="flex w-[70%] flex-col justify-between">
           <div>
-            <p class="mb-2 text-sm font-medium">{{ item.title }}</p>
-            <p class="text-grey">Цвет: {{ item.color }}</p>
+            <p class="mb-2 text-sm font-medium">
+              {{ item.title[$i18n.locale] }}
+            </p>
+            <div class="flex items-center">
+              <div class="mr-2 text-sm text-grey">Цвет(а):</div>
+              <div
+                class="flex flex-wrap"
+                v-for="(color, index) in item.colors"
+                :key="'color-' + index"
+              >
+                <div
+                  class="mr-2 h-4 w-4 rounded-full border border-dark"
+                  :style="'background-color:' + color.color_code"
+                ></div>
+              </div>
+            </div>
           </div>
-          <p class="font-medium">{{ item.cost }}</p>
+          <p class="font-medium">{{ item.new_price | formatPrice }} ₸</p>
         </div>
       </div>
       <div class="flex justify-center">
@@ -33,23 +47,33 @@
 </template>
 
 <script>
+import formatPrice from "~/filters/formatPrice";
 export default {
   data: () => ({
-    items: [
-      {
-        image: "products/product-1.jpeg",
-        title: "Кресло TANGYUAN, MAYA A2267–2A   ",
-        color: "белый",
-        cost: "515 300 ₸",
-      },
-      {
-        image: "products/product-1.jpeg",
-        title: "Кресло TANGYUAN, MAYA A2267–2A   ",
-        color: "белый",
-        cost: "515 300 ₸",
-      },
-    ],
+    // items: [
+    //   {
+    //     image: "products/product-1.jpeg",
+    //     title: "Кресло TANGYUAN, MAYA A2267–2A   ",
+    //     color: "белый",
+    //     cost: "515 300 ₸",
+    //   },
+    //   {
+    //     image: "products/product-1.jpeg",
+    //     title: "Кресло TANGYUAN, MAYA A2267–2A   ",
+    //     color: "белый",
+    //     cost: "515 300 ₸",
+    //   },
+    // ],
   }),
+  props: {
+    compare: {
+      type: Array,
+      required: true,
+    },
+  },
+  filters: {
+    formatPrice,
+  },
 };
 </script>
 
@@ -61,9 +85,9 @@ export default {
     .dialog-compare-item {
       @apply flex border-b border-grey-light py-5;
       .compare-image {
-        @apply mr-4 w-[30%] border border-grey-light;
+        @apply mr-4 h-[100px] w-[30%] border border-grey-light;
         img {
-          @apply h-full w-full;
+          @apply h-full w-full object-cover;
         }
       }
     }

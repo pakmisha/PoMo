@@ -86,7 +86,7 @@
             class="has-dialog has-dialog-compare z-30 hidden lg:block"
           >
             <img src="~/assets/img/icons/compare.svg" alt="" />
-            <DialogCompare />
+            <DialogCompare :compare="compare" />
           </UILink>
           <UILink :link="$auth.state.loggedIn ? '/cabinet' : '/login'">
             <img src="~/assets/img/icons/person.svg" alt="" />
@@ -140,6 +140,7 @@ export default {
     ...mapGetters({
       categories: "products/categories",
       cart: "cart/items",
+      compare: "compare/compare",
     }),
     availableLocales() {
       return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale);
