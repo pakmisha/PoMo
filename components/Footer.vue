@@ -51,7 +51,9 @@
                 >
               </li>
               <li>
-                <UILink link="" class="simple-link">Способы оплаты</UILink>
+                <UILink link="/page/payment" class="simple-link"
+                  >Способы оплаты</UILink
+                >
               </li>
               <li>
                 <UILink link="" class="simple-link"
@@ -59,7 +61,9 @@
                 >
               </li>
               <li>
-                <UILink link="" class="simple-link">Варианты доставки</UILink>
+                <UILink link="/page/delivery" class="simple-link"
+                  >Варианты доставки</UILink
+                >
               </li>
               <li>
                 <UILink link="" class="simple-link">Возврат и обмен</UILink>

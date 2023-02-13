@@ -38,7 +38,6 @@
 
 <script>
 import formatPrice from "~/filters/formatPrice";
-// import formatDate from "~/filters/formatDate";
 export default {
   data: () => ({
     orders: [],
@@ -48,7 +47,6 @@ export default {
   },
   filters: {
     formatPrice,
-    // formatDate,
   },
   methods: {
     async get() {

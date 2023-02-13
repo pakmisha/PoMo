@@ -17,10 +17,17 @@
             <label for="">Имя*</label>
             <input v-model="name" type="text" class="input-primary" />
           </div>
+          <div
+            class="text-error"
+            v-if="errors && errors.hasOwnProperty('name')"
+          >
+            {{ errors.name[0] }}
+          </div>
           <div class="input-wrapper">
             <label for="">Услуга</label>
             <input
-              v-model="service"
+              v-if="service"
+              v-model="service.title[$i18n.locale]"
               disabled
               type="text"
               class="input-primary"
@@ -30,25 +37,34 @@
             <label for="">Адрес электронной почты*</label>
             <input v-model="email" type="email" class="input-primary" />
           </div>
+          <div
+            class="text-error"
+            v-if="errors && errors.hasOwnProperty('email')"
+          >
+            {{ errors.email[0] }}
+          </div>
           <div class="input-wrapper">
             <label for="">Номер телефона*</label>
-            <input v-model="phone" type="text" class="input-primary" />
+            <input v-model="phone" type="phone" class="input-primary" />
+          </div>
+          <div
+            class="text-error"
+            v-if="errors && errors.hasOwnProperty('phone')"
+          >
+            {{ errors.phone[0] }}
           </div>
         </div>
         <div class="flex items-center justify-center">
-          <button class="btn-primary mt-4" @click.prevent="send">
+          <UIButton :loader="loading" class="btn-primary mt-4" @click="send">
             оставить заявку
-          </button>
+          </UIButton>
         </div>
         <p class="mt-4 text-center text-xs text-grey">
           Нажимая кнопку «Оставить заявку», вы соглашаетесь с политикой
           конфиденциальности
         </p>
       </form>
-      <button
-        class="absolute top-4 right-4"
-        @click.prevent="$nuxt.$emit('close-modal', 'services')"
-      >
+      <button class="absolute top-4 right-4" @click.prevent="closeModal">
         <svg
           width="16"
           height="16"
@@ -74,17 +90,45 @@ export default {
     service: null,
     email: null,
     phone: null,
+    loading: false,
+    errors: null,
   }),
-
+  created() {
+    this.$nuxt.$on("send", (item) => {
+      this.service = item;
+    });
+  },
   methods: {
     async send() {
-      const response = await this.$axios.post("services", {
-        name: this.name,
-        company: this.company,
-        email: this.email,
-        phone: this.phone,
-      });
-      $nuxt.$emit("close-modal", "services");
+      this.loading = true;
+      this.errors = null;
+      try {
+        const response = await this.$axios.post("services", {
+          name: this.name,
+          company: this.company,
+          email: this.email,
+          phone: this.phone,
+          service_id: this.service.id,
+        });
+        this.$toast.success(response.data.message);
+        this.closeModal();
+        this.reset();
+      } catch (e) {
+        this.handleValidationErrors(e);
+      } finally {
+        this.loading = false;
+      }
+    },
+    handleValidationErrors(e) {
+      if (e.response.status == 422) {
+        this.errors = e.response.data.errors;
+        this.$toast.error("Ошибка валидации данных!");
+      } else {
+        this.$toast.error(e.response.data.message);
+      }
+    },
+    closeModal() {
+      this.$nuxt.$emit("close-modal", "services");
     },
     reset() {
       this.name = null;

@@ -49,10 +49,6 @@
                   stroke-width="16"
                 ></line></svg
             ></span>
-
-            <!-- <div class="product-compare-dialog">
-            <p>Добавить в сравнение</p>
-          </div> -->
           </UIButton>
           <UIButton
             class="favourite"

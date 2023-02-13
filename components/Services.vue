@@ -11,12 +11,9 @@
             <p class="plaintext mb-10 lg:mb-14 2xl:mb-20">
               {{ item.description[$i18n.locale] }}
             </p>
-            <button
-              class="btn-primary"
-              @click.prevent="$nuxt.$emit('open-modal', 'services')"
-            >
+            <UIButton class="btn-primary" @click="openModal(item)">
               Заказать услугу
-            </button>
+            </UIButton>
           </div>
           <div class="services__right">
             <div
@@ -104,9 +101,16 @@ export default {
   },
   methods: {
     async getServices() {
-      const response = await this.$axios.get("services");
-      this.services = response.data.data.services;
-      console.log(this.services);
+      try {
+        const response = await this.$axios.get("services");
+        this.services = response.data.data.services;
+      } catch (e) {
+        console.log("ERROR GETTING SERVICES");
+      }
+    },
+    openModal(item) {
+      this.$nuxt.$emit("open-modal", "services");
+      this.$nuxt.$emit("send", item);
     },
   },
 };

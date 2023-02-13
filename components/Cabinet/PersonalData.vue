@@ -123,6 +123,7 @@ export default {
     async logout() {
       this.loading = true;
       await this.$auth.logout();
+      this.$store.dispatch("favourites/get");
     },
     async update() {
       this.loading = true;

@@ -17,7 +17,7 @@ export const actions = {
     const response = await this.$axios.get("favourites");
     commit("SET", response.data.data.favourites);
   },
-  async toggle({ commit }, product) {
+  async toggle({ commit, dispatch }, product) {
     if (this.$auth.$state.loggedIn == true) {
       if (product.favourite_id == null) {
         try {
@@ -25,6 +25,7 @@ export const actions = {
             product_id: product.id,
           });
           commit("ADD", response.data.data.favourite);
+          dispatch("get");
           this._vm.$toast.success(response.data.message);
         } catch (e) {
           this._vm.$toast.error(e.response.data.message);
