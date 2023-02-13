@@ -19,7 +19,7 @@
             <div class="orders-item">{{ item.order_number }}</div>
             <div class="orders-item">{{ formatDate(item.created_at) }}</div>
             <div class="orders-item">{{ item.price | formatPrice }} ₸</div>
-            <div class="orders-item">Ожидается оплата</div>
+            <div class="orders-item">{{ item.status_human[$i18n.locale] }}</div>
             <!-- <div class="orders-item" v-if="item.hasOwnProperty(in_process)">
               {{ item.in_process }}
             </div> -->

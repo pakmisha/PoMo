@@ -143,7 +143,7 @@ export default {
         cost: "160 200 ₸",
       },
       {
-        position: "top-[87%] left-[33%] dialog-mobile",
+        position: "top-[87%] left-[33%] dialog-reverse",
         name: "Напольный светильник ILUMI ARC KD FL–14017 WH",
         cost: "160 200 ₸",
       },
@@ -181,7 +181,7 @@ export default {
     }
   }
 }
-.dialog-mobile {
+.dialog-reverse {
   .mark {
     &:hover {
       .mark-center {
@@ -192,10 +192,10 @@ export default {
       }
     }
     .dialog {
-      @apply invisible absolute left-full -bottom-4 top-auto z-20 ml-6 min-w-[200px] translate-x-10  scale-95 opacity-0 transition-all duration-300 ease-in-out lg:bottom-auto lg:-top-5 lg:min-w-[300px];
+      @apply invisible absolute left-full -bottom-4 top-auto z-20 ml-6 min-w-[200px] translate-x-10  scale-95 opacity-0 transition-all duration-300 ease-in-out lg:min-w-[300px];
       &-wrapper {
         .arrow {
-          @apply absolute -left-5 bottom-[7%] top-auto lg:bottom-auto lg:top-[9%];
+          @apply absolute -left-5 bottom-[7%] top-auto;
           img {
             @apply w-5;
           }

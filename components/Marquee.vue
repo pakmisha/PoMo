@@ -6,19 +6,19 @@
     <div class="marquee">
       <div
         class="marquee-item"
-        v-for="(item, index) in settings.ribbon.split('/')"
+        v-for="(item, index) in settings.ribbon"
         :key="index"
       >
-        {{ item }}
+        {{ item.title[$i18n.locale] }}
       </div>
     </div>
     <div aria-hidden="true" class="marquee">
       <div
         class="marquee-item"
-        v-for="(item, index) in settings.ribbon.split('/')"
+        v-for="(item, index) in settings.ribbon"
         :key="index"
       >
-        {{ item }}
+        {{ item.title[$i18n.locale] }}
       </div>
     </div>
   </div>

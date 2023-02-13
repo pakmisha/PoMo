@@ -1,16 +1,16 @@
 <template>
-  <div>
+  <div v-if="product != null">
     <AboutProduct :product="product" />
-    <ProductDetails />
+    <!-- <ProductDetails /> -->
     <section>
       <div class="section-container section-distance">
         <div class="flex flex-col justify-between lg:flex-row lg:items-center">
           <h2 class="heading-primary mb-4 lg:mb-0">
-            Другие товары бренда camerich
+            Другие товары бренда {{ product.brand.name }}
           </h2>
-          <UILink link="" class="btn-primary"
+          <!-- <UILink link="" class="btn-primary"
             >Смотреть все товары этого бренда</UILink
-          >
+          > -->
         </div>
         <div class="swiper relative mt-10">
           <UISlider
@@ -48,7 +48,9 @@
                 v-for="(product, index) in interesting"
                 :key="index"
               >
-                <Product :product="product" />
+                <div class="h-[350px] lg:h-[400px]">
+                  <Product :product="product" />
+                </div>
               </div>
             </div>
           </UISlider>
@@ -56,7 +58,7 @@
         </div>
       </div>
     </section>
-    <section>
+    <section v-if="atmosphere.length > 0">
       <div class="section-container section-distance">
         <div class="flex flex-col justify-between lg:flex-row lg:items-center">
           <h2 class="heading-primary mb-4 lg:mb-0">
@@ -100,7 +102,9 @@
                 v-for="(product, index) in atmosphere"
                 :key="index"
               >
-                <Product :product="product" />
+                <div class="h-[350px] lg:h-[400px]">
+                  <Product :product="product" />
+                </div>
               </div>
             </div>
           </UISlider>
@@ -121,8 +125,8 @@ export default {
     return { product };
   },
   data: () => ({
-    interesting: null,
-    atmosphere: null,
+    interesting: [],
+    atmosphere: [],
   }),
   created() {
     this.getInteresting();
@@ -131,7 +135,9 @@ export default {
   methods: {
     async getInteresting() {
       try {
-        const response = await this.$axios.get('products/interests/' + this.product.id)
+        const response = await this.$axios.get(
+          "products/other-products/" + this.product.id
+        );
         this.interesting = response.data.data.products;
       } catch (e) {
         console.log("ERROR GETTING INTERESTING");
@@ -139,12 +145,14 @@ export default {
     },
     async getAtmosphere() {
       try {
-        const response = await this.$axios.get('products/atmosphere/' + this.product.id);
+        const response = await this.$axios.get(
+          "products/atmosphere/" + this.product.id
+        );
         this.atmosphere = response.data.data.products;
       } catch (e) {
         console.log("ERROR GETTING ATMOSPHERE");
       }
-    }
+    },
   },
 };
 </script>

@@ -2,10 +2,10 @@
   <div>
     <div class="flex lg:justify-end">
       <div
-        class="mb-10 flex w-full flex-col items-center justify-between lg:mb-20 lg:w-[75%] lg:flex-row"
+        class="mb-10 flex w-full flex-col items-center justify-between lg:mb-14 lg:w-[75%] lg:flex-row"
       >
         <h2 class="heading-primary">
-          {{ category == null ? "Все товары" : category.title[$i18n.locale] }}
+          {{ category == null ? "Все" : category.title[$i18n.locale] }}
         </h2>
         <div class="mt-4 lg:mt-0">
           <select
@@ -42,8 +42,8 @@
         <CategorySidebar />
         <FiltersSidebar />
       </div>
-      <div class="w-full lg:w-[75%]">
-        <div v-if="products" class="products">
+      <div v-if="products" class="w-full lg:w-[75%]">
+        <div class="products">
           <div
             class="products__item"
             v-for="(product, index) in products.data"
@@ -52,7 +52,11 @@
             <Product :product="product" />
           </div>
         </div>
-        <UIPagination :data="products" @changed="getResults" />
+        <UIPagination
+          v-if="products.data.length >= 1"
+          :data="products"
+          @changed="getResults"
+        />
       </div>
     </div>
   </div>

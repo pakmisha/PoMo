@@ -28,13 +28,13 @@
     <div>
       <h3 class="mb-5 text-sm font-medium uppercase text-dark">Цена</h3>
       <div class="w-full">
-        <div class="range-slider">
+        <div class="range-slider" v-if="maxPrice">
           <div class="relative pt-7">
             <input
               type="range"
               class="input-range"
-              min="0"
-              max="1000"
+              :min="minPrice"
+              :max="maxPrice"
               step="1"
               v-model="sliderMin"
             />
@@ -42,8 +42,8 @@
             <input
               type="range"
               class="input-range"
-              min="0"
-              max="1000"
+              :min="minPrice"
+              :max="maxPrice"
               step="1"
               v-model="sliderMax"
             />
@@ -53,8 +53,8 @@
               <input
                 type="number"
                 class="input-range-number"
-                min="0"
-                max="1000"
+                :min="minPrice"
+                :max="maxPrice"
                 step="1"
                 v-model="sliderMin"
               />
@@ -64,8 +64,8 @@
               <input
                 type="number"
                 class="input-range-number"
-                min="0"
-                max="1000"
+                :min="minPrice"
+                :max="maxPrice"
                 step="1"
                 v-model="sliderMax"
               />
@@ -136,31 +136,34 @@ export default {
   computed: {
     ...mapGetters({
       filters: "products/filters",
+      products: "products/products",
+      maxPrice: "products/maxPrice",
+      minPrice: "products/minPrice",
     }),
     sliderMin: {
       get: function () {
-        var val = parseInt(this.minAngle);
+        var val = parseInt(this.minPrice);
         return val;
       },
       set: function (val) {
         val = parseInt(val);
-        if (val > this.maxAngle) {
-          this.maxAngle = val;
+        if (val > this.maxPrice) {
+          this.maxPrice = val;
         }
-        this.minAngle = val;
+        this.minPrice = val;
       },
     },
     sliderMax: {
       get: function () {
-        var val = parseInt(this.maxAngle);
+        var val = parseInt(this.maxPrice);
         return val;
       },
       set: function (val) {
         val = parseInt(val);
-        if (val < this.minAngle) {
-          this.minAngle = val;
+        if (val < this.minPrice) {
+          this.minPrice = val;
         }
-        this.maxAngle = val;
+        this.maxPrice = val;
       },
     },
   },

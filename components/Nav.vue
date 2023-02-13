@@ -32,7 +32,10 @@
                     v-for="(item, index) in categories"
                     :key="index"
                   >
-                    <UILink link="" class="submenu-item">
+                    <UILink
+                      :link="'/category/' + item.slug"
+                      class="submenu-item"
+                    >
                       <div class="submenu-item-image mb-2">
                         <img :src="$asset(item.image)" alt="" />
                       </div>

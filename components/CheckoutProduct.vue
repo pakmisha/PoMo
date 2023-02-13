@@ -11,7 +11,12 @@
           {{ product.title }}
         </p>
         <p class="text-sm text-grey">
-          Цвет: {{ product.color_langs[$i18n.locale] }}
+          Цвет:
+          {{
+            product.color == undefined
+              ? product.color_langs[$i18n.locale]
+              : product.color[$i18n.locale]
+          }}
         </p>
       </div>
       <div class="text-sm font-medium">{{ product.price | formatPrice }} ₸</div>

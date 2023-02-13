@@ -1,10 +1,11 @@
 <template>
   <div v-if="brands != null">
+    <ModalsRequestModal />
     <div class="section-container">
       <h1
         class="heading-big section-title-distance mx-auto max-w-[1490px] text-center"
       >
-        Camerich
+        {{ brand.name }}
       </h1>
     </div>
     <section>
@@ -14,8 +15,7 @@
         >
           <div class="mb-5 w-full lg:mb-0 lg:w-2/5">
             <h2 class="heading-secondary mb-10">
-              Camerich — мировой бренд, представленный в шестидесяти странах
-              мира
+              {{ brand.small_description[$i18n.locale] }}
             </h2>
             <button
               class="btn-primary"
@@ -25,26 +25,10 @@
             </button>
           </div>
 
-          <div class="plaintext w-full lg:w-2/5">
-            Головной офис находится в Лондоне. Производство было налажено
-            в 1997 году на базе фабрики Beijing Triumph Furniture, которая
-            до этого производила мебель для известных итальянских марок мебели.
-            Сейчас на площади в 10 000 квадратных метров размещается новейшее
-            производственное оборудование, на котором производится роскошная
-            мебель.
-            <br />
-            <br />
-            Глобальный охват позволяет Camerich использовать самое лучшее сырьё
-            и привлекать самых лучших мастеров для создания продуктов, которые
-            прослужат долгое время.
-            <br />
-            <br />
-
-            Продукция Camerich насчитывает более 100 видов мебели для гостиной,
-            спальни, кухни и кабинета. Мебель Camerich широко используется
-            в частных квартирах и домах, отелях, ресторанах, офисах и в других
-            типах помещений в Европе, Америке, Азии и Австралии.
-          </div>
+          <div
+            class="plaintext w-full lg:w-2/5"
+            v-html="brand.description[$i18n.locale]"
+          ></div>
         </div>
       </div>
     </section>
@@ -61,9 +45,10 @@
 import { mapGetters } from "vuex";
 export default {
   async asyncData({ params, $axios, store }) {
-    const response = await $axios.get(`brand/${params.slug}`);
+    const response = await $axios.get(`brands/${params.slug}`);
     const brand = response.data.data.brand;
     store.dispatch("brands/setBrand", brand);
+    store.dispatch("products/setBrand", brand.id);
     return { brand };
   },
 
@@ -82,7 +67,6 @@ export default {
     async getOthers() {
       const response = await this.$axios.get(`brands/others/${this.brand.id}`);
       this.others = response.data.data.brands;
-      // console.log(this.project.id);
     },
   },
 };

@@ -3,7 +3,9 @@
     <div class="modal-wrapper">
       <div class="order-item flex justify-between">
         <div>
-          <h3 class="heading-secondary mb-3">Заказ от 19.12.2022</h3>
+          <h3 class="heading-secondary mb-3">
+            Заказ от {{ formatDate(order.created_at) }}
+          </h3>
           <p class="text-sm text-grey">
             Номер заказа: {{ order.order_number }}
           </p>
@@ -25,7 +27,7 @@
         <p class="mb-2 text-sm font-medium uppercase text-dark">
           Статус заказа:
         </p>
-        <p class="text-sm text-grey">Ожидается доставка</p>
+        <p class="text-sm text-grey">{{ order.status_human[$i18n.locale] }}</p>
       </div>
       <div class="order-item">
         <p class="mb-2 text-sm font-medium uppercase text-dark">Оплата:</p>
@@ -76,17 +78,27 @@ export default {
   filters: {
     formatPrice,
   },
+
   created() {
     this.$nuxt.$on("send", (item) => {
       this.order = item;
     });
   },
-  // watch: {
-  //   get() {
-  //     this.$nuxt.$emit("sendOrder", item);
-  //     console.log(item);
-  //   },
-  // },
+  methods: {
+    formatDate(date) {
+      var d = new Date(date),
+        month = "" + (d.getMonth() + 1),
+        day = "" + d.getDate(),
+        year = d.getFullYear();
+      if (month.length < 2) {
+        month = "0" + month;
+      }
+      if (day.length < 2) {
+        day = "0" + day;
+      }
+      return [day, month, year].join(".");
+    },
+  },
 };
 </script>
 

@@ -21,14 +21,14 @@
       <div class="swiper-wrapper">
         <div
           class="swiper-slide h-auto"
-          v-for="(item, index) in brands"
+          v-for="(brand, index) in brands"
           :key="index"
         >
           <div class="brand-item">
             <div class="brand-item-image">
               <img
                 class="h-full w-full object-cover"
-                :src="$asset(item.image)"
+                :src="$asset(brand.image)"
                 alt=""
               />
               <div class="corner absolute -right-[7px] -bottom-[6px]">
@@ -36,21 +36,23 @@
               </div>
               <div class="brand-logo absolute left-10 bottom-5">
                 <img
-                  class="w-[100px] lg:w-[120px] 2xl:w-[200px]"
-                  :src="$asset(item.logo)"
+                  class="w-[100px] object-contain lg:w-[120px] 2xl:w-[200px]"
+                  :src="$asset(brand.logo)"
                   alt=""
                 />
               </div>
             </div>
             <div class="brand-item-description">
               <p class="brand-title">
-                {{ item.small_description[$i18n.locale] }}
+                {{ brand.small_description[$i18n.locale] }}
               </p>
               <p class="brand-description">
-                {{ item.description[$i18n.locale] }}
+                {{ brand.description[$i18n.locale] }}
               </p>
               <div class="flex">
-                <a href="" class="btn-primary"> читать больше </a>
+                <UILink :link="'/brands/' + brand.slug" class="btn-primary">
+                  читать больше
+                </UILink>
               </div>
             </div>
           </div>
@@ -66,6 +68,7 @@ export default {
   computed: {
     ...mapGetters({
       brands: "brands/brands",
+      brand: "brands/brand",
     }),
   },
 };

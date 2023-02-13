@@ -13,7 +13,7 @@
     <section class="section-container section-distance">
       <div class="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4">
         <AllBrands
-          :brands="brand"
+          :brand="brand"
           v-for="(brand, index) in brands"
           :key="index"
         />

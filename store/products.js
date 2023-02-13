@@ -5,7 +5,10 @@ export const state = () => ({
   category: null,
   filters: [],
   selectedFilters: {},
+  brand: null,
   sort: null,
+  maxPrice: 0,
+  minPrice: 0,
 });
 export const mutations = {
   SET_PRODUCTS(state, products) {
@@ -42,6 +45,17 @@ export const mutations = {
   SET_SORT(state, sort) {
     state.sort = sort;
   },
+  SET_BRAND(state, brand) {
+    state.brand = brand;
+    state.category = null;
+    state.selectedFilters = {};
+  },
+  MIN_PRICE(state, minPrice) {
+    state.minPrice = minPrice;
+  },
+  MAX_PRICE(state, maxPrice) {
+    state.maxPrice = maxPrice;
+  },
 };
 export const actions = {
   setProduct(context, product) {
@@ -51,9 +65,15 @@ export const actions = {
     try {
       const response = await this.$axios.post(
         `catalog?category=${state.category.slug}&page=${page}`,
-        { ...state.selectedFilters, order_by: state.sort }
+        {
+          ...state.selectedFilters,
+          order_by: state.sort,
+          brand_id: state.brand,
+        }
       );
       commit("SET_PRODUCTS", response.data.data.products);
+      commit("MIN_PRICE", response.data.data.minPrice);
+      commit("MAX_PRICE", response.data.data.maxPrice);
     } catch (e) {
       console.log("ERROR GETTING PRODUCTS");
     }
@@ -90,6 +110,10 @@ export const actions = {
     commit("SET_SORT", sort);
     dispatch("getProducts");
   },
+  setBrand({ commit, dispatch }, brand) {
+    commit("SET_BRAND", brand);
+    dispatch("getProducts");
+  },
 };
 export const getters = {
   selected(state) {
@@ -112,5 +136,11 @@ export const getters = {
   },
   sort(state) {
     return state.sort;
+  },
+  minPrice(state) {
+    return state.minPrice;
+  },
+  maxPrice(state) {
+    return state.maxPrice;
   },
 };

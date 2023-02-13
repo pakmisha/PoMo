@@ -6,7 +6,7 @@
     <!-- <div class="section-container section-distance-bottom">
       <SubCategory :categories="categories" />
     </div> -->
-    <section class="section-container mt-10">
+    <section class="section-container mt-10 lg:mt-14">
       <ProductsWrapper />
     </section>
   </div>

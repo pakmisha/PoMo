@@ -1,5 +1,6 @@
 <template>
   <section>
+    <ModalsConsultationModal />
     <div class="section-container mt-10">
       <div class="flex flex-col justify-between lg:flex-row">
         <div
@@ -61,27 +62,25 @@
           <div class="parameters">
             <div class="parameters-item">
               <div class="parameters-item-left">Коллекция</div>
-              <div class="parameters-item-right">EDEN</div>
+              <div class="parameters-item-right">
+                {{ product.collection.name }}
+              </div>
             </div>
             <div class="parameters-item">
-              <div class="parameters-item-left">Ширина</div>
-              <div class="parameters-item-right">191</div>
+              <div class="parameters-item-left">Бренд</div>
+              <div class="parameters-item-right">
+                {{ product.brand.name }}
+              </div>
             </div>
-            <div class="parameters-item">
-              <div class="parameters-item-left">Высота</div>
-              <div class="parameters-item-right">225</div>
-            </div>
-            <div class="parameters-item">
-              <div class="parameters-item-left">Высота до сидения</div>
-              <div class="parameters-item-right">34</div>
-            </div>
-            <div class="parameters-item">
-              <div class="parameters-item-left">Глубина</div>
-              <div class="parameters-item-right">108</div>
-            </div>
-            <div class="parameters-item">
-              <div class="parameters-item-left">Материал опор</div>
-              <div class="parameters-item-right">Металл</div>
+            <div
+              class="parameters-item"
+              v-for="(param, index) in product.characteristics"
+              :key="index"
+            >
+              <div class="parameters-item-left">
+                {{ param.title[$i18n.locale] }}
+              </div>
+              <div class="parameters-item-right">{{ param.value }}</div>
             </div>
             <div class="parameters-item">
               <div class="parameters-item-left">Цвет</div>
@@ -117,34 +116,48 @@
                 />
               </div>
 
-              <div class="flex items-center">
-                <UIButton class="btn-secondary mr-4" @click="addToCart"
-                  >добавить в корзину</UIButton
-                >
-                <UIButton
-                  class="favourite mr-3"
-                  :class="{ active: product.favourite_id != null }"
-                  @click="$store.dispatch('favourites/toggle', product)"
-                >
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
+              <div class="flex flex-col lg:flex-row lg:items-center">
+                <div class="flex">
+                  <UIButton class="btn-secondary mr-4" @click="addToCart"
+                    >добавить в корзину</UIButton
                   >
-                    <path
-                      d="M5.17008 12.6482L11.4677 18.505C11.6478 18.6725 11.7379 18.7563 11.8393 18.7907C11.9435 18.826 12.0565 18.826 12.1607 18.7907C12.2621 18.7563 12.3522 18.6725 12.5323 18.505L12.5323 18.505L18.8299 12.6482C20.6224 10.9812 20.8395 8.21923 19.3296 6.29262L19.0731 5.96523C17.2789 3.67583 13.7055 4.06236 12.4423 6.68247C12.2638 7.05288 11.7362 7.05288 11.5577 6.68247C10.2945 4.06236 6.72114 3.67583 4.92694 5.96522L4.67036 6.29262C3.16047 8.21923 3.37764 10.9812 5.17008 12.6482Z"
-                      stroke="#101820"
+                </div>
+
+                <div class="mt-3 flex items-center lg:mt-0">
+                  <UIButton
+                    class="favourite mr-3"
+                    :class="{ active: product.favourite_id != null }"
+                    @click="$store.dispatch('favourites/toggle', product)"
+                  >
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M5.17008 12.6482L11.4677 18.505C11.6478 18.6725 11.7379 18.7563 11.8393 18.7907C11.9435 18.826 12.0565 18.826 12.1607 18.7907C12.2621 18.7563 12.3522 18.6725 12.5323 18.505L12.5323 18.505L18.8299 12.6482C20.6224 10.9812 20.8395 8.21923 19.3296 6.29262L19.0731 5.96523C17.2789 3.67583 13.7055 4.06236 12.4423 6.68247C12.2638 7.05288 11.7362 7.05288 11.5577 6.68247C10.2945 4.06236 6.72114 3.67583 4.92694 5.96522L4.67036 6.29262C3.16047 8.21923 3.37764 10.9812 5.17008 12.6482Z"
+                        stroke="#101820"
+                      />
+                    </svg>
+                  </UIButton>
+                  <UIButton @click="$store.dispatch('compare/add', product)">
+                    <img
+                      v-if="!compare.find((item) => item.id == product.id)"
+                      src="~/assets/img/icons/compare.svg"
+                      alt=""
                     />
-                  </svg>
-                </UIButton>
-                <UIButton>
-                  <img src="~/assets/img/icons/compare.svg" alt="" />
-                </UIButton>
+                    <p v-else class="text-sm text-grey">
+                      Товар добавлен для сравнения
+                    </p>
+                  </UIButton>
+                </div>
               </div>
             </div>
-            <UIButton class="mt-4 text-sm text-grey underline"
+            <UIButton
+              @click="$nuxt.$emit('open-modal', 'consultation')"
+              class="mt-4 text-sm text-grey underline"
               >Получить консультацию</UIButton
             >
           </div>
@@ -155,6 +168,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import formatPrice from "~/filters/formatPrice";
 export default {
   props: {
@@ -163,6 +177,7 @@ export default {
       required: true,
     },
   },
+
   data: () => ({
     quantity: 1,
     color: null,
@@ -170,6 +185,11 @@ export default {
   }),
   filters: {
     formatPrice,
+  },
+  computed: {
+    ...mapGetters({
+      compare: "compare/compare",
+    }),
   },
   mounted() {
     const additionThumbs = this.$swiper(this.$refs.swiper_thumbs, {

@@ -10,7 +10,7 @@
 
         <p
           class="title"
-          v-for="(param, index) in compare[0].characteristics"
+          v-for="(param, index) in compare.characteristics"
           :key="index"
         >
           {{ param.title[$i18n.locale] }}
