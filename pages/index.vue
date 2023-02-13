@@ -49,6 +49,7 @@
     </section>
     <PopularProducts />
     <Society />
+    <UIFloatingButtons />
   </div>
 </template>
 

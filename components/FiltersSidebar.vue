@@ -11,7 +11,7 @@
             class="input-checkbox mr-2"
             @click="sendStatus($event.target.value)"
           />
-          <label class="text-sm text-dark" for="check-1">В наличии</label>
+          <label class="text-sm text-dark">В наличии</label>
         </div>
         <div class="flex items-center">
           <input
@@ -21,31 +21,27 @@
             class="input-checkbox mr-2"
             @click="sendStatus($event.target.value)"
           />
-          <label class="text-sm text-dark" for="check-2">На заказ</label>
+          <label class="text-sm text-dark">На заказ</label>
         </div>
       </div>
     </div>
     <div>
       <h3 class="mb-5 text-sm font-medium uppercase text-dark">Цена</h3>
       <div class="w-full">
-        <div class="range-slider" v-if="maxPrice">
+        <div class="range-slider" v-if="true">
           <div class="relative pt-7">
             <input
               type="range"
               class="input-range"
-              :min="minPrice"
-              :max="maxPrice"
               step="1"
-              v-model="sliderMin"
+              v-model="price_range.min"
             />
 
             <input
               type="range"
               class="input-range"
-              :min="minPrice"
-              :max="maxPrice"
               step="1"
-              v-model="sliderMax"
+              v-model="price_range.max"
             />
           </div>
           <div class="flex">
@@ -53,10 +49,8 @@
               <input
                 type="number"
                 class="input-range-number"
-                :min="minPrice"
-                :max="maxPrice"
                 step="1"
-                v-model="sliderMin"
+                v-model="price_range.min"
               />
             </div>
 
@@ -64,10 +58,8 @@
               <input
                 type="number"
                 class="input-range-number"
-                :min="minPrice"
-                :max="maxPrice"
                 step="1"
-                v-model="sliderMax"
+                v-model="price_range.max"
               />
             </div>
           </div>
@@ -130,41 +122,27 @@
 import { mapGetters } from "vuex";
 export default {
   data: () => ({
-    minAngle: 0,
-    maxAngle: 1000,
+    price_range: {
+      min: 5000,
+      max: 2342342,
+    },
   }),
   computed: {
     ...mapGetters({
       filters: "products/filters",
       products: "products/products",
-      maxPrice: "products/maxPrice",
-      minPrice: "products/minPrice",
+      // maxPrice: "products/maxPrice",
+      // minPrice: "products/minPrice",
     }),
-    sliderMin: {
-      get: function () {
-        var val = parseInt(this.minPrice);
-        return val;
+  },
+  watch: {
+    price_range: {
+      handler(newValue, oldValue) {
+        const minPrice = newValue.min;
+        const maxPrice = newValue.max;
+        this.$store.dispatch("products/setPrices", { minPrice, maxPrice });
       },
-      set: function (val) {
-        val = parseInt(val);
-        if (val > this.maxPrice) {
-          this.maxPrice = val;
-        }
-        this.minPrice = val;
-      },
-    },
-    sliderMax: {
-      get: function () {
-        var val = parseInt(this.maxPrice);
-        return val;
-      },
-      set: function (val) {
-        val = parseInt(val);
-        if (val < this.minPrice) {
-          this.minPrice = val;
-        }
-        this.maxPrice = val;
-      },
+      deep: true,
     },
   },
   methods: {

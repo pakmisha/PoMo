@@ -54,6 +54,13 @@
       @apply bg-dark text-white;
     }
   }
+  &-float {
+    @apply relative flex h-12 w-12 translate-y-0 items-center justify-center rounded-full bg-dark;
+    &:after {
+      content: "";
+      @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
+    }
+  }
 }
 .swiper {
   .swiper-buttons {

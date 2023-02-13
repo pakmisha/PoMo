@@ -69,6 +69,7 @@ export const actions = {
           ...state.selectedFilters,
           order_by: state.sort,
           brand_id: state.brand,
+          prices: [state.minPrice, state.maxPrice],
         }
       );
       commit("SET_PRODUCTS", response.data.data.products);
@@ -112,6 +113,11 @@ export const actions = {
   },
   setBrand({ commit, dispatch }, brand) {
     commit("SET_BRAND", brand);
+    dispatch("getProducts");
+  },
+  setPrices({ commit, dispatch }, { minPrice, maxPrice }) {
+    commit("MIN_PRICE", minPrice);
+    commit("MAX_PRICE", maxPrice);
     dispatch("getProducts");
   },
 };

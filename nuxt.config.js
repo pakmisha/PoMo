@@ -23,6 +23,7 @@ export default {
     { src: "~/plugins/axios.js" },
     { src: "~/plugins/swiper.js", mode: "client" },
     { src: "~/plugins/toaster.js", mode: "client" },
+    { src: "~/plugins/range.js", mode: "client" },
     { src: "~/plugins/directive.js", mode: "client" },
   ],
 
