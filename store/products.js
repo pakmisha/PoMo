@@ -115,9 +115,9 @@ export const actions = {
     commit("SET_BRAND", brand);
     dispatch("getProducts");
   },
-  setPrices({ commit, dispatch }, { minPrice, maxPrice }) {
-    commit("MIN_PRICE", minPrice);
-    commit("MAX_PRICE", maxPrice);
+  setPrices({ commit, dispatch }, value) {
+    commit("MIN_PRICE", value[0]);
+    commit("MAX_PRICE", value[1]);
     dispatch("getProducts");
   },
 };

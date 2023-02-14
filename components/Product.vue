@@ -19,8 +19,8 @@
               src="~/assets/img/icons/compare.svg"
               alt=""
             />
-            <span v-else
-              ><svg
+            <span v-else>
+              <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
                 height="20"
@@ -47,8 +47,9 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="16"
-                ></line></svg
-            ></span>
+                ></line>
+              </svg>
+            </span>
           </UIButton>
           <UIButton
             class="favourite"

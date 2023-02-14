@@ -56,6 +56,9 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
+  created() {
+    this.$store.dispatch("home/get");
+  },
   computed: {
     ...mapGetters({
       home: "home/home",

@@ -2,7 +2,6 @@ export default {
   created() {
     this.$store.dispatch("settings/get"); // dispatch - вызывает actions
     this.$store.dispatch("brands/getBrands");
-    this.$store.dispatch("home/get");
     this.$store.dispatch("products/getCategories");
     this.$store.dispatch("cart/get");
     this.$store.dispatch("projects/getProjects");

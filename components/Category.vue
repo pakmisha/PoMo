@@ -62,7 +62,9 @@
                 <div
                   class="absolute left-1/2 bottom-4 -translate-x-1/2 lg:bottom-6"
                 >
-                  <a href="" class="btn-primary">перейти в каталог </a>
+                  <UILink :link="'/category/' + item.slug" class="btn-primary"
+                    >перейти в каталог
+                  </UILink>
                 </div>
               </div>
             </div>

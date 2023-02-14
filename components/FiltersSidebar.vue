@@ -28,7 +28,32 @@
     <div>
       <h3 class="mb-5 text-sm font-medium uppercase text-dark">Цена</h3>
       <div class="w-full">
-        <div class="range-slider" v-if="true">
+        <vue-slider
+          v-model="price_range.value"
+          :interval="10"
+          :max="1000"
+          :tooltip="'none'"
+          :height="2"
+        ></vue-slider>
+        <div class="mt-5 flex">
+          <div class="mr-3 w-1/2">
+            <input
+              type="number"
+              class="input-range-number"
+              step="1"
+              v-model="price_range.value[0]"
+            />
+          </div>
+          <div class="w-1/2">
+            <input
+              type="number"
+              class="input-range-number"
+              step="1"
+              v-model="price_range.value[1]"
+            />
+          </div>
+        </div>
+        <!-- <div class="range-slider" v-if="true">
           <div class="relative pt-7">
             <input
               type="range"
@@ -63,7 +88,7 @@
               />
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="space-y-10" v-for="(filter, index) in filters" :key="index">
@@ -112,21 +137,24 @@
         </div>
       </div>
     </div>
-    <div class="flex">
+    <!-- <div class="flex">
       <UIButton class="btn-primary">сбросить фильтры</UIButton>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+
 export default {
   data: () => ({
     price_range: {
-      min: 5000,
-      max: 2342342,
+      value: [0, 1000],
+      // min: 5000,
+      // max: 2342342,
     },
   }),
+
   computed: {
     ...mapGetters({
       filters: "products/filters",
@@ -138,9 +166,8 @@ export default {
   watch: {
     price_range: {
       handler(newValue, oldValue) {
-        const minPrice = newValue.min;
-        const maxPrice = newValue.max;
-        this.$store.dispatch("products/setPrices", { minPrice, maxPrice });
+        const value = newValue.value;
+        this.$store.dispatch("products/setPrices", value);
       },
       deep: true,
     },
