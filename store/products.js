@@ -9,6 +9,7 @@ export const state = () => ({
   sort: null,
   maxPrice: 0,
   minPrice: 0,
+  prices: [],
 });
 export const mutations = {
   SET_PRODUCTS(state, products) {
@@ -50,11 +51,19 @@ export const mutations = {
     state.category = null;
     state.selectedFilters = {};
   },
-  MIN_PRICE(state, minPrice) {
-    state.minPrice = minPrice;
-  },
-  MAX_PRICE(state, maxPrice) {
-    state.maxPrice = maxPrice;
+  // MIN_PRICE(state, minPrice) {
+  //   state.minPrice = minPrice;
+  // },
+  // MAX_PRICE(state, maxPrice) {
+  //   state.maxPrice = maxPrice;
+  // },
+  SET_PRICES(state, value) {
+    state.minPrice = value[0];
+    state.maxPrice = value[1];
+    state.prices = [state.minPrice, state.maxPrice];
+    if (state.minPrice == null && state.maxPrice == null) {
+      state.prices = [];
+    }
   },
 };
 export const actions = {
@@ -69,7 +78,7 @@ export const actions = {
           ...state.selectedFilters,
           order_by: state.sort,
           brand_id: state.brand,
-          prices: [state.minPrice, state.maxPrice],
+          prices: state.prices,
         }
       );
       commit("SET_PRODUCTS", response.data.data.products);
@@ -116,8 +125,9 @@ export const actions = {
     dispatch("getProducts");
   },
   setPrices({ commit, dispatch }, value) {
-    commit("MIN_PRICE", value[0]);
-    commit("MAX_PRICE", value[1]);
+    // commit("MIN_PRICE", value[0]);
+    // commit("MAX_PRICE", value[1]);
+    commit("SET_PRICE", value);
     dispatch("getProducts");
   },
 };

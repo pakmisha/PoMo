@@ -1,12 +1,12 @@
 <template>
   <div class="dialog-compare">
-    <div class="dialog-compare-wrapper" v-if="compare.length > 0">
+    <div class="dialog-compare-wrapper" v-if="compare?.products?.length > 0">
       <p class="mb-3 text-sm font-medium uppercase text-dark">
-        сравнение товаров ({{ compare.length }})
+        сравнение товаров ({{ compare.products.length }})
       </p>
       <div
         class="dialog-compare-item"
-        v-for="(item, index) in compare"
+        v-for="(item, index) in compare.products"
         :key="index"
       >
         <div class="compare-image">
@@ -53,29 +53,14 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import formatPrice from "~/filters/formatPrice";
 export default {
-  data: () => ({
-    // items: [
-    //   {
-    //     image: "products/product-1.jpeg",
-    //     title: "Кресло TANGYUAN, MAYA A2267–2A   ",
-    //     color: "белый",
-    //     cost: "515 300 ₸",
-    //   },
-    //   {
-    //     image: "products/product-1.jpeg",
-    //     title: "Кресло TANGYUAN, MAYA A2267–2A   ",
-    //     color: "белый",
-    //     cost: "515 300 ₸",
-    //   },
-    // ],
-  }),
-  props: {
-    compare: {
-      type: Array,
-      required: true,
-    },
+  data: () => ({}),
+  computed: {
+    ...mapGetters({
+      compare: "compare/compare",
+    }),
   },
   filters: {
     formatPrice,

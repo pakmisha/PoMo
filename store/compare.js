@@ -6,9 +6,9 @@ export const mutations = {
     state.compare = compare;
   },
   ADD(state, product) {
-    const item = state.compare.find((i) => i.id == product.id);
+    const item = state.compare.products.find((i) => i.id == product.id);
     if (!item) {
-      state.compare.push(product);
+      state.compare.products.push(product);
     }
   },
   REMOVE(state, product) {
@@ -19,13 +19,13 @@ export const actions = {
   async get({ commit }) {
     try {
       const response = await this.$axios.get("compare");
-      commit("SET", response.data.data.products);
+      commit("SET", response.data.data);
     } catch (e) {
       console.log("ERROR GETTING COMPARE");
     }
   },
   async add({ commit, state, dispatch }, product) {
-    const item = state.compare.find((i) => i.id == product.id);
+    const item = state.compare.products.find((i) => i.id == product.id);
     if (!item) {
       try {
         const response = await this.$axios.post(`compare/${product.id}`);

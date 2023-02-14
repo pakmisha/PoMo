@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="compare.length > 0">
+    <div v-if="compare?.products?.length > 0">
       <div class="section-container">
         <h1
           class="heading-big section-title-distance mx-auto max-w-[1490px] text-center"
@@ -42,7 +42,7 @@
                 <div class="swiper-wrapper">
                   <div
                     class="swiper-slide"
-                    v-for="(item, index) in compare"
+                    v-for="(item, index) in compare.products"
                     :key="index"
                   >
                     <div class="flex h-[450px]">
