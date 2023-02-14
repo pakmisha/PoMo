@@ -16,6 +16,7 @@
             @change="sortBy($event)"
           >
             <option :value="null" disabled selected>Сортировать по:</option>
+            <option value="all">Все:</option>
             <option value="price_asc">Сначала дешевле:</option>
             <option value="price_desc">Сначала дороже:</option>
           </select>

@@ -45,6 +45,9 @@ export const mutations = {
   },
   SET_SORT(state, sort) {
     state.sort = sort;
+    if (state.sort == "all") {
+      state.sort = null;
+    }
   },
   SET_BRAND(state, brand) {
     state.brand = brand;
@@ -82,8 +85,12 @@ export const actions = {
         }
       );
       commit("SET_PRODUCTS", response.data.data.products);
-      commit("MIN_PRICE", response.data.data.minPrice);
-      commit("MAX_PRICE", response.data.data.maxPrice);
+      // commit("MIN_PRICE", response.data.data.minPrice);
+      // commit("MAX_PRICE", response.data.data.maxPrice);
+      commit("SET_PRICES", [
+        response.data.data.minPrice,
+        response.data.data.maxPrice,
+      ]);
     } catch (e) {
       console.log("ERROR GETTING PRODUCTS");
     }

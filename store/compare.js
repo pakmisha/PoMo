@@ -12,7 +12,10 @@ export const mutations = {
     }
   },
   REMOVE(state, product) {
-    console.log(product);
+    state.compare.products.splice(
+      state.compare.products.indexOf(product.id),
+      1
+    );
   },
 };
 export const actions = {

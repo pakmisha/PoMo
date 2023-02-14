@@ -76,7 +76,10 @@
       <p class="product-bottom-title">
         {{ product.title[$i18n.locale] }}
       </p>
-      <p class="text-sm">{{ product.new_price | formatPrice }} ₸</p>
+      <p class="text-sm" v-if="product.new_price != null">
+        {{ product.new_price | formatPrice }} ₸
+      </p>
+      <p v-else class="text-sm text-grey">На заказ</p>
     </div>
   </UILink>
 </template>
