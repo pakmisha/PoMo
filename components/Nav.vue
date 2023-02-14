@@ -29,7 +29,7 @@
                 <div class="swiper-wrapper">
                   <div
                     class="swiper-slide"
-                    v-for="(item, index) in categories"
+                    v-for="(item, index) in categories.slice(1)"
                     :key="index"
                   >
                     <UILink
@@ -91,7 +91,7 @@
             <img src="~/assets/img/icons/compare.svg" alt="" />
             <DialogCompare />
           </UILink>
-          <UILink :link="$auth.state.loggedIn ? '/cabinet' : '/login'">
+          <UILink :link="$auth.$state.loggedIn ? '/cabinet' : '/login'">
             <img src="~/assets/img/icons/person.svg" alt="" />
           </UILink>
           <UILink link="/favorite" class="hidden lg:block">

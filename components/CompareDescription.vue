@@ -15,60 +15,68 @@
         v-for="(product, index) in compare.products"
         :key="index"
       >
-        <div class="compare__content__item">
+        <div v-if="compare.compares.brand" class="compare__content__item">
           <span v-if="product.brand != null">{{ product.brand.name }}</span>
           <span v-else> - </span>
         </div>
-        <div class="compare__content__item">
+        <div
+          v-if="compare.compares.countertop_materials"
+          class="compare__content__item"
+        >
           <span v-if="product.countertop_materials != null">{{
             product.countertop_materials.title[$i18n.locale]
           }}</span>
           <span v-else> - </span>
         </div>
-        <div class="compare__content__item">
+        <div v-if="compare.compares.collection" class="compare__content__item">
           <span v-if="product.collection != null">{{
             product.collection.name
           }}</span>
           <span v-else> - </span>
         </div>
-        <div class="compare__content__item">
+        <div v-if="compare.compares.shapes" class="compare__content__item">
           <span v-if="product.shapes != null">{{
             product.shapes.title[$i18n.locale]
           }}</span>
           <span v-else> - </span>
         </div>
-        <div class="compare__content__item">
+        <div v-if="compare.compares.purposes" class="compare__content__item">
           <span v-if="product.purposes != null">{{
             product.purposes.title[$i18n.locale]
           }}</span>
           <span v-else> - </span>
         </div>
-        <div class="compare__content__item">
+        <div
+          v-if="compare.compares.corpus_materials"
+          class="compare__content__item"
+        >
           <span v-if="product.corpus_materials != null">{{
             product.corpus_materials.title[$i18n.locale]
           }}</span>
           <span v-else> - </span>
         </div>
-        <div class="compare__content__item">
+        <div v-if="compare.compares.mattresses" class="compare__content__item">
           <span v-if="product.mattresses != null">{{
             product.mattresses.size
           }}</span>
           <span v-else> - </span>
         </div>
-        <div
-          class="compare__content__item"
-          v-for="(char, index) in product.characteristics"
-          :key="index"
-        >
-          <span v-if="product.characteristics.length > 0">{{
-            char.value
-          }}</span>
-        </div>
-        <div
-          class="compare__content__item"
-          v-if="product.characteristics.length < 1"
-        >
-          <span> - </span>
+        <div>
+          <div
+            class="compare__content__item"
+            v-for="(char, index) in product.characteristics"
+            :key="index"
+          >
+            <span v-if="product.characteristics.length > 0">{{
+              char.value
+            }}</span>
+          </div>
+          <div
+            class="compare__content__item"
+            v-if="product.characteristics.length < 1"
+          >
+            <span> - </span>
+          </div>
         </div>
       </div>
     </div>

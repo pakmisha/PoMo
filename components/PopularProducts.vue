@@ -52,7 +52,9 @@
               v-for="(product, index) in products"
               :key="index"
             >
-              <Product :product="product" />
+              <div class="h-[350px] lg:h-[500px]">
+                <Product :product="product" />
+              </div>
             </div>
           </div>
         </UISlider>

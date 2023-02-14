@@ -1,6 +1,6 @@
 <template>
   <section>
-    <ModalsConsultationModal />
+    <ModalsConsultationModal :product_id="product.id" />
     <div class="section-container mt-10">
       <div class="flex flex-col justify-between lg:flex-row">
         <div
@@ -18,7 +18,7 @@
               >
                 <div class="h-[140px] w-full">
                   <img
-                    :src="$asset(item.file_name)"
+                    :src="$asset(item.id + '/' + item.file_name)"
                     class="h-full w-full object-cover"
                     alt=""
                   />
@@ -36,7 +36,7 @@
                 <div class="h-full w-full border border-grey">
                   <img
                     class="h-full w-full object-cover"
-                    :src="$asset(item.file_name)"
+                    :src="$asset(item.id + '/' + item.file_name)"
                     alt=""
                   />
                 </div>
@@ -54,19 +54,18 @@
               {{ product.new_price | formatPrice }} ₸
             </p>
           </div>
-          <div>
-            <p class="plaintext">
-              {{ product.description[$i18n.locale] }}
-            </p>
-          </div>
+          <div
+            class="plaintext"
+            v-html="product.description[$i18n.locale]"
+          ></div>
           <div class="parameters">
-            <div class="parameters-item">
+            <div class="parameters-item" v-if="product.collection">
               <div class="parameters-item-left">Коллекция</div>
               <div class="parameters-item-right">
                 {{ product.collection.name }}
               </div>
             </div>
-            <div class="parameters-item">
+            <div class="parameters-item" v-if="product.brand">
               <div class="parameters-item-left">Бренд</div>
               <div class="parameters-item-right">
                 {{ product.brand.name }}
@@ -144,7 +143,11 @@
                   </UIButton>
                   <UIButton @click="$store.dispatch('compare/add', product)">
                     <img
-                      v-if="!compare.find((item) => item.id == product.id)"
+                      v-if="
+                        !compare?.products?.find(
+                          (item) => item.id == product.id
+                        )
+                      "
                       src="~/assets/img/icons/compare.svg"
                       alt=""
                     />

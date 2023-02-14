@@ -21,7 +21,7 @@
       <div class="swiper-wrapper">
         <div
           class="swiper-slide h-auto"
-          v-for="(brand, index) in brands"
+          v-for="(brand, index) in brands.slice(0, 4)"
           :key="index"
         >
           <div class="brand-item">
@@ -46,9 +46,10 @@
               <p class="brand-title">
                 {{ brand.small_description[$i18n.locale] }}
               </p>
-              <p class="brand-description">
-                {{ brand.description[$i18n.locale] }}
-              </p>
+              <p
+                class="brand-description"
+                v-html="brand.description[$i18n.locale]"
+              ></p>
               <div class="flex">
                 <UILink :link="'/brands/' + brand.slug" class="btn-primary">
                   читать больше

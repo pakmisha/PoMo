@@ -35,6 +35,14 @@
       </section>
       <AboutUs :about="about" />
       <OurMission :mission="about" />
+      <div class="section-container section-distance">
+        <p class="mx-auto mb-5 max-w-[1000px] text-center text-sm text-grey">
+          {{ about.mission_description[$i18n.locale] }}
+        </p>
+        <div>
+          <img :src="$asset(about.mission_bg_image2)" alt="" />
+        </div>
+      </div>
     </div>
   </div>
 </template>

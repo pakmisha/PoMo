@@ -1,5 +1,9 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+  ssr: false,
+  server: {
+    port: 3000, // default: 3000
+  },
   head: {
     title: "POMO",
     htmlAttrs: {
@@ -9,9 +13,21 @@ export default {
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { hid: "description", name: "description", content: "" },
-      { name: "format-detection", content: "telephone=no" },
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    link: [
+      {
+        rel: "icon",
+        type: "image/png",
+        href: "favicon-32x32.png",
+        sizes: "32x32",
+      },
+      {
+        rel: "icon",
+        type: "image/png",
+        href: "favicon-16x16.png",
+        sizes: "16x16",
+      },
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css

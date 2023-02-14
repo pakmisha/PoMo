@@ -34,7 +34,7 @@
             <div class="h-[450px] w-full md:h-[600px] lg:h-[700px]">
               <img
                 class="h-full w-full object-cover"
-                :src="$asset(item.file_name)"
+                :src="$asset(item.id + '/' + item.file_name)"
                 alt=""
               />
             </div>

@@ -14,7 +14,7 @@
       <div class="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4">
         <AllBrands
           :brand="brand"
-          v-for="(brand, index) in brands"
+          v-for="(brand, index) in brands.slice(4)"
           :key="index"
         />
       </div>

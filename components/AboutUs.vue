@@ -4,7 +4,7 @@
       class="absolute left-0 top-0 -z-10 hidden h-[500px] w-[350px] lg:block 2xl:w-[500px]"
     >
       <img
-        :src="$asset(about.image_top_right)"
+        :src="$asset(about.about_us_image_top_left)"
         class="h-full w-full object-cover"
         alt=""
       />
@@ -48,7 +48,7 @@
         <img :src="$asset(about.about_us_image_bottom_left)" alt="" />
       </div>
       <div
-        class="mt-5 max-w-[700px] text-xl font-medium uppercase text-dark lg:mt-0 lg:text-2xl"
+        class="mt-5 max-w-[600px] text-xl font-medium uppercase text-dark lg:mt-0 lg:text-2xl"
       >
         {{ about.about_us_subtitle2[$i18n.locale] }}
       </div>

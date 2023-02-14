@@ -3,7 +3,10 @@
     <AboutProduct :product="product" />
     <!-- <ProductDetails /> -->
     <section>
-      <div class="section-container section-distance">
+      <div
+        class="section-container section-distance"
+        v-if="interesting.length > 0"
+      >
         <div class="flex flex-col justify-between lg:flex-row lg:items-center">
           <h2 class="heading-primary mb-4 lg:mb-0">
             Другие товары бренда {{ product.brand.name }}
@@ -64,7 +67,7 @@
           <h2 class="heading-primary mb-4 lg:mb-0">
             Поможет создать атмосферу
           </h2>
-          <UILink link="" class="btn-primary">Смотреть больше</UILink>
+          <!-- <UILink link="" class="btn-primary">Смотреть больше</UILink> -->
         </div>
         <div class="swiper relative mt-10">
           <UISlider

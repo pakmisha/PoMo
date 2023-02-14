@@ -95,7 +95,11 @@
               {{ errors.email[0] }}
             </div>
             <div
-              v-if="selectedAddress != null && !active"
+              v-if="
+                selectedAddress != null &&
+                !active &&
+                $auth.$state.loggedIn == true
+              "
               class="border border-dark px-5 py-5 lg:px-10 lg:py-10"
             >
               <div class="flex flex-col border-b border-dark py-4 lg:flex-row">
@@ -132,7 +136,10 @@
                 >
               </div>
             </div>
-            <div class="space-y-4" v-if="active">
+            <div
+              class="space-y-4"
+              v-if="active || $auth.$state.loggedIn == false"
+            >
               <div class="input-wrapper">
                 <label for="">Название адреса</label>
                 <input
@@ -214,7 +221,10 @@
                   placeholder="Сообщите дополнительную информацию в случае необходимости"
                 ></textarea>
               </div>
-              <UIButton class="btn-secondary" @click="addAddress"
+              <UIButton
+                v-if="$auth.$state.loggedIn"
+                class="btn-secondary"
+                @click="addAddress"
                 >Добавить новый адрес</UIButton
               >
             </div>
@@ -443,13 +453,24 @@ export default {
       if (this.delivery_error == null || this.payment_error == null) return;
       try {
         const response = await this.$axios.post("orders", {
-          fullname: this.user.full_name,
+          fullname: this.address_info.full_name
+            ? this.address_info.full_name != null
+            : this.user.full_name,
           phone: this.user.phone,
           email: this.user.email,
-          country: this.$store.getters["checkout/address"]["country"],
-          city: this.$store.getters["checkout/address"]["city"],
-          company: this.$store.getters["checkout/address"]["company"],
-          address: this.$store.getters["checkout/address"]["address"],
+          country: this.address_info.country
+            ? this.address_info.country != null
+            : this.$store.getters["checkout/address"]["country"],
+          city: this.address_info.city
+            ? this.address_info.city != null
+            : this.$store.getters["checkout/address"]["city"],
+          company: this.address_info.company
+            ? this.address_info.company != null ??
+              this.$store.getters["checkout/address"]["company"]
+            : null,
+          address: this.address_info.address
+            ? this.address_info.address != null
+            : this.$store.getters["checkout/address"]["address"],
           comment: this.address_info.comment,
           delivery_id: this.$store.getters["checkout/delivery"],
           payment_id: this.$store.getters["checkout/payment"],

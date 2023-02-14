@@ -16,7 +16,7 @@
             @change="sortBy($event)"
           >
             <option :value="null" disabled selected>Сортировать по:</option>
-            <option value="all">Все:</option>
+            <!-- <option value="all">Все:</option> -->
             <option value="price_asc">Сначала дешевле:</option>
             <option value="price_desc">Сначала дороже:</option>
           </select>
@@ -88,11 +88,11 @@ export default {
 
 <style lang="scss" scoped>
 .products {
-  @apply grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3;
+  @apply grid grid-cols-1 gap-5 md:grid-cols-2 2xl:grid-cols-3;
   &__item {
-    @apply h-[400px] lg:h-[450px];
+    @apply h-[350px] md:h-[400px] lg:h-[450px];
     &:nth-child(5n) {
-      @apply h-[400px] md:col-span-2 md:row-span-2 md:h-full;
+      @apply h-[350px] md:h-[400px] lg:h-[450px] 2xl:col-span-2 2xl:row-span-2 2xl:h-full;
     }
   }
 }

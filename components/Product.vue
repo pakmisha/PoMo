@@ -1,11 +1,14 @@
 <template>
   <UILink :link="'/catalog/' + product.slug" class="product">
-    <div v-if="product.media.length > 0" class="product-image">
-      <img class="first-image" :src="$asset(product.media[0].file_name)" />
+    <div v-if="product?.media?.length > 0" class="product-image">
+      <img
+        class="first-image"
+        :src="$asset(product.media[0].id + '/' + product.media[0].file_name)"
+      />
       <img
         class="second-image"
         v-if="product.media[1]"
-        :src="$asset(product.media[1].file_name)"
+        :src="$asset(product.media[1].id + '/' + product.media[1].file_name)"
         alt=""
       />
       <div class="absolute right-2 top-2">

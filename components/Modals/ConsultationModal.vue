@@ -16,16 +16,13 @@
             <label for="">Имя*</label>
             <input v-model="name" type="text" class="input-primary" />
             <div
-              v-if="errors && errors.hasOwnProperty('name')"
+              v-if="errors && errors.hasOwnProperty('fullname')"
               class="text-error"
             >
-              {{ errors.name[0] }}
+              {{ errors.fullname[0] }}
             </div>
           </div>
-          <div class="input-wrapper">
-            <label for="">Название компании</label>
-            <input v-model="company" type="text" class="input-primary" />
-          </div>
+
           <div class="input-wrapper">
             <label for="">Адрес электронной почты*</label>
             <input v-model="email" type="email" class="input-primary" />
@@ -81,9 +78,12 @@
 
 <script>
 export default {
+  props: {
+    product_id: Number,
+    required: true,
+  },
   data: () => ({
     name: null,
-    company: null,
     email: null,
     phone: null,
     loading: false,
@@ -94,14 +94,14 @@ export default {
       this.loading = true;
       this.errors = null;
       try {
-        const response = await this.$axios.post("cooperation", {
-          name: this.name,
-          company: this.company,
+        const response = await this.$axios.post("home/consultation", {
+          fullname: this.name,
           email: this.email,
           phone: this.phone,
+          product_id: this.product_id,
         });
         this.reset();
-        $nuxt.$emit("close-modal", "request");
+        $nuxt.$emit("close-modal", "consultation");
         this.$toast.success(response.data.message);
       } catch (e) {
         this.handleValidationErrors(e);
@@ -111,7 +111,6 @@ export default {
     },
     reset() {
       this.name = null;
-      this.company = null;
       this.email = null;
       this.phone = null;
     },

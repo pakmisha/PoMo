@@ -24,7 +24,7 @@ export default {
 .project {
   @apply flex h-full flex-col justify-between;
   &-image {
-    @apply relative h-full overflow-hidden border border-grey-light;
+    @apply relative h-[350px] overflow-hidden border border-grey-light lg:h-[400px] 2xl:h-[500px];
     img {
       @apply h-full w-full object-cover;
     }

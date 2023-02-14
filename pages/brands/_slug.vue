@@ -46,7 +46,7 @@ import { mapGetters } from "vuex";
 export default {
   async asyncData({ params, $axios, store }) {
     const response = await $axios.get(`brands/${params.slug}`);
-    const brand = response.data.data.brand;
+    const brand = response.data.brand;
     store.dispatch("brands/setBrand", brand);
     store.dispatch("products/setBrand", brand.id);
     return { brand };

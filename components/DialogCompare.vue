@@ -10,7 +10,10 @@
         :key="index"
       >
         <div class="compare-image">
-          <img :src="$asset(item.media[0].file_name)" alt="" />
+          <img
+            :src="$asset(item.media[0].id + '/' + item.media[0].file_name)"
+            alt=""
+          />
         </div>
         <div class="flex w-[70%] flex-col justify-between">
           <div>
