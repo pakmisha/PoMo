@@ -1,7 +1,7 @@
 <template>
   <div class="fixed bottom-5 right-5 z-30 lg:bottom-10 lg:right-10">
     <div class="flex items-center space-x-3">
-      <UILink link="settings.instagram" class="btn-float">
+      <a :href="settings.instagram" target="_blank" class="btn-float">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="21"
@@ -33,8 +33,8 @@
           ></rect>
           <circle cx="180" cy="76" r="12"></circle>
         </svg>
-      </UILink>
-      <UILink link="" class="btn-float">
+      </a>
+      <a :href="settings.whatsapp" target="_blank" class="btn-float">
         <svg
           width="21"
           height="21"
@@ -47,13 +47,20 @@
             fill="white"
           />
         </svg>
-      </UILink>
+      </a>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import { mapGetters } from "vuex";
+export default {
+  computed: {
+    ...mapGetters({
+      settings: "settings/settings",
+    }),
+  },
+};
 </script>
 
 <style></style>
