@@ -1,7 +1,7 @@
 <template>
   <section class="section-container section-distance relative">
     <div
-      class="absolute left-0 top-0 -z-10 hidden h-[500px] w-[350px] lg:block 2xl:w-[500px]"
+      class="absolute left-0 top-0 -z-10 hidden h-[500px] w-[350px] 2xl:block 2xl:w-[400px]"
     >
       <img
         :src="$asset(about.about_us_image_top_left)"

@@ -3,7 +3,7 @@
     <footer class="section-container section-distance bg-dark py-24 lg:py-32">
       <ModalsSubmitModal />
       <div class="flex flex-col justify-between lg:flex-row">
-        <div>
+        <div class="mr-5">
           <img
             class="w-[100px] 2xl:w-auto"
             src="~/assets/img/icons/logo-white.png"

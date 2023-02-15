@@ -36,7 +36,7 @@
               </div>
               <div class="brand-logo absolute left-10 bottom-5">
                 <img
-                  class="w-[100px] object-contain lg:w-[120px] 2xl:w-[200px]"
+                  class="h-[50px] w-[100px] object-contain lg:w-[120px] 2xl:w-[200px]"
                   :src="$asset(brand.logo)"
                   alt=""
                 />

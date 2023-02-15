@@ -5,7 +5,12 @@
         <nav class="flex flex-col items-center" v-if="submenu">
           <ul class="space-y-6">
             <li>
-              <UILink link="/about" class="mobile-link">О нас</UILink>
+              <UILink
+                @click.native="$nuxt.$emit('toggle', 'mobileMenu')"
+                link="/about"
+                class="mobile-link"
+                >О нас</UILink
+              >
             </li>
             <li>
               <!-- <button
@@ -32,23 +37,42 @@
                   </div>
                 </span>
               </button> -->
-              <UILink link="/catalog" class="mobile-link">Каталог</UILink>
+              <UILink
+                @click.native="$nuxt.$emit('toggle', 'mobileMenu')"
+                link="/catalog"
+                class="mobile-link"
+                >Каталог</UILink
+              >
             </li>
             <li>
-              <UILink link="/brands" class="mobile-link">Бренды</UILink>
+              <UILink
+                @click.native="$nuxt.$emit('toggle', 'mobileMenu')"
+                link="/brands"
+                class="mobile-link"
+                >Бренды</UILink
+              >
             </li>
             <li>
-              <UILink link="/projects" class="mobile-link"
+              <UILink
+                @click.native="$nuxt.$emit('toggle', 'mobileMenu')"
+                link="/projects"
+                class="mobile-link"
                 >Реализованные проекты</UILink
               >
             </li>
             <li>
-              <UILink link="/compare" class="mobile-link"
+              <UILink
+                @click.native="$nuxt.$emit('toggle', 'mobileMenu')"
+                link="/compare"
+                class="mobile-link"
                 >Сравнение товаров</UILink
               >
             </li>
             <li>
-              <UILink link="/favorite" class="mobile-link"
+              <UILink
+                @click.native="$nuxt.$emit('toggle', 'mobileMenu')"
+                link="/favorite"
+                class="mobile-link"
                 >Избранные товары</UILink
               >
             </li>
