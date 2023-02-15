@@ -23,7 +23,7 @@ export default {
 .toggle {
   @apply h-4 w-4 translate-x-0 rounded-full bg-grey-light transition-all duration-300 ease-in-out;
   &.active {
-    @apply translate-x-full bg-dark;
+    @apply translate-x-[110%] bg-dark;
   }
 }
 </style>

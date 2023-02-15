@@ -1,7 +1,7 @@
 <template>
   <div v-if="product != null">
     <AboutProduct :product="product" />
-    <!-- <ProductDetails /> -->
+    <ProductDetails :product="product" />
     <section>
       <div
         class="section-container section-distance"

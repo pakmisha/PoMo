@@ -41,7 +41,7 @@
           <path d="M13 1L1 13" stroke="#101820" stroke-linecap="round" />
         </svg>
       </button>
-      <div id="searchResults" class="search-result section-container">
+      <div id="searchResults" class="search-result section-container pb-7">
         <div class="search-result-content">
           <UISlider
             :options="{
@@ -70,11 +70,19 @@
                 class="swiper-slide"
               >
                 <div class="h-[300px] w-full 2xl:h-[400px]">
-                  <Product :product="product" />
+                  <Product :product="product" @click.native="active = false" />
                 </div>
               </div>
             </div>
           </UISlider>
+        </div>
+        <div class="mt-5 flex items-center justify-center lg:mt-7">
+          <UILink
+            link="/searchPage"
+            @click.native="active = false"
+            class="btn-primary"
+            >Смотреть все результаты</UILink
+          >
         </div>
       </div>
     </div>
@@ -168,7 +176,6 @@ export default {
     .search-result {
       @apply invisible absolute left-0 right-0 top-full -translate-y-5 bg-light opacity-0 transition-all duration-300 ease-in-quad;
       &-content {
-        @apply pb-7;
       }
       &.active {
         @apply visible translate-y-0 opacity-100;

@@ -25,7 +25,7 @@
                   >
                     {{ item.name }}
                   </p>
-                  <p class="mb-3 font-light lg:mb-4">
+                  <p class="mb-3 font-light">
                     {{ item.cost }}
                   </p>
                   <a href="" class="btn-primary">Смотреть товар</a>
