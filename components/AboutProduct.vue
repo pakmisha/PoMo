@@ -1,6 +1,7 @@
 <template>
   <section>
     <ModalsConsultationModal :product_id="product.id" />
+    <ModalsBuyModal :product_id="product.id" />
     <div class="section-container mt-10">
       <div class="flex flex-col justify-between lg:flex-row">
         <div
@@ -108,7 +109,7 @@
             <div
               class="flex flex-col space-y-3 lg:flex-row lg:items-center lg:space-y-0"
             >
-              <div class="flex">
+              <div class="flex" v-if="product.status == 'IN_STOCK'">
                 <UICounter
                   class="counter-big mr-3"
                   @change="quantity = $event"
@@ -117,8 +118,17 @@
 
               <div class="flex flex-col lg:flex-row lg:items-center">
                 <div class="flex">
-                  <UIButton class="btn-secondary mr-4" @click="addToCart"
+                  <UIButton
+                    v-if="product.status == 'IN_STOCK'"
+                    class="btn-secondary mr-4"
+                    @click="addToCart"
                     >добавить в корзину</UIButton
+                  >
+                  <UIButton
+                    v-else
+                    @click="$nuxt.$emit('open-modal', 'buy')"
+                    class="btn-secondary mr-4"
+                    >Заказать товар</UIButton
                   >
                 </div>
 

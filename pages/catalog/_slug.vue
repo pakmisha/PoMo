@@ -62,7 +62,7 @@
       </div>
     </section>
     <section v-if="atmosphere.length > 0">
-      <div class="section-container section-distance">
+      <div class="section-container mt-10 lg:mt-20">
         <div class="flex flex-col justify-between lg:flex-row lg:items-center">
           <h2 class="heading-primary mb-4 lg:mb-0">
             Поможет создать атмосферу

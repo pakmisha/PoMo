@@ -124,6 +124,8 @@ export default {
       this.loading = true;
       await this.$auth.logout();
       this.$store.dispatch("favourites/get");
+      this.$store.dispatch("addresses/get");
+      this.$store.dispatch("cart/get");
     },
     async update() {
       this.loading = true;

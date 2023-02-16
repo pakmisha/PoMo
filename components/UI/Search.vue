@@ -58,7 +58,7 @@
                   slidesPerView: 3.1,
                 },
                 1366: {
-                  slidesPerView: 4.1,
+                  slidesPerView: 4,
                 },
               },
             }"
@@ -67,7 +67,7 @@
               <div
                 v-for="(product, index) in products"
                 :key="index"
-                class="swiper-slide"
+                class="swiper-slide w-auto"
               >
                 <div class="h-[300px] w-full 2xl:h-[400px]">
                   <Product :product="product" @click.native="active = false" />
@@ -83,6 +83,12 @@
             class="btn-primary"
             >Смотреть все результаты</UILink
           >
+          <!-- <UIButton
+            @click="$router.push({ name: '/searchPage', params: { products } })"
+            @click.native="active = false"
+            class="btn-primary"
+            >Смотреть все результаты</UIButton
+          > -->
         </div>
       </div>
     </div>

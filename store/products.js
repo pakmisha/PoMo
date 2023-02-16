@@ -60,14 +60,14 @@ export const mutations = {
   // MAX_PRICE(state, maxPrice) {
   //   state.maxPrice = maxPrice;
   // },
-  SET_PRICES(state, value) {
-    state.minPrice = value[0];
-    state.maxPrice = value[1];
-    state.prices = [state.minPrice, state.maxPrice];
-    if (state.minPrice == null && state.maxPrice == null) {
-      state.prices = [];
-    }
-  },
+  // SET_PRICES(state, value) {
+  //   state.minPrice = value[0];
+  //   state.maxPrice = value[1];
+  //   state.prices = [state.minPrice, state.maxPrice];
+  //   if (state.minPrice == null && state.maxPrice == null) {
+  //     state.prices = [];
+  //   }
+  // },
 };
 export const actions = {
   setProduct(context, product) {
@@ -87,10 +87,15 @@ export const actions = {
       commit("SET_PRODUCTS", response.data.data.products);
       // commit("MIN_PRICE", response.data.data.minPrice);
       // commit("MAX_PRICE", response.data.data.maxPrice);
-      commit("SET_PRICES", [
-        response.data.data.minPrice,
-        response.data.data.maxPrice,
-      ]);
+      // commit("SET_PRICES", [
+      //   response.data.data.minPrice,
+      //   response.data.data.maxPrice,
+      // ]);
+      // console.log(
+      //   "getProducts",
+      //   response.data.data.minPrice,
+      //   response.data.data.maxPrice
+      // );
     } catch (e) {
       console.log("ERROR GETTING PRODUCTS");
     }
@@ -131,12 +136,12 @@ export const actions = {
     commit("SET_BRAND", brand);
     dispatch("getProducts");
   },
-  setPrices({ commit, dispatch }, value) {
-    // commit("MIN_PRICE", value[0]);
-    // commit("MAX_PRICE", value[1]);
-    commit("SET_PRICE", value);
-    dispatch("getProducts");
-  },
+  // setPrices({ commit, dispatch }, value) {
+  //   // commit("MIN_PRICE", value[0]);
+  //   // commit("MAX_PRICE", value[1]);
+  //   commit("SET_PRICE", value);
+  //   dispatch("getProducts");
+  // },
 };
 export const getters = {
   selected(state) {

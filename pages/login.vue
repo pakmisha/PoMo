@@ -85,6 +85,8 @@ export default {
         });
         this.$router.push("/");
         this.$store.dispatch("cart/get");
+        this.$store.dispatch("favourites/get");
+        this.$store.dispatch("addresses/get");
       } catch (e) {
         this.handleValidationErrors(e);
       } finally {

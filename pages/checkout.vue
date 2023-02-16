@@ -1,10 +1,12 @@
 <template>
   <section class="section-container mt-10">
     <div v-if="success">
-      <div class="flex justify-between">
-        <div class="w-full lg:w-1/2">
-          <h1 class="heading-primary mb-10">Спасибо! Ваш заказ оформлен</h1>
-          <p class="mb-10 text-sm text-grey">
+      <div class="mx-auto w-full max-w-[1490px]">
+        <div class="flex flex-col items-center">
+          <h1 class="heading-primary mb-10 text-center">
+            Спасибо! Ваш заказ оформлен
+          </h1>
+          <p class="mb-10 text-center text-sm text-grey">
             Оплата наличными или картой в офисе компании. После оплаты с вами
             свяжется сотрудник сервисной службы и сообщит дату и время доставки.
             <br />
@@ -18,7 +20,6 @@
             >
           </div>
         </div>
-        <div class="w-2/5"></div>
       </div>
     </div>
     <div v-else>
@@ -382,12 +383,16 @@ export default {
     addresses(addresses) {
       const isDef = addresses.find((i) => i.is_default);
       // this.selAddress = isDef;
+      // const item = { isDef };
       if (addresses) {
         this.selAddress = isDef?.id ?? addresses[0]["id"];
+        // this.$store.dispatch("checkout/address", item);
       }
     },
+    deep: true,
   },
   created() {
+    this.$store.dispatch("addresses/get");
     if (this.$auth.$state.loggedIn == true) {
       for (let i in this.user) {
         this.user[i] = this.$auth.$state.user[i];
@@ -458,9 +463,10 @@ export default {
             : this.user.full_name,
           phone: this.user.phone,
           email: this.user.email,
-          country: this.address_info.country
-            ? this.address_info.country != null
-            : this.$store.getters["checkout/address"]["country"],
+          country:
+            this.address_info.country != null
+              ? this.address_info.country
+              : this.$store.getters["checkout/address"]["country"],
           city: this.address_info.city
             ? this.address_info.city != null
             : this.$store.getters["checkout/address"]["city"],

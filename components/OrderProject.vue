@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="project.media.length > 0">
     <div class="swiper relative">
       <UISlider
         :options="{

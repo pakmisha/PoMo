@@ -2,6 +2,7 @@
   <div class="">
     <div v-if="compare?.products?.length > 0" class="compare">
       <div class="compare__nav">
+        <!-- <p class="title">{{ compare.product.title[$i18n.locale] }}</p> -->
         <p
           class="title"
           v-for="(param, index) in compare.compares"
@@ -15,6 +16,18 @@
         v-for="(product, index) in compare.products"
         :key="index"
       >
+        <div v-if="compare.compares.status" class="compare__content__item">
+          <span v-if="product.status_human != null">{{
+            product.status_human[$i18n.locale]
+          }}</span>
+          <span v-else> - </span>
+        </div>
+        <!-- <div v-if="compare.compares.title" class="compare__content__item">
+          <span v-if="product.title != null">{{
+            product.title[$i18n.locale]
+          }}</span>
+          <span v-else> - </span>
+        </div> -->
         <div v-if="compare.compares.brand" class="compare__content__item">
           <span v-if="product.brand != null">{{ product.brand.name }}</span>
           <span v-else> - </span>

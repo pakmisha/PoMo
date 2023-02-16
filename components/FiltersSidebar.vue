@@ -167,7 +167,7 @@ export default {
     price_range: {
       handler(newValue, oldValue) {
         const value = newValue.value;
-        this.$store.dispatch("products/setPrices", value);
+        // this.$store.dispatch("products/setPrices", value);
       },
       deep: true,
     },
