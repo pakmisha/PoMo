@@ -7,16 +7,17 @@
           <img src="~/assets/img/icons/logo.png" alt="" />
         </UILink>
       </div>
-
       <nav>
         <ul>
           <li>
-            <UILink link="/about" class="link text-sm uppercase text-dark"
+            <UILink link="/about" class="link-dark text-sm uppercase text-dark"
               >О нас</UILink
             >
           </li>
           <li class="has-submenu">
-            <UILink link="/catalog" class="link text-sm uppercase text-dark"
+            <UILink
+              link="/catalog"
+              class="link-dark text-sm uppercase text-dark"
               >Каталог</UILink
             >
             <div class="submenu section-container">
@@ -59,12 +60,14 @@
             </div>
           </li>
           <li>
-            <UILink link="/brands" class="link text-sm uppercase text-dark"
+            <UILink link="/brands" class="link-dark text-sm uppercase text-dark"
               >Бренды</UILink
             >
           </li>
           <li>
-            <UILink link="/projects" class="link text-sm uppercase text-dark"
+            <UILink
+              link="/projects"
+              class="link-dark text-sm uppercase text-dark"
               >Реализованные проекты</UILink
             >
           </li>
@@ -160,7 +163,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .top-panel {
   // @apply fixed top-0 left-0 right-0 z-50;
   @apply relative border-b border-dark;
@@ -188,7 +191,6 @@ export default {
                 @apply visible translate-y-0 opacity-100;
               }
             }
-
             .submenu {
               @apply invisible absolute left-0 top-[101%] right-0 z-50 w-full translate-y-10 bg-white pt-11 pb-16 opacity-0 shadow-md transition-all duration-500 ease-in-expo;
               &-item {

@@ -1,6 +1,6 @@
 <template>
   <div class="counter">
-    <UIButton class="counter-btn" @click="count--">
+    <UIButton :disabled="color == null" class="counter-btn" @click="count--">
       <svg
         width="12"
         height="1"
@@ -17,7 +17,7 @@
       </svg>
     </UIButton>
     <p>{{ count }}</p>
-    <UIButton class="counter-btn" @click="count++">
+    <UIButton :disabled="color == null" class="counter-btn" @click="count++">
       <svg
         width="16"
         height="17"
@@ -50,19 +50,34 @@ export default {
       default: 1,
       required: false,
     },
+    available: {
+      type: Number,
+    },
+    color: {
+      type: Object,
+    },
   },
   data() {
     return { count: this.value };
   },
+
   watch: {
     count(value) {
       if (value < 1) {
         this.count = 1;
       }
+      if (value > this.available) {
+        this.count = this.available;
+      }
       this.$emit("change", this.count);
+    },
+  },
+  methods: {
+    getValue() {
+      this.$emit("counter", value);
     },
   },
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped></style>

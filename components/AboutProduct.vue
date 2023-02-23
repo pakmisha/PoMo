@@ -86,19 +86,17 @@
               <div class="parameters-item-left">Цвет</div>
               <div class="parameters-item-right">
                 <div class="color">
-                  <div
-                    class="color-item"
-                    v-for="(item, index) in product.colors"
-                    :key="index"
-                  >
-                    <input
-                      type="radio"
-                      class="input-color"
-                      name="color-radio"
-                      v-model="color"
-                      :value="item"
-                      :style="'background-color:' + item.color_code"
-                    />
+                  <div v-for="(item, index) in colors" :key="index">
+                    <div class="color-item" v-if="item.available > 0">
+                      <input
+                        type="radio"
+                        class="input-color"
+                        name="color-radio"
+                        v-model="color"
+                        :value="item"
+                        :style="'background-color:' + item.color_code"
+                      />
+                    </div>
                   </div>
                 </div>
                 <div class="text-error" v-if="color_error">Выберите цвет</div>
@@ -111,9 +109,19 @@
             >
               <div class="flex" v-if="product.status == 'IN_STOCK'">
                 <UICounter
+                  v-if="color != null"
                   class="counter-big mr-3"
-                  @change="quantity = $event"
+                  @change="onChange($event)"
+                  :color="color"
+                  :available="color?.available"
                 />
+
+                <div
+                  v-else
+                  class="mr-3 rounded-full border border-dark bg-white px-5 py-3 text-sm"
+                >
+                  Выберите цвет
+                </div>
               </div>
 
               <div class="flex flex-col lg:flex-row lg:items-center">
@@ -168,6 +176,9 @@
                 </div>
               </div>
             </div>
+            <div class="mt-4 text-sm text-grey">
+              Максимальное кол-во товаров
+            </div>
             <UIButton
               @click="$nuxt.$emit('open-modal', 'consultation')"
               class="mt-4 text-sm text-grey underline"
@@ -189,9 +200,13 @@ export default {
       type: Object,
       required: true,
     },
+    colors: {
+      type: Array,
+      required: true,
+    },
   },
-
   data: () => ({
+    value: null,
     quantity: 1,
     color: null,
     color_error: null,
@@ -234,6 +249,7 @@ export default {
       },
     });
   },
+
   methods: {
     addToCart() {
       this.color_error = null;
@@ -248,11 +264,17 @@ export default {
       };
       this.$store.dispatch("cart/add", item);
     },
+    onChange(event) {
+      this.quantity = event;
+      console.log(event);
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.counter-big {
+}
 .swiper-product {
   @apply h-full w-full lg:w-[85%];
 }

@@ -16,26 +16,34 @@
               <p class="main-link">Компания</p>
               <ul class="list">
                 <li>
-                  <UILink link="/about" class="simple-link">О нас</UILink>
+                  <UILink link="/about" class="simple-link link-light"
+                    >О нас</UILink
+                  >
                 </li>
                 <li>
-                  <UILink link="/services" class="simple-link">Услуги</UILink>
+                  <UILink link="/services" class="simple-link link-light"
+                    >Услуги</UILink
+                  >
                 </li>
                 <li>
-                  <UILink link="/projects" class="simple-link"
+                  <UILink link="/projects" class="simple-link link-light"
                     >Реализованные проекты</UILink
                   >
                 </li>
                 <li>
-                  <UILink link="/brands" class="simple-link">Бренды</UILink>
+                  <UILink link="/brands" class="simple-link link-light"
+                    >Бренды</UILink
+                  >
                 </li>
                 <li>
-                  <UILink link="/cooperation" class="simple-link"
+                  <UILink link="/cooperation" class="simple-link link-light"
                     >Сотрудничество</UILink
                   >
                 </li>
                 <li>
-                  <UILink link="/contacts" class="simple-link">Контакты</UILink>
+                  <UILink link="/contacts" class="simple-link link-light"
+                    >Контакты</UILink
+                  >
                 </li>
               </ul>
             </li>
@@ -47,27 +55,27 @@
                 <li>
                   <UILink
                     :link="$auth.$state.loggedIn ? '/cabinet' : '/login'"
-                    class="simple-link"
+                    class="simple-link link-light"
                     >Личный кабинет</UILink
                   >
                 </li>
                 <li>
-                  <UILink link="/page/payment" class="simple-link"
+                  <UILink link="/page/payment" class="simple-link link-light"
                     >Способы оплаты</UILink
                   >
                 </li>
                 <li>
-                  <UILink link="/faq" class="simple-link"
+                  <UILink link="/faq" class="simple-link link-light"
                     >Ответы на частые вопросы</UILink
                   >
                 </li>
                 <li>
-                  <UILink link="/page/delivery" class="simple-link"
+                  <UILink link="/page/delivery" class="simple-link link-light"
                     >Варианты доставки</UILink
                   >
                 </li>
                 <li>
-                  <UILink link="/page/return" class="simple-link"
+                  <UILink link="/page/return" class="simple-link link-light"
                     >Возврат и обмен</UILink
                   >
                 </li>
@@ -83,7 +91,7 @@
                   <a
                     target="_blank"
                     :href="settings.facebook"
-                    class="simple-link"
+                    class="simple-link link-light"
                     >Facebook</a
                   >
                 </li>
@@ -91,7 +99,7 @@
                   <a
                     target="_blank"
                     :href="settings.instagram"
-                    class="simple-link"
+                    class="simple-link link-light"
                     >Instagram</a
                   >
                 </li>
@@ -99,7 +107,7 @@
                   <a
                     target="_blank"
                     :href="settings.youtube"
-                    class="simple-link"
+                    class="simple-link link-light"
                     >YouTube</a
                   >
                 </li>
@@ -114,14 +122,18 @@
                 <UILink link="" class="main-link">Контакты</UILink>
                 <ul class="list">
                   <li>
-                    <a :href="'tel:' + settings.phone1" class="simple-link"
+                    <a
+                      :href="'tel:' + settings.phone1"
+                      class="simple-link link-light"
                       >{{ settings.phone1 }}
                     </a>
                   </li>
                   <li>
-                    <a :href="'mailto:' + settings.email" class="simple-link">{{
-                      settings.email
-                    }}</a>
+                    <a
+                      :href="'mailto:' + settings.email"
+                      class="simple-link link-light"
+                      >{{ settings.email }}</a
+                    >
                   </li>
                 </ul>
               </li>
@@ -168,14 +180,14 @@
       class="section-container flex flex-col justify-between space-y-3 border-t border-light bg-dark py-2 lg:flex-row lg:items-center lg:space-y-0"
     >
       <div class="flex flex-col lg:flex-row lg:items-center">
-        <p class="mb-3 text-sm text-light lg:mb-0 lg:mr-5">
+        <p class="mb-3 text-sm text-grey-light lg:mb-0 lg:mr-5">
           Copyright © PoMo Design Center. All Rights Reserved
         </p>
-        <UILink link="/page/offer" class="block text-sm text-light">
+        <UILink link="/page/offer" class="block text-sm text-grey-light">
           Договор оферты
         </UILink>
       </div>
-      <UILink link="/page/policy" class="text-sm text-light"
+      <UILink link="/page/policy" class="text-sm text-grey-light"
         >Политика конфиденциальности</UILink
       >
     </div>
@@ -228,8 +240,5 @@ export default {
 }
 .simple-link {
   @apply text-sm text-white;
-  &:hover {
-    @apply underline;
-  }
 }
 </style>

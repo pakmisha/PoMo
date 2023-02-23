@@ -5,37 +5,41 @@
       class="horizontal"
     >
       <div class="flex items-start">
-        <div class="mr-10" v-if="product.colors.length > 0">
-          <h2 class="heading-secondary mb-4">Цвета</h2>
-          <div class="flex flex-wrap items-center">
-            <div v-for="(color, index) in product.colors" :key="index">
-              <div
-                class="color-item"
-                :style="'background-color:' + color.color_code"
-              ></div>
-              <span>{{ color.name[$i18n.locale] }}</span>
-            </div>
-          </div>
-        </div>
-        <div class="mr-10" v-if="product.upholstery_materials.length > 0">
-          <h2 class="heading-secondary mb-4">Материал обивки</h2>
+        <div class="mr-10 w-1/2" v-if="product.fabrics.length > 0">
+          <h2 class="heading-secondary mb-4">Ткань</h2>
           <div class="flex flex-wrap items-center">
             <div
-              v-for="(item, index) in product.upholstery_materials"
+              v-for="(item, index) in product.fabrics"
+              class="mr-7 flex flex-col items-center"
               :key="index"
             >
-              <div class="color-item overflow-hidden">
+              <UIButton class="circle" @click="openFabrics(item)">
                 <img
                   class="h-full w-full object-cover"
                   :src="$asset(item.image)"
                   alt=""
                 />
-              </div>
-              <!-- <div
-                class="color-item"
-                :style="'background-image:' + $asset(item.image)"
-              ></div> -->
-              <span>{{ item.title[$i18n.locale] }}</span>
+              </UIButton>
+              <p class="circle-name">{{ item.name }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="w-1/2" v-if="product.leathers.length > 0">
+          <h2 class="heading-secondary mb-4">Кожа</h2>
+          <div class="flex flex-wrap items-center">
+            <div
+              v-for="(item, index) in product.leathers"
+              class="mr-5 flex flex-col items-center"
+              :key="index"
+            >
+              <UIButton class="circle" @click="openLeathers(item)">
+                <img
+                  class="h-full w-full object-cover"
+                  :src="$asset(item.image)"
+                  alt=""
+                />
+              </UIButton>
+              <p class="circle-name">{{ item.name }}</p>
             </div>
           </div>
         </div>
@@ -77,12 +81,25 @@ export default {
     required: true,
   },
   data: () => ({}),
+  methods: {
+    openFabrics(item) {
+      this.$nuxt.$emit("open-modal", "material");
+      this.$nuxt.$emit("send", item);
+    },
+    openLeathers(item) {
+      this.$nuxt.$emit("open-modal", "material");
+      this.$nuxt.$emit("send", item);
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-.color-item {
-  @apply mr-4 h-10 w-10 rounded-full border border-dark;
+.circle {
+  @apply mb-2 h-14 w-14 cursor-pointer overflow-hidden rounded-full shadow-lg;
+}
+.circle-name {
+  @apply text-center  text-sm text-grey-light;
 }
 
 .models {

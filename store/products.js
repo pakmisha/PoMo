@@ -10,10 +10,14 @@ export const state = () => ({
   maxPrice: 0,
   minPrice: 0,
   prices: [],
+  colors: [],
 });
 export const mutations = {
   SET_PRODUCTS(state, products) {
     state.products = products;
+  },
+  SET_COLORS(state, colors) {
+    state.colors = colors;
   },
   SET_PRODUCT(state, product) {
     state.product = product;
@@ -72,6 +76,9 @@ export const mutations = {
 export const actions = {
   setProduct(context, product) {
     context.commit("SET_PRODUCT", product);
+  },
+  setColors(context, colors) {
+    context.commit("SET_COLORS", colors);
   },
   async getProducts({ commit, state }, page = 1) {
     try {
@@ -149,6 +156,9 @@ export const getters = {
   },
   products(state) {
     return state.products;
+  },
+  colors(state) {
+    return state.colors;
   },
   filters(state) {
     return state.filters;

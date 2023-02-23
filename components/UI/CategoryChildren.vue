@@ -30,17 +30,19 @@
         </svg>
       </div>
     </button>
-    <div
-      class="sub-category-content"
-      v-for="(item, index) in category.childrens"
-      :key="'category-' + index"
-    >
-      <UICategoryChildren
-        v-if="item.childrens"
-        :category="item"
-        :depth="depth + 1"
-        :active="active"
-      />
+    <div class="sub-category-wrapper">
+      <div
+        class="sub-category-content"
+        v-for="(item, index) in category.childrens"
+        :key="'category-' + index"
+      >
+        <UICategoryChildren
+          v-if="item.childrens"
+          :category="item"
+          :depth="depth + 1"
+          :active="active"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -81,8 +83,8 @@ export default {
   .title-toggle {
     @apply block text-sm font-medium uppercase text-dark;
   }
-  .sub-category-content {
-    @apply invisible h-0 -translate-y-2 opacity-0 transition-all duration-300 ease-in-quad;
+  .sub-category-wrapper {
+    @apply invisible h-0 -translate-y-5 opacity-0 transition-all duration-300 ease-in-quad;
   }
   .subcategory-toggle-icon {
     @apply transition-all duration-300 ease-in-quad;
@@ -94,7 +96,7 @@ export default {
   }
   &.active {
     @apply block;
-    .sub-category-content {
+    .sub-category-wrapper {
       @apply visible mt-1 h-auto translate-y-0 opacity-100;
     }
     .subcategory-toggle-icon {

@@ -1,6 +1,7 @@
 <template>
   <div v-if="product != null">
-    <AboutProduct :product="product" />
+    <ModalsMaterialModal />
+    <AboutProduct :product="product" :colors="colors" />
     <ProductDetails :product="product" />
     <section>
       <div
@@ -125,7 +126,10 @@ export default {
     console.log(response);
     const product = response.data.product;
     store.dispatch("products/setProduct", product);
-    return { product };
+    const colors = response.data.colors;
+    store.dispatch("products/setColors", colors);
+
+    return { product, colors };
   },
   data: () => ({
     interesting: [],

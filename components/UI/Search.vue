@@ -80,6 +80,7 @@
           <UILink
             link="/searchPage"
             @click.native="active = false"
+            @click="toResults"
             class="btn-primary"
             >Смотреть все результаты</UILink
           >
@@ -165,11 +166,16 @@ export default {
         timeout = setTimeout(callback, delay);
       };
     },
+    toResults() {
+      this.$router.push({
+        path: "/searchPage",
+      });
+    },
   },
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .search {
   @apply invisible absolute top-[101%] left-0 z-40 w-full opacity-0 transition-all duration-300 ease-in-quad;
   &-content {
@@ -182,6 +188,13 @@ export default {
     .search-result {
       @apply invisible absolute left-0 right-0 top-full -translate-y-5 bg-light opacity-0 transition-all duration-300 ease-in-quad;
       &-content {
+        .swiper {
+          .swiper-wrapper {
+            .swiper-slide {
+              width: auto !important;
+            }
+          }
+        }
       }
       &.active {
         @apply visible translate-y-0 opacity-100;
