@@ -1,6 +1,7 @@
 <template>
   <div>
     <div v-if="about != null">
+      <UIPath :path="path" />
       <section>
         <div class="section-container section-title-distance">
           <div class="text-center">
@@ -51,6 +52,12 @@
 export default {
   data: () => ({
     about: null,
+    path: [
+      {
+        name: "О нас",
+        link: "/about",
+      },
+    ],
   }),
   created() {
     this.get();

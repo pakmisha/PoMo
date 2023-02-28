@@ -1,6 +1,7 @@
 <template>
   <div v-if="product != null">
     <ModalsMaterialModal />
+    <UIPath :path="path" />
     <AboutProduct :product="product" :colors="colors" />
     <ProductDetails :product="product" />
     <section>
@@ -123,7 +124,6 @@
 export default {
   async asyncData({ params, $axios, store }) {
     const response = await $axios.get(`products/${params.slug}`);
-    console.log(response);
     const product = response.data.product;
     store.dispatch("products/setProduct", product);
     const colors = response.data.colors;
@@ -134,10 +134,21 @@ export default {
   data: () => ({
     interesting: [],
     atmosphere: [],
+    path: [
+      {
+        name: "Каталог",
+        link: "/catalog",
+      },
+    ],
   }),
   created() {
     this.getInteresting();
     this.getAtmosphere();
+    const array = {
+      name: this.product?.title,
+      link: this.product?.slug,
+    };
+    this.path.push(array);
   },
   methods: {
     async getInteresting() {

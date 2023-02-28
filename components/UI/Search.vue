@@ -2,7 +2,7 @@
   <div class="search" :class="{ active: active }">
     <div
       class="backdrop fixed top-0 left-0 bottom-0 right-0 z-30 bg-black bg-opacity-60"
-      @click.prevent="active = false"
+      @click.prevent="closeSearch"
     ></div>
     <div class="search-content section-container">
       <div class="serach-content-icon">
@@ -30,7 +30,7 @@
           @keyup="showResults($event.target.value)"
         />
       </div>
-      <button class="serach-content-close" @click.prevent="active = false">
+      <button class="serach-content-close" @click.prevent="closeSearch">
         <svg
           width="16"
           height="16"
@@ -81,7 +81,7 @@
           <NuxtLink
             :to="{
               name: 'searchPage___ru',
-              params: { res: products, title: searchName },
+              query: { res: products, title: searchName },
             }"
             @click.native="active = false"
             class="btn-primary"
@@ -119,9 +119,7 @@ export default {
     },
     async searchProducts(val) {
       const searchValue = val.toLowerCase();
-      console.log(val);
       if (searchValue.length >= 3) {
-        // document.getElementById("searchResults").innerHTML = "";
         const response = await this.$axios.$get("search?query=product_title", {
           params: {
             query: searchValue,
@@ -133,35 +131,23 @@ export default {
         if (results.length == 0) {
           document.querySelector(".search-result").classList.remove("active");
         }
-        // document.querySelector('.no-results').classList.add('show');
-        // } else if(results.length >= 1) {
-        //     document.querySelector('.no-results').classList.remove('show');
-        // }
+
         results.forEach((item, index) => {
-          // if(index < 1) {
           let text = item.title[this.$i18n.locale];
           if (text.toLowerCase().includes(searchValue)) {
             console.log(searchValue);
             document.querySelector(".search-result").classList.add("active");
-            // document
-            //   .getElementById("searchResults")
-            //   .insertAdjacentHTML(
-            //     "beforeend",
-            //     "<li><a href='/catalog/" +
-            //       item.slug +
-            //       "' class='link-underline'><img src='" +
-            //       item.media[0].original_url +
-            //       "'><p>" +
-            //       text +
-            //       "</p></a></li>"
-            //   );
           }
-          // }
         });
         this.resultsData = res;
       } else {
         document.querySelector(".search-result").classList.add("active");
       }
+    },
+    closeSearch() {
+      this.active = false;
+      document.querySelector(".search-result").classList.remove("active");
+      this.products = [];
     },
     debounce(callback, delay) {
       let timeout;

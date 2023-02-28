@@ -6,6 +6,7 @@
     <!-- <div class="section-container section-distance-bottom">
         <SubCategory :categories="categories" />
       </div> -->
+    <UIPath :path="path" />
     <section class="section-container mt-10">
       <ProductsWrapper />
     </section>
@@ -21,10 +22,20 @@ export default {
     store.dispatch("products/setCategory", category);
     return { category };
   },
+  data: () => ({
+    path: [],
+  }),
   computed: {
     ...mapGetters({
       categories: "products/categories",
     }),
+  },
+  created() {
+    const array = {
+      name: this.category?.title,
+      link: this.category?.slug,
+    };
+    this.path.push(array);
   },
 };
 </script>

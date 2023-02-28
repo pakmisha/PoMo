@@ -1,9 +1,24 @@
 <template>
-  <div class="mt-9 mb-14 text-sm uppercase">Главная / Мебель</div>
+  <ul class="section-container mt-9 mb-14 flex items-center">
+    <li class="text-sm uppercase">
+      <NuxtLink to="/">Главная</NuxtLink>
+    </li>
+    <li class="text-sm uppercase" v-for="(item, index) in path" :key="index">
+      <span class="mx-1">/</span>
+      <NuxtLink :to="item.link" v-tr="$i18n">{{ item.name }}</NuxtLink>
+    </li>
+  </ul>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    path: {
+      type: Array,
+      required: true,
+    },
+  },
+};
 </script>
 
-<style></style>
+<style lang="scss" scoped></style>
