@@ -1,6 +1,7 @@
 export const state = () => ({
   items: [],
   total: null,
+  quantity: 1,
 });
 export const mutations = {
   SET(state, items) {
@@ -22,12 +23,14 @@ export const mutations = {
     }
   },
   QUANTITY(state, item) {
+    console.log(item.quantity);
     const current = state.items.find((current) => current.id == item.id);
     if (current) {
       state.items[state.items.indexOf(current)]["quantity"] = item.quantity;
       state.items[state.items.indexOf(current)]["total_price"] =
         item.total_price;
     }
+    state.quantity = item.quantity;
   },
   TOTAL(state, total) {
     state.total = total;
@@ -87,5 +90,8 @@ export const getters = {
   },
   total(state) {
     return state.total;
+  },
+  quantity(state) {
+    return state.quantity;
   },
 };

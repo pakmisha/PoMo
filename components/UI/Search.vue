@@ -26,6 +26,7 @@
           type="text"
           class="w-full bg-light py-2 outline-none"
           placeholder="ВВЕДИТЕ ЗАПРОС..."
+          v-model="searchName"
           @keyup="showResults($event.target.value)"
         />
       </div>
@@ -79,8 +80,8 @@
         <div class="mt-5 flex items-center justify-center lg:mt-7">
           <NuxtLink
             :to="{
-              path: '/searchPage',
-              params: { data: JSON.stringify(products) },
+              name: 'searchPage___ru',
+              params: { res: products, title: searchName },
             }"
             @click.native="active = false"
             class="btn-primary"
@@ -103,6 +104,7 @@ export default {
   data: () => ({
     active: false,
     products: [],
+    searchName: null,
   }),
   created() {
     this.$nuxt.$on("toggle", (name) => {

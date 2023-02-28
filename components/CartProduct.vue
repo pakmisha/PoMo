@@ -77,7 +77,6 @@ export default {
       };
       this.$store.dispatch("cart/quantity", cart);
       quantity = event;
-      console.log(event);
       if (event == this.color.available) {
         this.active = true;
       }

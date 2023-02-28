@@ -1,15 +1,32 @@
 <template>
   <div>
-    <div class="section-container">
-      <h1
-        class="heading-primary section-title-distance mx-auto max-w-[1490px] text-center"
+    <div v-if="res.length > 0">
+      <div class="section-container">
+        <h1
+          class="heading-primary section-title-distance mx-auto max-w-[1490px] text-center"
+        >
+          по запросу «{{ title }}» найдено {{ res.length }} товаров
+        </h1>
+      </div>
+      <div
+        class="section-container grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4"
       >
-        по запросу «Диван» найдено 87 товаров
-      </h1>
+        <div
+          class="h-[350px] lg:h-[450px]"
+          v-for="(product, index) in res"
+          :key="index"
+        >
+          <Product :product="product" />
+        </div>
+      </div>
     </div>
-    <div class="grid grid-cols-4 gap-10">
-      <div class="h-[350px] lg:h-[450px]">
-        <!-- <Product /> -->
+    <div v-else>
+      <div class="section-container">
+        <h1
+          class="heading-primary section-title-distance mx-auto max-w-[1490px] text-center"
+        >
+          По данному запросу нет результатов
+        </h1>
       </div>
     </div>
   </div>
@@ -17,24 +34,19 @@
 
 <script>
 export default {
-  // props: {
-  //   res: {
-  //     type: Array,
-  //   },
-  // },
-  data: () => ({
-    res: [],
-  }),
-  created() {
-    // this.getResults();
-    // this.res = JSON.parse(this.$route.params.data);
-    // console.log(this.res);
-    console.log(this.$route.params);
+  props: {
+    res: {
+      type: Array,
+      required: true,
+    },
+    title: {
+      type: String,
+      required: true,
+    },
   },
-  methods: {
-    // getResults() {
-    //   console.log(this.$route.params);
-    // },
+  created() {
+    this.res = this.$route.params.res;
+    this.title = this.$route.params.title;
   },
 };
 </script>

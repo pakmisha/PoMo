@@ -57,6 +57,7 @@ export default {
       type: Object,
     },
   },
+
   data() {
     return { count: this.value };
   },

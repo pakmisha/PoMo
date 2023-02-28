@@ -4,7 +4,7 @@
     <MobileCategory />
     <CartSidebar />
     <MobileNav />
-    <UILoader />
+    <!-- <UILoader /> -->
     <Nav />
     <main>
       <Nuxt />
