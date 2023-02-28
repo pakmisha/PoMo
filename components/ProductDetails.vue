@@ -4,8 +4,11 @@
       :titles="['доступные цвета и материалы', 'модели', 'конфигурации']"
       class="horizontal"
     >
-      <div class="flex items-start">
-        <div class="mr-10 w-1/2" v-if="product.fabrics.length > 0">
+      <div class="flex flex-col items-start md:flex-row">
+        <div
+          class="mb-10 w-full md:mb-0 md:mr-10 md:w-1/2"
+          v-if="product.fabrics.length > 0"
+        >
           <h2 class="heading-secondary mb-4">Ткань</h2>
           <div class="flex flex-wrap items-center">
             <div
@@ -24,7 +27,7 @@
             </div>
           </div>
         </div>
-        <div class="w-1/2" v-if="product.leathers.length > 0">
+        <div class="w-full md:w-1/2" v-if="product.leathers.length > 0">
           <h2 class="heading-secondary mb-4">Кожа</h2>
           <div class="flex flex-wrap items-center">
             <div

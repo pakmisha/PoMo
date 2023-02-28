@@ -16,7 +16,27 @@
 </template>
 
 <script>
-export default {};
+export default {
+  // props: {
+  //   res: {
+  //     type: Array,
+  //   },
+  // },
+  data: () => ({
+    res: [],
+  }),
+  created() {
+    // this.getResults();
+    // this.res = JSON.parse(this.$route.params.data);
+    // console.log(this.res);
+    console.log(this.$route.params);
+  },
+  methods: {
+    // getResults() {
+    //   console.log(this.$route.params);
+    // },
+  },
+};
 </script>
 
 <style></style>

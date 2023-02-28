@@ -11,6 +11,7 @@ export const state = () => ({
   minPrice: 0,
   prices: [],
   colors: [],
+  color: null,
 });
 export const mutations = {
   SET_PRODUCTS(state, products) {
@@ -18,6 +19,9 @@ export const mutations = {
   },
   SET_COLORS(state, colors) {
     state.colors = colors;
+  },
+  SET_COLOR(state, color) {
+    state.color = color;
   },
   SET_PRODUCT(state, product) {
     state.product = product;
@@ -58,6 +62,7 @@ export const mutations = {
     state.category = null;
     state.selectedFilters = {};
   },
+
   // MIN_PRICE(state, minPrice) {
   //   state.minPrice = minPrice;
   // },
@@ -143,6 +148,9 @@ export const actions = {
     commit("SET_BRAND", brand);
     dispatch("getProducts");
   },
+  setColor({ commit }, color) {
+    commit("SET_COLOR", color);
+  },
   // setPrices({ commit, dispatch }, value) {
   //   // commit("MIN_PRICE", value[0]);
   //   // commit("MAX_PRICE", value[1]);
@@ -159,6 +167,9 @@ export const getters = {
   },
   colors(state) {
     return state.colors;
+  },
+  color(state) {
+    return state.color;
   },
   filters(state) {
     return state.filters;

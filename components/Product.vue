@@ -2,11 +2,11 @@
   <UILink :link="'/catalog/' + product.slug" class="product">
     <div v-if="product?.media?.length > 0" class="product-image">
       <img
-        class="first-image"
+        class="image"
         :src="$asset(product.media[0].id + '/' + product.media[0].file_name)"
       />
       <img
-        class="second-image"
+        class="image img-hover"
         v-if="product.media[1]"
         :src="$asset(product.media[1].id + '/' + product.media[1].file_name)"
         alt=""
@@ -113,29 +113,42 @@ export default {
   @apply flex h-full w-full flex-col justify-between;
   &-image {
     @apply relative h-full w-full overflow-hidden border border-grey-light;
-    img {
+    .image {
       @apply h-full w-full object-cover;
-    }
-    .first-image {
-      @apply block;
-      img {
-        @apply h-full w-full object-cover;
-      }
-    }
-    .second-image {
-      @apply hidden;
-      img {
-        @apply h-full w-full object-cover;
+      &.img-hover {
+        @apply absolute inset-0 opacity-0 transition-all duration-500 ease-out;
       }
     }
     &:hover {
-      .first-image {
-        @apply hidden;
-      }
-      .second-image {
-        @apply block;
+      .image {
+        &.img-hover {
+          @apply opacity-100;
+        }
       }
     }
+    // img {
+    //   @apply h-full w-full object-cover;
+    // }
+    // .first-image {
+    //   @apply opacity-100;
+    //   img {
+    //     @apply h-full w-full object-cover;
+    //   }
+    // }
+    // .second-image {
+    //   @apply opacity-0;
+    //   img {
+    //     @apply h-full w-full object-cover;
+    //   }
+    // }
+    // &:hover {
+    //   .first-image {
+    //     @apply opacity-0;
+    //   }
+    //   .second-image {
+    //     @apply opacity-100;
+    //   }
+    // }
   }
   .product-icons {
     @apply relative;

@@ -77,12 +77,14 @@
           </UISlider>
         </div>
         <div class="mt-5 flex items-center justify-center lg:mt-7">
-          <UILink
-            link="/searchPage"
+          <NuxtLink
+            :to="{
+              path: '/searchPage',
+              params: { data: JSON.stringify(products) },
+            }"
             @click.native="active = false"
-            @click="toResults"
             class="btn-primary"
-            >Смотреть все результаты</UILink
+            >Смотреть все результаты</NuxtLink
           >
           <!-- <UIButton
             @click="$router.push({ name: '/searchPage', params: { products } })"
@@ -167,9 +169,12 @@ export default {
       };
     },
     toResults() {
-      this.$router.push({
-        path: "/searchPage",
-      });
+      // this.$route.push({
+      //   path: "/searchPage",
+      //   params: {
+      //     res: this.products,
+      //   },
+      // });
     },
   },
 };

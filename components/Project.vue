@@ -50,7 +50,12 @@ export default {
     @apply relative h-[350px] overflow-hidden border border-grey-light lg:h-[400px] 2xl:h-[500px];
 
     img {
-      @apply h-full w-full object-cover;
+      @apply h-full w-full object-cover transition-all duration-500 ease-out;
+    }
+    &:hover {
+      img {
+        @apply scale-105;
+      }
     }
   }
 

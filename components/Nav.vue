@@ -106,6 +106,7 @@
           >
             <img src="~/assets/img/icons/bag.svg" alt="" />
             <div
+              v-if="cart.length > 0"
               class="absolute -right-2 -bottom-2 flex h-5 w-5 items-center justify-center rounded-full bg-dark text-xs text-white"
             >
               {{ cart.length > 0 ? cart.length : "0" }}
