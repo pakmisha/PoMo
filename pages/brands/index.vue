@@ -1,5 +1,6 @@
 <template>
   <div v-if="brands != null">
+    <UIPath :path="path" />
     <div class="section-container">
       <h1
         class="heading-big section-title-distance mx-auto max-w-[1490px] text-center"
@@ -25,6 +26,14 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
+  data: () => ({
+    path: [
+      {
+        name: "бренды",
+        link: "",
+      },
+    ],
+  }),
   computed: {
     ...mapGetters({
       brands: "brands/brands",

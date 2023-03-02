@@ -1,6 +1,7 @@
 <template>
   <div v-if="projects != null">
     <ModalsDesignModal />
+    <UIPath :path="path" />
     <section>
       <div class="section-container section-title-distance">
         <div class="text-center">
@@ -96,9 +97,20 @@ export default {
 
   data: () => ({
     others: [],
+    path: [
+      {
+        name: "Реализованные проекты",
+        link: "/catalog",
+      },
+    ],
   }),
   created() {
     this.getOthers();
+    const pathArray = {
+      name: this.project?.title,
+      link: this.project?.slug,
+    };
+    this.path.push(pathArray);
   },
   computed: {
     ...mapGetters({

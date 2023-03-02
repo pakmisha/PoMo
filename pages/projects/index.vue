@@ -1,5 +1,6 @@
 <template>
   <div>
+    <UIPath :path="path" />
     <div class="section-container">
       <h1
         class="heading-big section-title-distance mx-auto max-w-[1490px] text-center"
@@ -24,7 +25,14 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
-  data: () => ({}),
+  data: () => ({
+    path: [
+      {
+        name: "РЕАЛИЗОВАННЫЕ ПРОЕКТЫ",
+        link: "",
+      },
+    ],
+  }),
   computed: {
     ...mapGetters({
       projects: "projects/projects",

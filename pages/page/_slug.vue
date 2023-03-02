@@ -1,30 +1,29 @@
 <template>
   <section>
-    <div>
-      <div class="section-container section-title-distance">
-        <div class="text-center">
-          <h1 class="heading-big mx-auto mb-5 max-w-[1490px] lg:mb-8">
-            {{ page.title[$i18n.locale] }}
-          </h1>
-          <p class="mx-auto max-w-[650px] text-sm text-grey"></p>
-        </div>
+    <UIPath :path="path" />
+    <div class="section-container section-title-distance">
+      <div class="text-center">
+        <h1 class="heading-big mx-auto mb-5 max-w-[1490px] lg:mb-8">
+          {{ page.title[$i18n.locale] }}
+        </h1>
+        <p class="mx-auto max-w-[650px] text-sm text-grey"></p>
       </div>
-      <div class="details section-container-inner">
-        <div
-          class="details__item"
-          v-for="(item, index) in page.points"
-          :key="index"
-        >
-          <div class="details__item__left">
-            <h3 class="heading-secondary">
-              {{ item.attributes.title[$i18n.locale] }}
-            </h3>
-          </div>
-          <div
-            class="details__item__right"
-            v-html="item.attributes.description[$i18n.locale]"
-          ></div>
+    </div>
+    <div class="details section-container-inner">
+      <div
+        class="details__item"
+        v-for="(item, index) in page.points"
+        :key="index"
+      >
+        <div class="details__item__left">
+          <h3 class="heading-secondary">
+            {{ item.attributes.title[$i18n.locale] }}
+          </h3>
         </div>
+        <div
+          class="details__item__right"
+          v-html="item.attributes.description[$i18n.locale]"
+        ></div>
       </div>
     </div>
   </section>
@@ -37,7 +36,16 @@ export default {
     const page = response.data.data.page;
     return { page };
   },
-  data: () => ({}),
+  data: () => ({
+    path: [],
+  }),
+  created() {
+    const pathArray = {
+      name: this.page?.title,
+      link: this.page?.slug,
+    };
+    this.path.push(pathArray);
+  },
 };
 </script>
 

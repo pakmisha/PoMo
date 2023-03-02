@@ -1,5 +1,6 @@
 <template>
   <div>
+    <UIPath :path="path" />
     <div class="section-container">
       <h1
         class="heading-big section-title-distance mx-auto max-w-[1490px] text-center"
@@ -71,6 +72,12 @@ export default {
       login: null,
       password: null,
     },
+    path: [
+      {
+        name: "личный кабинет",
+        link: "/login",
+      },
+    ],
     errors: null,
     loading: false,
   }),

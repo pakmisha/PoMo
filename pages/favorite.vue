@@ -1,5 +1,6 @@
 <template>
   <section>
+    <UIPath :path="path" />
     <div v-if="$auth.$state.loggedIn">
       <div v-if="items?.length > 0">
         <div class="section-container">
@@ -60,7 +61,14 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
-  data: () => ({}),
+  data: () => ({
+    path: [
+      {
+        name: "избранные товары",
+        link: "/favorite",
+      },
+    ],
+  }),
   computed: {
     ...mapGetters({
       items: "favourites/favourites",

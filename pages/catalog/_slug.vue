@@ -144,11 +144,11 @@ export default {
   created() {
     this.getInteresting();
     this.getAtmosphere();
-    const array = {
+    const pathArray = {
       name: this.product?.title,
       link: this.product?.slug,
     };
-    this.path.push(array);
+    this.path.push(pathArray);
   },
   methods: {
     async getInteresting() {

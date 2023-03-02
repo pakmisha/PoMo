@@ -1,5 +1,6 @@
 <template>
   <div>
+    <UIPath :path="path" />
     <div class="section-container section-title-distance">
       <div class="mx-auto mb-10 max-w-[1490px] text-center">
         <h1 class="heading-big mb-10">Сброс пароля</h1>
@@ -38,6 +39,16 @@ export default {
     email: null,
     errors: null,
     loading: false,
+    path: [
+      {
+        name: "личный кабинет",
+        link: "/login",
+      },
+      {
+        name: "Сброс пароля",
+        link: "/reset",
+      },
+    ],
   }),
   methods: {
     async send() {

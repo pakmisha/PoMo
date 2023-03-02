@@ -1,6 +1,7 @@
 <template>
   <div v-if="brands != null">
     <ModalsRequestModal />
+    <UIPath :path="path" />
     <div class="section-container">
       <h1
         class="heading-big section-title-distance mx-auto max-w-[1490px] text-center"
@@ -54,9 +55,21 @@ export default {
 
   data: () => ({
     others: [],
+    path: [
+      {
+        name: "бренды",
+        link: "/brands",
+      },
+    ],
   }),
   created() {
     this.getOthers();
+    const pathArray = {
+      name: this.brand?.name,
+      link: this.brand?.slug,
+    };
+    this.path.push(pathArray);
+    console.log(pathArray);
   },
   computed: {
     ...mapGetters({

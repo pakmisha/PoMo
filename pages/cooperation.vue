@@ -1,6 +1,7 @@
 <template>
   <div v-if="cooperation != null">
     <ModalsRequestModal />
+    <UIPath :path="path" />
     <div class="section-container">
       <h1
         class="heading-big section-title-distance mx-auto max-w-[1490px] text-center"
@@ -51,6 +52,12 @@
 export default {
   data: () => ({
     cooperation: null,
+    path: [
+      {
+        name: "сотрудничество",
+        link: "/cooperation",
+      },
+    ],
   }),
   created() {
     this.get();

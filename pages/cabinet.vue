@@ -1,5 +1,6 @@
 <template>
   <div>
+    <UIPath :path="path" />
     <div class="section-container">
       <h1
         class="heading-big section-title-distance mx-auto max-w-[1490px] text-center"
@@ -34,6 +35,12 @@ import { mapGetters } from "vuex";
 export default {
   middleware: "auth",
   data: () => ({
+    path: [
+      {
+        name: "личный кабинет",
+        link: "/cabinet",
+      },
+    ],
     countries: [
       {
         name: "Kazakhstan",

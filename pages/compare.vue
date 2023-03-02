@@ -1,5 +1,6 @@
 <template>
   <div>
+    <UIPath :path="path" />
     <div v-if="compare?.products?.length > 0">
       <div class="section-container">
         <h1
@@ -83,7 +84,14 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
-  data: () => ({}),
+  data: () => ({
+    path: [
+      {
+        name: "сравнение товаров",
+        link: "/compare",
+      },
+    ],
+  }),
   computed: {
     ...mapGetters({
       compare: "compare/compare",

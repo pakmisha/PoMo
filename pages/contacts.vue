@@ -1,5 +1,6 @@
 <template>
   <div v-if="settings != null">
+    <UIPath :path="path" />
     <div class="section-container">
       <h1
         class="heading-big section-title-distance mx-auto max-w-[1490px] text-center"
@@ -116,6 +117,14 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
+  data: () => ({
+    path: [
+      {
+        name: "контакты",
+        link: "/contacts",
+      },
+    ],
+  }),
   computed: {
     ...mapGetters({
       settings: "settings/settings",

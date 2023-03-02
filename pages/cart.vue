@@ -1,5 +1,6 @@
 <template>
   <div>
+    <UIPath :path="path" />
     <section>
       <div class="section-container">
         <h1
@@ -99,6 +100,12 @@ import formatPrice from "~/filters/formatPrice";
 export default {
   data: () => ({
     products: null,
+    path: [
+      {
+        name: "корзина",
+        link: "/cart",
+      },
+    ],
   }),
   computed: {
     ...mapGetters({

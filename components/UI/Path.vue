@@ -1,5 +1,5 @@
 <template>
-  <ul class="section-container mt-9 mb-14 flex items-center">
+  <ul class="section-container mt-9 hidden items-center md:flex">
     <li class="text-sm uppercase">
       <NuxtLink to="/">Главная</NuxtLink>
     </li>
