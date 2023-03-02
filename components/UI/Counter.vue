@@ -48,7 +48,7 @@ export default {
     value: {
       type: Number,
       default: 1,
-      required: false,
+      required: true,
     },
     available: {
       type: Number,
@@ -61,7 +61,7 @@ export default {
   data() {
     return { count: this.value };
   },
-
+  computed: {},
   watch: {
     count(value) {
       if (value < 1) {

@@ -70,22 +70,24 @@
               >
                 <h2 class="heading-secondary">Адрес доставки</h2>
                 <div class="flex items-center">
-                  <select
-                    v-if="selAddress"
-                    name=""
-                    v-model="selAddress"
-                    id=""
-                    @change="changeAddress($event)"
-                    class="select-primary mr-3 text-center"
-                  >
-                    <option
-                      :value="address.id"
-                      v-for="(address, index) in addresses"
-                      :key="index"
+                  <div class="select-primary mr-3">
+                    <select
+                      v-if="selAddress"
+                      name=""
+                      v-model="selAddress"
+                      id=""
+                      @change="changeAddress($event)"
+                      class="text-center"
                     >
-                      {{ address.name }}
-                    </option>
-                  </select>
+                      <option
+                        :value="address.id"
+                        v-for="(address, index) in addresses"
+                        :key="index"
+                      >
+                        {{ address.name }}
+                      </option>
+                    </select>
+                  </div>
 
                   <UIButton class="btn-small" @click="active = true"
                     >Новый адрес
@@ -158,23 +160,20 @@
                 </div>
                 <div class="input-wrapper">
                   <label>Страна*</label>
-                  <select
-                    v-model="address_info.country"
-                    name=""
-                    id=""
-                    class="select-secondary"
-                  >
-                    <option :value="null" selected disabled>
-                      Выберите страну
-                    </option>
-                    <option
-                      :value="item.name"
-                      v-for="(item, index) in countries"
-                      :key="index"
-                    >
-                      {{ item.name }}
-                    </option>
-                  </select>
+                  <div class="select-secondary">
+                    <select v-model="address_info.country" name="" id="">
+                      <option :value="null" selected disabled>
+                        Выберите страну
+                      </option>
+                      <option
+                        :value="item.name"
+                        v-for="(item, index) in countries"
+                        :key="index"
+                      >
+                        {{ item.name }}
+                      </option>
+                    </select>
+                  </div>
                 </div>
                 <div class="input-wrapper">
                   <label for="">Фамилия Имя*</label>
@@ -472,25 +471,29 @@ export default {
       if (this.delivery_error == null || this.payment_error == null) return;
       try {
         const response = await this.$axios.post("orders", {
-          fullname: this.address_info.full_name
-            ? this.address_info.full_name != null
-            : this.user.full_name,
+          fullname:
+            this.address_info.full_name == null
+              ? this.user.full_name
+              : this.address_info.full_name,
           phone: this.user.phone,
           email: this.user.email,
           country:
-            this.address_info.country != null
-              ? this.address_info.country
-              : this.$store.getters["checkout/address"]["country"],
-          city: this.address_info.city
-            ? this.address_info.city != null
-            : this.$store.getters["checkout/address"]["city"],
-          company: this.address_info.company
-            ? this.address_info.company != null ??
-              this.$store.getters["checkout/address"]["company"]
-            : null,
-          address: this.address_info.address
-            ? this.address_info.address != null
-            : this.$store.getters["checkout/address"]["address"],
+            this.address_info.country == null
+              ? this.$store.getters["checkout/address"]["country"]
+              : this.address_info.country,
+          city:
+            this.address_info.city == null
+              ? this.$store.getters["checkout/address"]["city"]
+              : this.address_info.city,
+          company:
+            this.address_info.company == null
+              ? this.$store.getters["checkout/address"]["company"] ??
+                this.address_info.company
+              : null,
+          address:
+            this.address_info.address == null
+              ? this.$store.getters["checkout/address"]["address"]
+              : this.address_info.address,
           comment: this.address_info.comment,
           delivery_id: this.$store.getters["checkout/delivery"],
           payment_id: this.$store.getters["checkout/payment"],

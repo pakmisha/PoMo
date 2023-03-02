@@ -8,18 +8,20 @@
           {{ category == null ? "Все" : category.title[$i18n.locale] }}
         </h2>
         <div class="mt-4 lg:mt-0">
-          <select
-            v-model="sort"
-            name=""
-            id=""
-            class="select-primary text-center"
-            @change="sortBy($event)"
-          >
-            <option :value="null" disabled selected>Сортировать по:</option>
-            <!-- <option value="all">Все:</option> -->
-            <option value="price_asc">Сначала дешевле:</option>
-            <option value="price_desc">Сначала дороже:</option>
-          </select>
+          <div class="select-primary">
+            <select
+              v-model="sort"
+              name=""
+              id=""
+              class="text-center"
+              @change="sortBy($event)"
+            >
+              <option :value="null" disabled selected>Сортировать по:</option>
+              <!-- <option value="all">Все:</option> -->
+              <option value="price_asc">Сначала дешевле:</option>
+              <option value="price_desc">Сначала дороже:</option>
+            </select>
+          </div>
         </div>
         <div class="mt-4 flex items-center lg:hidden">
           <button

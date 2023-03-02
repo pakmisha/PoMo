@@ -65,9 +65,9 @@ export default {
     }),
   },
   watch: {
-    onUpdate(item) {
-      console.log(item.quantity);
-    },
+    // item(quantity) {
+    //   item.quantity =
+    // },
   },
   methods: {
     update(quantity, event) {
@@ -80,6 +80,8 @@ export default {
       if (event == this.color.available) {
         this.active = true;
       }
+      // console.log("QUANTITY", quantity);
+      // console.log("EVENT", event);
     },
     remove(item) {
       const ids = [item.id];

@@ -183,10 +183,16 @@
 }
 .select {
   &-primary {
-    @apply relative flex cursor-pointer appearance-none items-center rounded-full border border-dark px-7 py-2 outline-none;
+    @apply relative flex cursor-pointer  items-center rounded-full border border-dark outline-none;
+    select {
+      @apply w-full rounded-full border-l-[5px] border-r-[16px] border-white px-7 py-2 outline-none;
+    }
   }
   &-secondary {
-    @apply flex w-full cursor-pointer appearance-none items-center border border-grey-light px-3 py-3 outline-none;
+    @apply flex w-full cursor-pointer appearance-none items-center justify-between border border-grey-light px-3;
+    select {
+      @apply w-full border-l-[10px] border-r-[14px] border-white py-3 outline-none;
+    }
   }
 }
 .textarea {

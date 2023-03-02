@@ -23,7 +23,6 @@ export const mutations = {
     }
   },
   QUANTITY(state, item) {
-    console.log(item.quantity);
     const current = state.items.find((current) => current.id == item.id);
     if (current) {
       state.items[state.items.indexOf(current)]["quantity"] = item.quantity;
