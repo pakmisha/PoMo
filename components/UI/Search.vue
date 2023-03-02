@@ -81,7 +81,7 @@
           <NuxtLink
             :to="{
               name: 'searchPage___ru',
-              query: { res: products, title: searchName },
+              query: { title: searchName },
             }"
             @click.native="active = false"
             class="btn-primary"

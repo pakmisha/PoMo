@@ -31,6 +31,21 @@
         <img src="~/assets/img/icons/big-o.svg" alt="" />
       </div>
     </div>
+    <!-- <div>
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <clipPath>
+            <path
+              id="shape"
+              fill="#FF0066"
+              d="M39.8,-51.8C50.2,-38.7,56.4,-24.8,63.3,-7.9C70.2,9.1,77.9,29.3,72.7,45.3C67.4,61.4,49.3,73.4,31.4,75C13.5,76.6,-4,67.8,-18.6,59C-33.2,50.3,-44.9,41.5,-53.5,29.5C-62,17.5,-67.4,2.3,-66,-12.6C-64.5,-27.5,-56.1,-42.2,-43.9,-55C-31.8,-67.8,-15.9,-78.9,-0.6,-78.2C14.7,-77.4,29.3,-65,39.8,-51.8Z"
+              transform="translate(100 100)"
+            />
+          </clipPath>
+        </defs>
+        <img src="~/assets/img/bg/brand-1.png" clip-path="url(#shape)" alt="">
+      </svg>
+    </div> -->
     <About />
     <Category />
     <section>

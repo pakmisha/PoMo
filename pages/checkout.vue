@@ -256,7 +256,7 @@
                     :id="'delivery-' + item.id"
                     class="radio-primary mr-3"
                   />
-                  <label :for="'delivery-' + item.id">
+                  <label class="w-[90%]" :for="'delivery-' + item.id">
                     <p class="mb-1 font-medium">
                       {{ item.method[$i18n.locale] }}
                     </p>
@@ -286,7 +286,7 @@
                     :id="'payment-' + item.id"
                     class="radio-primary mr-3"
                   />
-                  <label :for="'payment-' + item.id">
+                  <label class="w-[90%]" :for="'payment-' + item.id">
                     <p class="mb-1 font-medium">
                       {{ item.method[$i18n.locale] }}
                     </p>
@@ -346,7 +346,7 @@
 <script>
 import { mapGetters } from "vuex";
 import formatPrice from "~/filters/formatPrice";
-export default { 
+export default {
   filters: {
     formatPrice,
   },

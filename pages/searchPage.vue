@@ -40,22 +40,18 @@ export default {
     title: "",
   }),
   created() {
-    console.log(this.$route.query);
-    if (this.$route.query.res == undefined) {
-      this.res = [];
-    } else {
-      const result = this.$route.query.res;
-      console.log("RESULT", result);
-      const resultJson = JSON.stringify(result);
-      console.log("JSON", resultJson);
-      this.res = JSON.parse(resultJson);
-      console.log("RES", this.res);
-    }
-    if (this.$route.query.title == undefined) {
-      this.title = null;
-    } else {
-      this.title = this.$route.query.title;
-    }
+    // const url = new URLSearchParams(location.search);
+    // console.log(url.get("title"));
+    this.searchProducts();
+  },
+  methods: {
+    async searchProducts() {
+      const url = new URLSearchParams(location.search);
+      const search = url.get("title");
+      const response = await this.$axios.$get(`search?query=${search}`, {});
+      this.res = response.data.products;
+      this.title = search;
+    },
   },
 };
 </script>

@@ -3,7 +3,7 @@
     <UIPath :path="path" />
     <div class="section-container section-title-distance">
       <div class="text-center">
-        <h1 class="heading-big mx-auto mb-5 max-w-[1490px] lg:mb-8">
+        <h1 class="heading-big mx-auto max-w-[1490px]">
           {{ page.title[$i18n.locale] }}
         </h1>
         <p class="mx-auto max-w-[650px] text-sm text-grey"></p>
