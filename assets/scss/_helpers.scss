@@ -147,12 +147,13 @@
     @apply w-full;
   }
   &-color {
-    @apply relative h-6 w-6 cursor-pointer appearance-none rounded-full border border-grey-light;
+    @apply relative h-6 w-6 cursor-pointer appearance-none rounded-full border border-grey-light shadow-md;
     &:after {
       content: "";
       @apply invisible absolute left-1/2 top-1/2 h-8 w-8 -translate-x-1/2 -translate-y-1/2 scale-95 rounded-full border border-dark opacity-0 transition-all duration-300 ease-out-quad;
     }
     &:checked {
+      @apply shadow-none;
       &:after {
         @apply visible scale-100 opacity-100;
       }
@@ -185,7 +186,7 @@
   &-primary {
     @apply relative flex cursor-pointer  items-center rounded-full border border-dark outline-none;
     select {
-      @apply w-full rounded-full border-l-[5px] border-r-[16px] border-white px-7 py-2 outline-none;
+      @apply w-full rounded-full border-l-[5px] border-r-[16px] border-white px-5 py-2 outline-none;
     }
   }
   &-secondary {

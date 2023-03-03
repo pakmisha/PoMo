@@ -10,9 +10,15 @@
             <p class="mb-2 text-xs font-medium uppercase text-dark md:text-sm">
               {{ item.product.title }}
             </p>
-            <p class="text-sm text-grey">
-              Цвет: {{ item.product.color_langs[$i18n.locale] }}
-            </p>
+            <div class="flex items-center">
+              <p class="mr-3 text-sm text-grey">
+                Цвет: {{ item.product.color_langs[$i18n.locale] }}
+              </p>
+              <div
+                class="h-6 w-6 rounded-full border shadow-md"
+                :style="'background-color:' + item.product.color_code"
+              ></div>
+            </div>
           </div>
           <button @click="remove(item)" class="flex">
             <svg

@@ -44,55 +44,96 @@
       </button>
       <div id="searchResults" class="search-result section-container pb-7">
         <div class="search-result-content">
-          <UISlider
-            :options="{
-              slidesPerView: 4,
-              spaceBetween: 10,
-              breakpoints: {
-                320: {
-                  slidesPerView: 1.2,
+          <div v-if="!loading">
+            <UISlider
+              :options="{
+                slidesPerView: 4,
+                spaceBetween: 10,
+                breakpoints: {
+                  320: {
+                    slidesPerView: 1.2,
+                  },
+                  768: {
+                    slidesPerView: 2.1,
+                  },
+                  1024: {
+                    slidesPerView: 3.1,
+                  },
+                  1366: {
+                    slidesPerView: 4,
+                  },
                 },
-                768: {
-                  slidesPerView: 2.1,
-                },
-                1024: {
-                  slidesPerView: 3.1,
-                },
-                1366: {
-                  slidesPerView: 4,
-                },
-              },
-            }"
-          >
-            <div class="swiper-wrapper">
-              <div
-                v-for="(product, index) in products"
-                :key="index"
-                class="swiper-slide w-auto"
-              >
-                <div class="h-[300px] w-full 2xl:h-[400px]">
-                  <Product :product="product" @click.native="active = false" />
+              }"
+            >
+              <div class="swiper-wrapper">
+                <div
+                  v-for="(product, index) in products"
+                  :key="index"
+                  class="swiper-slide w-auto"
+                >
+                  <div class="h-[300px] w-full 2xl:h-[400px]">
+                    <Product
+                      :product="product"
+                      @click.native="active = false"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-          </UISlider>
-        </div>
-        <div class="mt-5 flex items-center justify-center lg:mt-7">
-          <NuxtLink
-            :to="{
-              name: 'searchPage___ru',
-              query: { title: searchName },
-            }"
-            @click.native="active = false"
-            class="btn-primary"
-            >Смотреть все результаты</NuxtLink
-          >
-          <!-- <UIButton
+            </UISlider>
+            <div class="mt-5 flex items-center justify-center lg:mt-7">
+              <NuxtLink
+                :to="{
+                  name: 'searchPage___ru',
+                  query: { title: searchName },
+                }"
+                @click.native="active = false"
+                class="btn-primary"
+                >Смотреть все результаты</NuxtLink
+              >
+              <!-- <UIButton
             @click="$router.push({ name: '/searchPage', params: { products } })"
             @click.native="active = false"
             class="btn-primary"
             >Смотреть все результаты</UIButton
           > -->
+            </div>
+          </div>
+
+          <div v-else>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              style="
+                margin: auto;
+                background: rgba(241, 242, 243, 0);
+                display: block;
+                shape-rendering: auto;
+              "
+              width="50px"
+              height="50px"
+              viewBox="0 0 100 100"
+              preserveAspectRatio="xMidYMid"
+            >
+              <circle
+                cx="50"
+                cy="50"
+                fill="none"
+                stroke="#1d0e0b"
+                stroke-width="10"
+                r="35"
+                stroke-dasharray="164.93361431346415 56.97787143782138"
+              >
+                <animateTransform
+                  attributeName="transform"
+                  type="rotate"
+                  repeatCount="indefinite"
+                  dur="2.0408163265306123s"
+                  values="0 50 50;360 50 50"
+                  keyTimes="0;1"
+                ></animateTransform>
+              </circle>
+            </svg>
+          </div>
         </div>
       </div>
     </div>
@@ -105,6 +146,7 @@ export default {
     active: false,
     products: [],
     searchName: null,
+    loading: false,
   }),
   created() {
     this.$nuxt.$on("toggle", (name) => {
@@ -125,11 +167,14 @@ export default {
             query: searchValue,
           },
         });
+
         const res = response.data.products;
         var results = res;
         this.products = results;
+
         if (results.length == 0) {
           document.querySelector(".search-result").classList.remove("active");
+          this.loading = false;
         }
 
         results.forEach((item, index) => {
@@ -140,14 +185,20 @@ export default {
           }
         });
         this.resultsData = res;
+        this.loading = false;
       } else {
         document.querySelector(".search-result").classList.add("active");
+        this.loading = true;
+      }
+      if (searchValue.length <= 3 && searchValue.length == 0) {
+        this.loading = false;
       }
     },
     closeSearch() {
       this.active = false;
       document.querySelector(".search-result").classList.remove("active");
       this.products = [];
+      this.loading = false;
     },
     debounce(callback, delay) {
       let timeout;

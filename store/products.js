@@ -148,8 +148,9 @@ export const actions = {
     commit("SET_BRAND", brand);
     dispatch("getProducts");
   },
-  setColor({ commit }, color) {
+  setColor({ commit, dispatch }, color) {
     commit("SET_COLOR", color);
+    dispatch("cart/setColor", color, { root: true });
   },
   // setPrices({ commit, dispatch }, value) {
   //   // commit("MIN_PRICE", value[0]);

@@ -45,7 +45,7 @@
                 </div>
               </div>
               <div class="input-wrapper">
-                <label for="">Номер телефона</label>
+                <label for="">Номер телефона*</label>
                 <input
                   type="tel"
                   v-model="credentials.phone"

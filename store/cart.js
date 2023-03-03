@@ -2,6 +2,8 @@ export const state = () => ({
   items: [],
   total: null,
   quantity: 1,
+  color: null,
+  in_stock: false,
 });
 export const mutations = {
   SET(state, items) {
@@ -16,11 +18,15 @@ export const mutations = {
     }
   },
   REMOVE(state, ids) {
-    if (ids.length == 1) {
-      state.items.splice(state.items.indexOf(ids), 1);
-    } else {
-      state.items = state.items.filter((item) => item.id == ids);
-    }
+    // if (ids.length == 1) {
+    state.items.splice(
+      state.items.filter((item) => ids.includes(item.id)),
+      1
+    );
+    // } else {
+    //   // state.items = state.items.filter((item) => item.id == ids);
+    //   console.log("NO");
+    // }
   },
   QUANTITY(state, item) {
     const current = state.items.find((current) => current.id == item.id);
@@ -33,6 +39,17 @@ export const mutations = {
   },
   TOTAL(state, total) {
     state.total = total;
+  },
+  COLOR(state, color) {
+    state.color = color;
+  },
+  CHECK_COLOR(state, color) {
+    const item = state.items.find((i) => i.product.color_id == color.id);
+    if (item) {
+      state.in_stock = true;
+    } else {
+      state.in_stock = false;
+    }
   },
 };
 export const actions = {
@@ -69,9 +86,6 @@ export const actions = {
     commit("TOTAL", response.data.data.total);
   },
   async remove({ commit }, ids) {
-    if (!confirm("Вы действительно хотите удалить товар(ы)?")) {
-      return;
-    }
     try {
       const response = await this.$axios.post("cart/delete", {
         ids: ids,
@@ -81,6 +95,10 @@ export const actions = {
     } catch (e) {
       this._vm.$toast.error(e.response.data.message);
     }
+  },
+  setColor({ commit }, color) {
+    commit("COLOR", color);
+    commit("CHECK_COLOR", color);
   },
 };
 export const getters = {
@@ -92,5 +110,11 @@ export const getters = {
   },
   quantity(state) {
     return state.quantity;
+  },
+  color(state) {
+    return state.color;
+  },
+  in_stock(state) {
+    return state.in_stock;
   },
 };

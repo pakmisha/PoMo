@@ -110,73 +110,83 @@
               <div
                 class="flex flex-col space-y-3 lg:flex-row lg:items-center lg:space-y-0"
               >
-                <div class="flex" v-if="product.status == 'IN_STOCK'">
-                  <UICounter
-                    v-if="color != null"
-                    class="counter-big mr-3"
-                    @change="onChange($event)"
-                    :color="color"
-                    :available="color?.available"
-                  />
+                <div
+                  class="flex flex-col lg:flex-row lg:items-center"
+                  v-if="!in_stock"
+                >
+                  <div class="flex" v-if="product.status == 'IN_STOCK'">
+                    <UICounter
+                      v-if="color != null"
+                      class="counter-big mr-3"
+                      @change="onChange($event)"
+                      :color="color"
+                      :available="color?.available"
+                    />
 
-                  <div
-                    v-else
-                    class="mr-3 rounded-full border border-dark bg-white px-5 py-3 text-sm"
-                  >
-                    Выберите цвет
+                    <div
+                      v-else
+                      class="mr-3 rounded-full border border-dark bg-white px-5 py-3 text-sm"
+                    >
+                      Выберите цвет
+                    </div>
+                  </div>
+                  <div class="flex flex-col lg:flex-row lg:items-center">
+                    <div class="flex" v-if="!in_stock">
+                      <UIButton
+                        v-if="product.status == 'IN_STOCK'"
+                        class="btn-secondary mr-4"
+                        @click="addToCart"
+                        >добавить в корзину</UIButton
+                      >
+                      <UIButton
+                        v-else
+                        @click="$nuxt.$emit('open-modal', 'buy')"
+                        class="btn-secondary mr-4"
+                        >Заказать товар</UIButton
+                      >
+                    </div>
                   </div>
                 </div>
-
-                <div class="flex flex-col lg:flex-row lg:items-center">
-                  <div class="flex">
-                    <UIButton
-                      v-if="product.status == 'IN_STOCK'"
-                      class="btn-secondary mr-4"
-                      @click="addToCart"
-                      >добавить в корзину</UIButton
-                    >
-                    <UIButton
-                      v-else
-                      @click="$nuxt.$emit('open-modal', 'buy')"
-                      class="btn-secondary mr-4"
-                      >Заказать товар</UIButton
-                    >
+                <div class="mr-3" v-else>
+                  <div
+                    class="rounded-full border border-dark px-6 py-3 shadow-md"
+                  >
+                    Товар добавлен в корзину
                   </div>
-
-                  <div class="mt-3 flex items-center lg:mt-0">
-                    <UIButton
-                      class="favourite mr-3"
-                      :class="{ active: product.favourite_id != null }"
-                      @click="$store.dispatch('favourites/toggle', product)"
+                </div>
+                <div class="mt-3 flex items-center lg:mt-0">
+                  <UIButton
+                    class="favourite mr-3"
+                    :class="{ active: product.favourite_id != null }"
+                    @click="$store.dispatch('favourites/toggle', product)"
+                  >
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
                     >
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M5.17008 12.6482L11.4677 18.505C11.6478 18.6725 11.7379 18.7563 11.8393 18.7907C11.9435 18.826 12.0565 18.826 12.1607 18.7907C12.2621 18.7563 12.3522 18.6725 12.5323 18.505L12.5323 18.505L18.8299 12.6482C20.6224 10.9812 20.8395 8.21923 19.3296 6.29262L19.0731 5.96523C17.2789 3.67583 13.7055 4.06236 12.4423 6.68247C12.2638 7.05288 11.7362 7.05288 11.5577 6.68247C10.2945 4.06236 6.72114 3.67583 4.92694 5.96522L4.67036 6.29262C3.16047 8.21923 3.37764 10.9812 5.17008 12.6482Z"
-                          stroke="#101820"
-                        />
-                      </svg>
-                    </UIButton>
-                    <UIButton @click="$store.dispatch('compare/add', product)">
-                      <img
-                        v-if="
-                          !compare?.products?.find(
-                            (item) => item.id == product.id
-                          )
-                        "
-                        src="~/assets/img/icons/compare.svg"
-                        alt=""
+                      <path
+                        d="M5.17008 12.6482L11.4677 18.505C11.6478 18.6725 11.7379 18.7563 11.8393 18.7907C11.9435 18.826 12.0565 18.826 12.1607 18.7907C12.2621 18.7563 12.3522 18.6725 12.5323 18.505L12.5323 18.505L18.8299 12.6482C20.6224 10.9812 20.8395 8.21923 19.3296 6.29262L19.0731 5.96523C17.2789 3.67583 13.7055 4.06236 12.4423 6.68247C12.2638 7.05288 11.7362 7.05288 11.5577 6.68247C10.2945 4.06236 6.72114 3.67583 4.92694 5.96522L4.67036 6.29262C3.16047 8.21923 3.37764 10.9812 5.17008 12.6482Z"
+                        stroke="#101820"
                       />
-                      <p v-else class="text-sm text-grey">
-                        Товар добавлен для сравнения
-                      </p>
-                    </UIButton>
-                  </div>
+                    </svg>
+                  </UIButton>
+                  <UIButton @click="$store.dispatch('compare/add', product)">
+                    <img
+                      v-if="
+                        !compare?.products?.find(
+                          (item) => item.id == product.id
+                        )
+                      "
+                      src="~/assets/img/icons/compare.svg"
+                      alt=""
+                    />
+                    <p v-else class="text-sm text-grey">
+                      Товар добавлен для сравнения
+                    </p>
+                  </UIButton>
                 </div>
               </div>
               <div v-if="active" class="mt-4 text-sm text-grey">
@@ -227,6 +237,8 @@ export default {
   computed: {
     ...mapGetters({
       compare: "compare/compare",
+      cart: "cart/items",
+      in_stock: "cart/in_stock",
     }),
   },
   mounted() {
@@ -260,6 +272,25 @@ export default {
     });
   },
 
+  watch: {
+    cart(cart) {
+      if (this.color != null) {
+        this.$store.dispatch("cart/setColor", this.color);
+      }
+      // console.log(this.$store.getters.color);
+    },
+
+    // color(color) {
+    //   if (color != null) {
+    //     if (this.cart.find((i) => i.product.color_id == color.id)) {
+    //       this.in_stock = true;
+    //     } else {
+    //       this.in_stock = false;
+    //     }
+    //   }
+    //   // console.log(color);
+    // },
+  },
   methods: {
     addToCart() {
       this.color_error = null;
@@ -273,7 +304,11 @@ export default {
         quantity: this.quantity,
       };
       this.$store.dispatch("cart/add", item);
+
+      // this.color = true;
+      // this.checkToCart();
     },
+
     onChange(event) {
       this.quantity = event;
       if (event == this.color.available) {
