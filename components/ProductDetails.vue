@@ -27,6 +27,11 @@
             </div>
           </div>
         </div>
+        <div v-else>
+          <h3 class="heading-secondary">
+            У данного товара нет цветов и материалов
+          </h3>
+        </div>
         <div class="w-full md:w-1/2" v-if="product.leathers.length > 0">
           <h2 class="heading-secondary mb-4">Кожа</h2>
           <div class="flex flex-wrap items-center">

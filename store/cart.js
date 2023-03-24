@@ -18,15 +18,13 @@ export const mutations = {
     }
   },
   REMOVE(state, ids) {
-    // if (ids.length == 1) {
-    state.items.splice(
-      state.items.filter((item) => ids.includes(item.id)),
-      1
-    );
-    // } else {
-    //   // state.items = state.items.filter((item) => item.id == ids);
-    //   console.log("NO");
-    // }
+    const indexDelete = state.items.findIndex((item) => ids.includes(item.id));
+    const newArray = state.items.splice(indexDelete, 1);
+
+    console.log(state.items);
+    console.log(ids);
+    console.log(indexDelete);
+    console.log(newArray);
   },
   QUANTITY(state, item) {
     const current = state.items.find((current) => current.id == item.id);

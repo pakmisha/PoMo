@@ -18,7 +18,7 @@
             class="product-compare mr-1"
           >
             <img
-              v-if="!compare.products.find((item) => item.id == product.id)"
+              v-if="!compare?.products?.find((item) => item.id == product.id)"
               src="~/assets/img/icons/compare.svg"
               alt=""
             />

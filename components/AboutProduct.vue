@@ -110,11 +110,14 @@
               <div
                 class="flex flex-col space-y-3 lg:flex-row lg:items-center lg:space-y-0"
               >
-                <div
-                  class="flex flex-col lg:flex-row lg:items-center"
-                  v-if="!in_stock"
-                >
-                  <div class="flex" v-if="product.status == 'IN_STOCK'">
+                <div class="flex flex-col lg:flex-row lg:items-center">
+                  <!-- <div
+                    :class="{ hidden: product.status == 'IN_STOCK' }"
+                    class="mr-3 rounded-full border border-dark bg-white px-5 py-3 text-sm"
+                  >
+                    Выберите цвет
+                  </div> -->
+                  <!-- <div class="flex" v-if="product.status == 'IN_STOCK'">
                     <UICounter
                       v-if="color != null"
                       class="counter-big mr-3"
@@ -129,9 +132,9 @@
                     >
                       Выберите цвет
                     </div>
-                  </div>
+                  </div> -->
                   <div class="flex flex-col lg:flex-row lg:items-center">
-                    <div class="flex" v-if="!in_stock">
+                    <div class="flex">
                       <UIButton
                         v-if="product.status == 'IN_STOCK'"
                         class="btn-secondary mr-4"
@@ -147,13 +150,13 @@
                     </div>
                   </div>
                 </div>
-                <div class="mr-3" v-else>
+                <!-- <div class="mr-3" v-else>
                   <div
                     class="rounded-full border border-dark px-6 py-3 shadow-md"
                   >
                     Товар добавлен в корзину
                   </div>
-                </div>
+                </div> -->
                 <div class="mt-3 flex items-center lg:mt-0">
                   <UIButton
                     class="favourite mr-3"
