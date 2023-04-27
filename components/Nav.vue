@@ -71,6 +71,13 @@
               >Реализованные проекты</UILink
             >
           </li>
+          <li>
+            <UILink
+              link="/artHome"
+              class="link-dark text-sm uppercase text-dark"
+              >PoMO Art Gallery</UILink
+            >
+          </li>
         </ul>
       </nav>
       <div class="navigation">
