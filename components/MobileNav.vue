@@ -76,6 +76,14 @@
                 >Избранные товары</UILink
               >
             </li>
+            <li>
+              <UILink
+                @click.native="$nuxt.$emit('toggle', 'mobileMenu')"
+                link="/art"
+                class="mobile-link"
+                >POMO ART GALLERY</UILink
+              >
+            </li>
           </ul>
         </nav>
         <nav class="flex flex-col items-center pt-36" v-else>
